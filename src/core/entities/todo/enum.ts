@@ -4,5 +4,5 @@ export enum TodoStatus {
 }
 
 export enum TodoLifeCycle {
-  CreateSuccess = 'Todo created!'
+  CreateSuccess = 'Todo created!',
 }

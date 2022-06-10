@@ -1,6 +1,6 @@
 import { Todo } from '../../entities';
 import { ITodoRepository } from '../../ports';
-import { IListTodoUseCase } from '../';
+import { IListTodoUseCase } from '..';
 
 export class ListTodoUseCase implements IListTodoUseCase {
   constructor(private todo_repository: ITodoRepository) {}

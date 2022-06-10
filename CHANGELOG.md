@@ -7,5 +7,8 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 
 ## Ongoing Changes
 
+- add - module and container layer
+- Add - interface layer
+- Add - infra layer
 - Add - entity todo
 - Add - test entity todo

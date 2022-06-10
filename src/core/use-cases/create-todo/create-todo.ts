@@ -1,9 +1,14 @@
 import { ITodoRepository } from '../../ports';
 import { Todo, TodoLifeCycle } from '../../entities';
 import { ICreateTodoUseCase } from './create-todo.interface';
+import { UseCaseContext } from '../../../main/container/container';
 
 export class CreateTodoUseCase implements ICreateTodoUseCase {
-  constructor(private todo_repository: ITodoRepository) {}
+  private todo_repository: ITodoRepository;
+
+  constructor(use_case_context: UseCaseContext) {
+    this.todo_repository = use_case_context.todo_repository;
+  }
 
   create(dto: Todo): string {
     const new_todo = new Todo(dto);

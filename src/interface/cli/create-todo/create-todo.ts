@@ -1,11 +1,8 @@
 import { ICreateTodoUseCase } from '../../../core/use-cases';
-import { CliLine, CliResult } from '..';
-import { Cli } from '../';
+import { CliLine, CliResult, ICreateTodoCommand } from '..';
 
-export class CreateTodoCommand extends Cli {
-  constructor(private create_todo_use_case: ICreateTodoUseCase) {
-    super();
-  }
+export class CreateTodoCommand implements ICreateTodoCommand {
+  constructor(private create_todo_use_case: ICreateTodoUseCase) {}
 
   cmd(cmd: CliLine): CliResult<string> {
     const result = this.create_todo_use_case.create(cmd.line);

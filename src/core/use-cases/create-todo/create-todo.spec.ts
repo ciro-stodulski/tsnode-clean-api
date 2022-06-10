@@ -11,8 +11,12 @@ describe('UseCase - CreateTodoUseCase', () => {
         list: sinon.fake.returns(undefined),
       };
 
+      const use_case_context = {
+        todo_repository: todo_repository_mock,
+      };
+
       // @ts-ignore
-      const use_case = new CreateTodoUseCase(todo_repository_mock);
+      const use_case = new CreateTodoUseCase(use_case_context);
 
       const dto = {
         name: 'GYN',

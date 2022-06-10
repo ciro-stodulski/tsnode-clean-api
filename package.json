@@ -11,7 +11,7 @@
   "scripts": {
     "start": "node  ./src/main/index.js",
     "dev": "tsnd ./src/main/index.ts --transpile-only",
-    "build": "npm i && rimraf dist && tsc -p . && docker image build -t capital-gains .",
+    "build": "npm i && rimraf dist && tsc -p .",
     "test": "nyc mocha --exit --config=.mocha.yml './src/**/*.spec.ts'",
     "lint": "eslint  'src/**/*.ts'",
     "lint:fix": "eslint --fix 'src/**/*.ts'"

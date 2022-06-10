@@ -1,9 +1,9 @@
 import { expect } from 'chai';
 import sinon from 'sinon';
 import { Todo, TodoLifeCycle, TodoStatus } from '../../../core/entities';
-import { CreateTodoCommand, CliLine } from '../';
+import { CreateTodoCommand, CliLine } from '..';
 
-describe('Presentation - CLI', () => {
+describe('Interface - CLI', () => {
   describe('create-todo', () => {
     it('create-todo', () => {
       const create_todo_use_case_mock = {
