@@ -1,4 +1,4 @@
-import { expect, should } from 'chai';
+import { expect } from 'chai';
 import { TodoStatus } from './enum';
 import { Todo } from './todo';
 
