@@ -1,0 +1,55 @@
+{
+  "name": "tsnocde-clean-api",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ciro-stodulski/tsnocde-clean-api.git"
+  },
+  "homepage": "https://github.com/ciro-stodulski/tsnocde-clean-api#readme",
+  "scripts": {
+    "start": "node  ./src/main/index.js",
+    "dev": "tsnd ./src/main/index.ts --transpile-only",
+    "build": "npm i && rimraf dist && tsc -p . && docker image build -t capital-gains .",
+    "test": "nyc mocha --exit --config=.mocha.yml './src/**/*.spec.ts'",
+    "lint": "eslint  'src/**/*.ts'",
+    "lint:fix": "eslint --fix 'src/**/*.ts'"
+  },
+  "nyc": {
+    "extension": [
+      ".ts"
+    ],
+    "all": true,
+    "include": [
+      "src"
+    ],
+    "exclude": [
+      "**/*.d.ts"
+    ],
+    "reporter": [
+      "lcov",
+      "text"
+    ]
+  },
+  "dependencies": {
+    "typescript": "^4.6.4",
+    "sinon": "^11.1.1",
+    "mocha": "^8.4.0",
+    "chai": "^4.3.4"
+  },
+  "devDependencies": {
+    "@types/chai": "^4.2.18",
+    "@types/mocha": "^8.2.2",
+    "@types/sinon": "^10.0.2",
+    "@typescript-eslint/eslint-plugin": "^5.12.1",
+    "@typescript-eslint/parser": "^5.12.1",
+    "eslint-config-airbnb-typescript": "^16.1.0",
+    "eslint-config-airbnb-typescript-prettier": "^5.0.0",
+    "eslint-import-resolver-typescript": "^2.5.0",
+    "eslint-plugin-import": "^2.25.4",
+    "eslint": "^8.9.0",
+    "nyc": "^15.1.0",
+    "ts-node-dev": "^2.0.0-0"
+  }
+}
