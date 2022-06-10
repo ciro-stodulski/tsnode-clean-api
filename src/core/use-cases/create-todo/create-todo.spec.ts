@@ -8,8 +8,10 @@ describe('UseCase - CreateTodoUseCase', () => {
     it('Should create todo with succeffully', () => {
       const todo_repository_mock = {
         create: sinon.fake.returns(undefined),
+        list: sinon.fake.returns(undefined),
       };
 
+      // @ts-ignore
       const use_case = new CreateTodoUseCase(todo_repository_mock);
 
       const dto = {
