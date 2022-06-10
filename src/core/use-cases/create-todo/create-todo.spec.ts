@@ -1,11 +1,17 @@
-import { expect } from 'chai';
-import { TodoStatus } from '../../entities';
+import { assert, expect } from 'chai';
+import sinon from 'sinon';
+import { Todo, TodoStatus } from '../../entities';
 import { CreateTodoUseCase } from './create-todo';
 
 describe('UseCase - CreateTodoUseCase', () => {
   describe('create', () => {
     it('Should create todo with succeffully', () => {
-      const use_case = new CreateTodoUseCase();
+      const todo_repository_mock = {
+        create: sinon.fake.returns(undefined),
+      };
+
+      const use_case = new CreateTodoUseCase(todo_repository_mock);
+
       const dto = {
         name: 'GYN',
         status: TodoStatus.Active,
@@ -14,6 +20,8 @@ describe('UseCase - CreateTodoUseCase', () => {
 
       const result = use_case.create(dto);
       expect(result).to.be.equals('Todo created!');
+
+      assert(todo_repository_mock.create.calledOnceWith(new Todo(dto)));
     });
   });
 });
