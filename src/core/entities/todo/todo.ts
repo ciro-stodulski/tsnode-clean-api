@@ -1,4 +1,4 @@
-import { TodoStatus } from './enum';
+import { TodoStatus } from '..';
 
 export class Todo {
   public name: string;

@@ -1,7 +1,7 @@
+import { UseCaseContext } from '../../../main/container';
 import { ITodoRepository } from '../../ports';
 import { Todo, TodoLifeCycle } from '../../entities';
-import { ICreateTodoUseCase } from './create-todo.interface';
-import { UseCaseContext } from '../../../main/container/container';
+import { ICreateTodoUseCase } from '..';
 
 export class CreateTodoUseCase implements ICreateTodoUseCase {
   private todo_repository: ITodoRepository;

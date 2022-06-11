@@ -1,7 +1,7 @@
 import { assert, expect } from 'chai';
 import sinon from 'sinon';
 import { Todo, TodoStatus } from '../../entities';
-import { CreateTodoUseCase } from './create-todo';
+import { CreateTodoUseCase } from '..';
 
 describe('UseCase - CreateTodoUseCase', () => {
   describe('create', () => {

@@ -1,4 +1,4 @@
-import { Container } from './container/container';
+import { Container } from './container';
 import { CliModule } from './modules';
 
 export class App {

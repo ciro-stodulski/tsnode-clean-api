@@ -1,7 +1,7 @@
 import readline from 'readline';
-import { ICreateTodoCommand } from '../../../interface/cli';
+import { ICreateTodoCommand } from '../../../interface';
+import { Container } from '../../container';
 import { Module } from '..';
-import { Container } from '../../container/container';
 
 export class CliModule implements Module {
   protected program: readline.Interface;

@@ -1,14 +1,10 @@
 import { CreateTodoUseCase } from '../../core/use-cases';
-import { ITodoRepository } from '../../core/ports';
 import { TodoRepository } from '../../infra/repositories';
-import { CreateTodoCommand } from '../../interface/cli';
-
-export type UseCaseContext = {
-  todo_repository: ITodoRepository;
-};
+import { ICreateTodoCommand , CreateTodoCommand} from '../../interface';
+import { UseCaseContext } from '.';
 
 export class Container {
-  readonly create_todo_command: CreateTodoCommand;
+  readonly create_todo_command: ICreateTodoCommand;
 
   constructor() {
     const use_case_context: UseCaseContext = {

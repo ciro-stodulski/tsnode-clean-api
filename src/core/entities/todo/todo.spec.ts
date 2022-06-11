@@ -1,6 +1,5 @@
 import { expect } from 'chai';
-import { TodoStatus } from './enum';
-import { Todo } from './todo';
+import { TodoStatus , Todo } from '..';
 
 describe('Entity - Todo', () => {
   it('Create entity with successfully', () => {
