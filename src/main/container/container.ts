@@ -1,6 +1,6 @@
 import { CreateTodoUseCase } from '../../core/use-cases';
 import { TodoRepository } from '../../infra/repositories';
-import { ICreateTodoCommand , CreateTodoCommand} from '../../interface';
+import { ICreateTodoCommand, CreateTodoCommand } from '../../interface';
 import { UseCaseContext } from '.';
 
 export class Container {
