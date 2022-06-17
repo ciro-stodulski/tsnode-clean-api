@@ -7,6 +7,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 
 ## Ongoing Changes
 
+- add - validation body schema for request http
 - ref - container and cli module
 - add - module http
 - add - module cli
