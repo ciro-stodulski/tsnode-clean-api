@@ -3,7 +3,7 @@ import { Middleware } from '.';
 
 export type HttpRequest = {
   body?: any;
-  params: any;
+  params?: any;
   query?: any;
   headers?: any;
   user?: {

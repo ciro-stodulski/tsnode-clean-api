@@ -24,6 +24,7 @@ import {
 
 export class HttpModule implements Module {
   constructor(protected container: Container) {}
+
   start(): void {
     const app = express();
     const router = Router({ mergeParams: true });
@@ -72,11 +73,11 @@ export class HttpModule implements Module {
   protected loadControllers(): Controller[] {
     return [
       new ListTodoController(this.container.list_todo_use_case),
-      new CreateTodoController(this.container.create_todo_use_case)
+      new CreateTodoController(this.container.create_todo_use_case),
     ];
   }
 
-  protected buildRoutes(router: Router): Router {
+  private buildRoutes(router: Router): Router {
     for (const controller of this.loadControllers()) {
       const { route_configs } = controller;
 
