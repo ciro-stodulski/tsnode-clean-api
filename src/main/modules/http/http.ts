@@ -16,6 +16,7 @@ import { Module } from '..';
 
 import {
   Controller,
+  CreateTodoController,
   HttpResponse,
   ListTodoController,
   Middleware,
@@ -69,21 +70,24 @@ export class HttpModule implements Module {
   }
 
   protected loadControllers(): Controller[] {
-    return [new ListTodoController(this.container.list_todo_use_case)];
+    return [
+      new ListTodoController(this.container.list_todo_use_case),
+      new CreateTodoController(this.container.create_todo_use_case)
+    ];
   }
 
   protected buildRoutes(router: Router): Router {
     for (const controller of this.loadControllers()) {
       const { route_configs } = controller;
 
-      const { path, middlewares, method, status_code, schema, has_schema } =
-        route_configs;
+      const { path, middlewares, method, status_code, schema } = route_configs;
 
-      if (has_schema && !schema) {
-        throw new Error(`Schema to ${controller} is mandatory.`);
+      let request_validator = null;
+
+      if (schema) {
+        request_validator = this.requestValidator(schema);
       }
 
-      const request_validator = this.requestValidator(schema);
       const func = this.requestHandle(controller, status_code);
 
       let func_middleware: RequestHandler[] = [];

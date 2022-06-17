@@ -24,5 +24,4 @@ export type RouteConfig = {
   schema?: Joi.Schema;
   middlewares?: Middleware[];
   status_code: number;
-  has_schema?: boolean;
 };

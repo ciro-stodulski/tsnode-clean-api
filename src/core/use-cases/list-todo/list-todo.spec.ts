@@ -19,12 +19,12 @@ describe('UseCase - ListTodoUseCase', () => {
         },
       ];
 
-      const todo_repository_mock = {
+      const todo_repository = {
         create: sinon.fake.returns(undefined),
         list: sinon.fake.returns(mock_list),
       };
 
-      const use_case = new ListTodoUseCase(todo_repository_mock);
+      const use_case = new ListTodoUseCase({ todo_repository });
 
       const result = use_case.list();
 

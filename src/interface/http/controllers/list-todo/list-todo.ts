@@ -2,14 +2,12 @@ import { Todo } from '../../../../core/entities';
 import { IListTodoUseCase } from '../../../../core/use-cases';
 
 import { HttpResponse, Controller, RouteConfig } from '../..';
-import { AuthMiddleware } from '../..';
 
 export class ListTodoController extends Controller {
   route_configs: RouteConfig = {
     method: 'get',
     path: '/todos',
     status_code: 200,
-    middlewares: [new AuthMiddleware()],
   };
 
   constructor(private list_todo_use_case: IListTodoUseCase) {
