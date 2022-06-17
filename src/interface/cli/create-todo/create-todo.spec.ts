@@ -1,7 +1,7 @@
 import { expect } from 'chai';
 import sinon from 'sinon';
 import { Todo, TodoLifeCycle, TodoStatus } from '../../../core/entities';
-import { CreateTodoCommand, CliLine } from '../..';
+import { CreateTodoCommand, CliLine } from '..';
 
 describe('Interface - CLI', () => {
   describe('create-todo', () => {
