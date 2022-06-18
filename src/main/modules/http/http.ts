@@ -13,7 +13,14 @@ import bodyParser from 'body-parser';
 import compression from 'compression';
 import { Module } from '..';
 
-import { Controller, HttpResponse, Middleware } from '../../../interface/http';
+import {
+  Controller,
+  HttpResponse,
+  Middleware,
+  ErrorHandlerMiddleware,
+  HttpRequest,
+  BadRequest,
+} from '../../../interface/http';
 
 export class HttpModule implements Module {
   readonly app: Express = express();
@@ -59,7 +66,8 @@ export class HttpModule implements Module {
         next();
       }
     );
-
+    const error_handler = this.errorHandler() as any;
+    this.app.use(error_handler);
     this.app.listen(3000, () => console.log(`Server running on port 3000`));
   }
 
@@ -150,6 +158,16 @@ export class HttpModule implements Module {
     };
   }
 
+  protected errorHandler(): unknown {
+    const error_handler = new ErrorHandlerMiddleware();
+
+    return (err: any, req: HttpRequest, res: Response, next: NextFunction) => {
+      const { data, status } = error_handler.handle(req, err);
+      res.status(status!).send(data);
+      return next();
+    };
+  }
+
   private requestValidator(schema?: Joi.Schema): RequestHandler | void {
     if (!schema) return;
     return (req: Request, res: Response, next: NextFunction) => {
@@ -163,7 +181,13 @@ export class HttpModule implements Module {
         console.log(req?.body);
         console.log(req?.params);
         console.log(req?.query);
-        return next(new Error('VALIDATION_FAILED'));
+        return next(
+          new BadRequest(
+            'VALIDATION_FAILED',
+            'Invalid request data',
+            validation.error.details
+          )
+        );
       }
 
       Object.assign(req, validation.value);
