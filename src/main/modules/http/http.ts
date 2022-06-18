@@ -6,39 +6,32 @@ import express, {
   Response,
   NextFunction,
   RequestHandler,
+  Express,
 } from 'express';
-
 import helmet from 'helmet';
 import bodyParser from 'body-parser';
 import compression from 'compression';
-import { Container } from '../../container';
 import { Module } from '..';
 
-import {
-  Controller,
-  CreateTodoController,
-  HttpResponse,
-  ListTodoController,
-  Middleware,
-} from '../../../interface/http';
+import { Controller, HttpResponse, Middleware } from '../../../interface/http';
 
 export class HttpModule implements Module {
-  constructor(protected container: Container) {}
+  readonly app: Express = express();
+  readonly router: Router = Router({ mergeParams: true });
+
+  constructor(private controllers: Controller[] = []) {}
 
   start(): void {
-    const app = express();
-    const router = Router({ mergeParams: true });
-
-    app.set('trust proxy', true);
-    app.use(helmet());
-    app.use(compression());
-    app.use(
+    this.app.set('trust proxy', true);
+    this.app.use(helmet());
+    this.app.use(compression());
+    this.app.use(
       bodyParser.json({
         limit: '10kb',
       })
     );
 
-    router.get(
+    this.router.get(
       ['/info', '/status'],
       async (
         req: express.Request,
@@ -53,9 +46,9 @@ export class HttpModule implements Module {
       }
     );
 
-    app.use(this.buildRoutes(router));
+    this.app.use(this.buildRoutes());
 
-    app.use(
+    this.app.use(
       '*',
       (
         req: express.Request,
@@ -67,18 +60,11 @@ export class HttpModule implements Module {
       }
     );
 
-    app.listen(3000, () => console.log(`Server running on port 3000`));
+    this.app.listen(3000, () => console.log(`Server running on port 3000`));
   }
 
-  protected loadControllers(): Controller[] {
-    return [
-      new ListTodoController(this.container.list_todo_use_case),
-      new CreateTodoController(this.container.create_todo_use_case),
-    ];
-  }
-
-  private buildRoutes(router: Router): Router {
-    for (const controller of this.loadControllers()) {
+  private buildRoutes(): Router {
+    for (const controller of this.controllers) {
       const { route_configs } = controller;
 
       const { path, middlewares, method, status_code, schema } = route_configs;
@@ -103,26 +89,26 @@ export class HttpModule implements Module {
 
       switch (method) {
         case 'get':
-          router.get(path, jobs);
+          this.router.get(path, jobs);
           break;
         case 'post':
-          router.post(path, jobs);
+          this.router.post(path, jobs);
           break;
         case 'put':
-          router.put(path, jobs);
+          this.router.put(path, jobs);
           break;
         case 'patch':
-          router.patch(path, jobs);
+          this.router.patch(path, jobs);
           break;
         case 'delete':
-          router.delete(path, jobs);
+          this.router.delete(path, jobs);
           break;
         default:
           break;
       }
     }
 
-    return router;
+    return this.router;
   }
 
   private buildMiddlewares(middlewares: Middleware[]): RequestHandler[] {
@@ -150,6 +136,7 @@ export class HttpModule implements Module {
             res.setHeader(header, response.headers[header]);
           }
         }
+
         const http_status = status_code || response.status;
         if (http_status) {
           res.status(http_status);
@@ -164,7 +151,7 @@ export class HttpModule implements Module {
   }
 
   private requestValidator(schema?: Joi.Schema): RequestHandler | void {
-    if (!schema) return undefined;
+    if (!schema) return;
     return (req: Request, res: Response, next: NextFunction) => {
       const validation = schema.validate(req, {
         abortEarly: false,

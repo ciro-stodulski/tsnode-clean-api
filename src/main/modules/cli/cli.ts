@@ -4,9 +4,9 @@ import { Container } from '../../container';
 import { Module } from '..';
 
 export class CliModule implements Module {
-  protected program: readline.Interface;
+  private program: readline.Interface;
 
-  protected commands: ICreateTodoCommand;
+  private commands: ICreateTodoCommand;
 
   constructor(protected container: Container, program = null) {
     this.program =

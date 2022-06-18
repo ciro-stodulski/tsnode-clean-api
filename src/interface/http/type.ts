@@ -19,7 +19,6 @@ export type HttpResponse<T = any> = {
 
 export type RouteConfig = {
   method: string;
-  version?: string;
   path: string;
   schema?: Joi.Schema;
   middlewares?: Middleware[];
