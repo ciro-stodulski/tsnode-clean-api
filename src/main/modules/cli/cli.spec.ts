@@ -2,7 +2,7 @@ import { assert } from 'chai';
 import sinon from 'sinon';
 import { CliModule } from './cli';
 
-describe('Cli', () => {
+describe('Module - CLI', () => {
   describe('start', () => {
     it('Should start program command with succeffully', () => {
       const program = {

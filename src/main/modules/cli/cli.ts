@@ -1,12 +1,12 @@
 import readline from 'readline';
-import { ICreateTodoCommand } from '../../../interface';
+import { CreateTodoCommand, ICreateTodoCommand } from '../../../interface/cli';
 import { Container } from '../../container';
 import { Module } from '..';
 
 export class CliModule implements Module {
-  protected program: readline.Interface;
+  private program: readline.Interface;
 
-  protected commands: ICreateTodoCommand;
+  private commands: ICreateTodoCommand;
 
   constructor(protected container: Container, program = null) {
     this.program =
@@ -17,7 +17,7 @@ export class CliModule implements Module {
         terminal: false,
       });
 
-    this.commands = container.create_todo_command;
+    this.commands = new CreateTodoCommand(container.create_todo_use_case);
   }
 
   start(): void {
