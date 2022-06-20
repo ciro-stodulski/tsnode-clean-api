@@ -7,6 +7,9 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 
 ## Ongoing Changes
 
+- fix - interfaces cli and http
+- add - integration json place holder
+- add - client http
 - add - error handler http
 - add - validation body schema for request http
 - ref - container and cli module

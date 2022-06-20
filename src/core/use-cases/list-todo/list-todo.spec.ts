@@ -1,7 +1,8 @@
 import { expect } from 'chai';
 import sinon from 'sinon';
 import { Todo, TodoStatus } from '../../entities';
-import { ListTodoUseCase } from './list-todo';
+import { ListTodoUseCase } from '..';
+import { JsonPlaceHolderUser } from '../../types';
 
 describe('UseCase - ListTodoUseCase', () => {
   describe('list', () => {
@@ -19,12 +20,43 @@ describe('UseCase - ListTodoUseCase', () => {
         },
       ];
 
+      const mock_user: JsonPlaceHolderUser = {
+        company: {
+          bs: 'yolo',
+          catchPhrase: 'yolo',
+          name: 'yolo',
+        },
+        email: 'yolo@yolo.com',
+        id: 1,
+        name: 'yolo',
+        phone: 'yolo',
+        username: 'yolo',
+        website: 'yolo',
+        address: {
+          city: 'yolo',
+          geo: {
+            lat: 'yolo',
+            lng: 'yolo',
+          },
+          street: 'yolo',
+          suite: 'yolo',
+          zipcode: 'yolo',
+        },
+      };
+
       const todo_repository = {
         create: sinon.fake.returns(undefined),
         list: sinon.fake.returns(mock_list),
       };
 
-      const use_case = new ListTodoUseCase({ todo_repository });
+      const json_place_holder_integration = {
+        getUser: sinon.fake.resolves(''),
+      };
+
+      const use_case = new ListTodoUseCase({
+        todo_repository,
+        json_place_holder_integration,
+      });
 
       const result = use_case.list();
 

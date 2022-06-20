@@ -21,8 +21,8 @@ export class CliModule implements Module {
   }
 
   start(): void {
-    this.program.on('line', (line: string) => {
-      const result = this.commands.cmd(JSON.parse(line));
+    this.program.on('line', async (line: string) => {
+      const result = await this.commands.cmd(JSON.parse(line));
       // eslint-disable-next-line
       console.log(result!.result);
     });
