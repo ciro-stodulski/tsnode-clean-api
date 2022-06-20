@@ -15,7 +15,7 @@ describe('Interface - Http', () => {
       const fake_result_create = 'fake result';
 
       const create_todo_use_case = {
-        create: Sinon.fake.returns(fake_result_create),
+        create: Sinon.fake.resolves(fake_result_create),
       };
 
       const fake_req: HttpRequest = {

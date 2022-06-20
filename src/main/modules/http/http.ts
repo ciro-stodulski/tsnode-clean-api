@@ -162,6 +162,7 @@ export class HttpModule implements Module {
 
         res.send(response?.data);
       } catch (err) {
+        console.log('errrrrr');
         const error = instance.exception(err);
         next(error);
       }

@@ -5,9 +5,9 @@ import { CreateTodoCommand, CliLine } from '..';
 
 describe('Interface - CLI', () => {
   describe('create-todo', () => {
-    it('create-todo', () => {
+    it('create-todo', async () => {
       const create_todo_use_case_mock = {
-        create: sinon.fake.returns(TodoLifeCycle.CreateSuccess),
+        create: sinon.fake.resolves(TodoLifeCycle.CreateSuccess),
       };
 
       const create_todo_command = new CreateTodoCommand(
@@ -24,7 +24,7 @@ describe('Interface - CLI', () => {
         line: fake_todo,
       };
 
-      const result = create_todo_command.cmd(fake_lie);
+      const result = await create_todo_command.cmd(fake_lie);
 
       expect(result).to.be.eqls({ result: TodoLifeCycle.CreateSuccess });
     });

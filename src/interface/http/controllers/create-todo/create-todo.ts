@@ -5,7 +5,9 @@ import {
   create_todo_schema,
   Controller,
   AuthMiddleware,
+  NotFoundError,
 } from '../..';
+import { UserNotFoundError } from '../../../../core/exceptions';
 
 export class CreateTodoController extends Controller {
   route_configs: RouteConfig = {
@@ -21,10 +23,16 @@ export class CreateTodoController extends Controller {
   }
 
   async handle(req: HttpRequest): Promise<void> {
-    this.create_todo_use_case.create(req.body);
+    await this.create_todo_use_case.create(req.body);
   }
 
   exception(error: Error): Error {
+    if (error instanceof UserNotFoundError) {
+      const { code, message } = error;
+
+      return new NotFoundError(code, message);
+    }
+
     return error;
   }
 }
