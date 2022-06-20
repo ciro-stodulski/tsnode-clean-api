@@ -1,1 +1,1 @@
-export * from  './coded-error'
+export * from './coded-error';

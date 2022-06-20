@@ -2,7 +2,7 @@ import { ICreateTodoUseCase } from '../../../../core/use-cases';
 import {
   RouteConfig,
   HttpRequest,
-  create_todo_scheama,
+  create_todo_schema,
   Controller,
   AuthMiddleware,
 } from '../..';
@@ -12,7 +12,7 @@ export class CreateTodoController extends Controller {
     method: 'post',
     path: '/todos',
     status_code: 201,
-    schema: create_todo_scheama,
+    schema: create_todo_schema,
     middlewares: [new AuthMiddleware()],
   };
 

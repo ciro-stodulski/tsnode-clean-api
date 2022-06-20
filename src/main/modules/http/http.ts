@@ -24,6 +24,7 @@ import {
 
 export class HttpModule implements Module {
   readonly app: Express = express();
+
   readonly router: Router = Router({ mergeParams: true });
 
   constructor(private controllers: Controller[] = []) {}
@@ -168,8 +169,7 @@ export class HttpModule implements Module {
     };
   }
 
-  private requestValidator(schema?: Joi.Schema): RequestHandler | void {
-    if (!schema) return;
+  private requestValidator(schema: Joi.Schema): RequestHandler {
     return (req: Request, res: Response, next: NextFunction) => {
       const validation = schema.validate(req, {
         abortEarly: false,

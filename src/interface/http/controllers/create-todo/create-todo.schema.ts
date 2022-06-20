@@ -1,7 +1,7 @@
 import Joi from 'joi';
 import { TodoStatus } from '../../../../core/entities';
 
-export const create_todo_scheama = Joi.object({
+export const create_todo_schema = Joi.object({
   body: Joi.object({
     name: Joi.string().required(),
     status: Joi.string()

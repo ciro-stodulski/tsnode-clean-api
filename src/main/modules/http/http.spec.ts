@@ -102,9 +102,9 @@ describe('Module - Http', () => {
         delete: Sinon.fake.returns(undefined),
       };
 
-      //@ts-ignore
+      // @ts-ignore
       http.app = app;
-      //@ts-ignore
+      // @ts-ignore
       http.router = router;
 
       http.start();
