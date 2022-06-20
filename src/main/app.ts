@@ -9,9 +9,7 @@ export class App {
   constructor({ cli = null, http = null }) {
     const container = new Container();
 
-    this.http_module =
-      http ||
-      new HttpModule(container);
+    this.http_module = http || new HttpModule(container);
     this.cli_module = cli || new CliModule(container);
   }
 
