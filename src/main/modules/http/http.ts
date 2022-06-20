@@ -11,8 +11,6 @@ import express, {
 import helmet from 'helmet';
 import bodyParser from 'body-parser';
 import compression from 'compression';
-import { Module } from '..';
-
 import {
   Controller,
   HttpResponse,
@@ -20,14 +18,25 @@ import {
   ErrorHandlerMiddleware,
   HttpRequest,
   BadRequest,
+  CreateTodoController,
+  ListTodoController,
 } from '../../../interface/http';
+import { Container } from '../../container';
+import { Module } from '..';
 
 export class HttpModule implements Module {
   readonly app: Express = express();
 
   readonly router: Router = Router({ mergeParams: true });
 
-  constructor(private controllers: Controller[] = []) {}
+  readonly controllers: Controller[] = [];
+
+  constructor(container: Container) {
+    this.controllers = [
+      new ListTodoController(container.list_todo_use_case),
+      new CreateTodoController(container.create_todo_use_case),
+    ];
+  }
 
   start(): void {
     this.app.set('trust proxy', true);

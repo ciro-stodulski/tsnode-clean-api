@@ -1,6 +1,5 @@
 import { Container } from './container';
 import { CliModule, Module, HttpModule } from './modules';
-import { CreateTodoController, ListTodoController } from '../interface/http';
 
 export class App {
   private cli_module: Module;
@@ -12,10 +11,7 @@ export class App {
 
     this.http_module =
       http ||
-      new HttpModule([
-        new ListTodoController(container.list_todo_use_case),
-        new CreateTodoController(container.create_todo_use_case),
-      ]);
+      new HttpModule(container);
     this.cli_module = cli || new CliModule(container);
   }
 
