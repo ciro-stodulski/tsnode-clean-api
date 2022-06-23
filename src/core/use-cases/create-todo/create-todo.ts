@@ -1,4 +1,4 @@
-import { UseCaseContext } from '../../../main/container';
+import { InfraContext } from '../../../main/container';
 import { IJsonPlaceHolderIntegration, ITodoRepository } from '../../ports';
 import { Todo, TodoLifeCycle } from '../../entities';
 import { ICreateTodoUseCase } from '..';
@@ -8,10 +8,10 @@ export class CreateTodoUseCase implements ICreateTodoUseCase {
 
   private json_place_holder_integration: IJsonPlaceHolderIntegration;
 
-  constructor(use_case_context: UseCaseContext) {
-    this.todo_repository = use_case_context.todo_repository;
+  constructor(infra_context: InfraContext) {
+    this.todo_repository = infra_context.todo_repository;
     this.json_place_holder_integration =
-      use_case_context.json_place_holder_integration;
+      infra_context.json_place_holder_integration;
   }
 
   async create(dto: Todo): Promise<string> {
