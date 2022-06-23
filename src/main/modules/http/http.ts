@@ -31,7 +31,7 @@ export class HttpModule implements Module {
 
   readonly controllers: Controller[] = [];
 
-  constructor(container: Container) {
+  constructor(container: Container, private port: number) {
     this.controllers = [
       new ListTodoController(container.list_todo_use_case),
       new CreateTodoController(container.create_todo_use_case),
@@ -78,7 +78,9 @@ export class HttpModule implements Module {
     );
     const error_handler = this.errorHandler() as any;
     this.app.use(error_handler);
-    this.app.listen(3000, () => console.log(`Server running on port 3000`));
+    this.app.listen(this.port, () =>
+      console.info(`Http: Server running on port 3000`)
+    );
   }
 
   private buildRoutes(): Router {
@@ -162,7 +164,6 @@ export class HttpModule implements Module {
 
         res.send(response?.data);
       } catch (err) {
-        console.log('errrrrr');
         const error = instance.exception(err);
         next(error);
       }

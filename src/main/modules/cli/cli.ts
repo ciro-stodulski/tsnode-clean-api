@@ -21,10 +21,15 @@ export class CliModule implements Module {
   }
 
   start(): void {
+    console.info('Cli:App started');
     this.program.on('line', async (line: string) => {
-      const result = await this.commands.cmd(JSON.parse(line));
-      // eslint-disable-next-line
-      console.log(result!.result);
+      try {
+        const result = await this.commands.cmd(JSON.parse(line));
+        // eslint-disable-next-line
+        console.info(result!.result);
+      } catch (error) {
+        console.error(error);
+      }
     });
   }
 }

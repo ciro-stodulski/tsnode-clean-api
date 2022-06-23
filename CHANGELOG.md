@@ -7,6 +7,9 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 
 ## Ongoing Changes
 
+- fix - adjust errors for cli interface
+- fix - add port in constructor of http module
+- add - server http and consumer for rabbit mq
 - fix - interfaces cli and http
 - add - integration json place holder
 - add - client http

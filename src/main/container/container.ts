@@ -5,7 +5,7 @@ import {
   ListTodoUseCase,
 } from '../../core/use-cases';
 import { TodoRepository } from '../../infra/repositories';
-import { UseCaseContext } from '.';
+import { InfraContext } from '.';
 import {
   HttpClient,
   JsonPlaceHolderIntegration,
@@ -19,14 +19,14 @@ export class Container {
   constructor() {
     const client_http = new HttpClient();
 
-    const use_case_context: UseCaseContext = {
+    const infra_context: InfraContext = {
       todo_repository: new TodoRepository([]),
       json_place_holder_integration: new JsonPlaceHolderIntegration(
         client_http
       ),
     };
 
-    this.list_todo_use_case = new ListTodoUseCase(use_case_context);
-    this.create_todo_use_case = new CreateTodoUseCase(use_case_context);
+    this.list_todo_use_case = new ListTodoUseCase(infra_context);
+    this.create_todo_use_case = new CreateTodoUseCase(infra_context);
   }
 }
