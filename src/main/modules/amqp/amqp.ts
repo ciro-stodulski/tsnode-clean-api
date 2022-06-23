@@ -17,7 +17,7 @@ export class AmqpModule {
 
   private timeout_id: NodeJS.Timeout;
 
-  private restarted: boolean = false;
+  private restarted = false;
 
   private consumers: Consumer[] = [];
 
