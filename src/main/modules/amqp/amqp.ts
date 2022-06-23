@@ -11,15 +11,15 @@ import {
 import { Container } from '../../container';
 
 export class AmqpModule {
-  protected connection: Connection;
+  private connection: Connection;
 
-  protected channel: Channel;
+  private channel: Channel;
 
   private timeout_id: NodeJS.Timeout;
 
-  protected restarted = false;
+  private restarted: boolean = false;
 
-  protected consumers: Consumer[] = [];
+  private consumers: Consumer[] = [];
 
   constructor(container: Container, private config: RabbitMQConfig) {
     this.consumers = [new CreateTodoConsumer(container.create_todo_use_case)];
