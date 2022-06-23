@@ -83,7 +83,7 @@ export class BaseAMQP {
     });
   }
 
-  protected reconnect(): void {
+  private reconnect(): void {
     console.warn(
       `Trying to connect to rabbitmq on virtual host ${this.config.vhost} in 5 seconds`
     );
@@ -94,23 +94,10 @@ export class BaseAMQP {
     }, 5000);
   }
 
-  async createChannel(): Promise<void> {
-    this.channel = await this.connection.createChannel();
-
-    this.channel.on(AMQPChannelEvent.CANCEL, () => {
-      this.reconnect();
-    });
-
-    this.channel.on(AMQPChannelEvent.ERROR, error => {
-      if (error.code === AMQPErrorCode.NOT_FOUND) {
-        this.reconnect();
-      }
-    });
-  }
-
   async start(): Promise<void> {
     try {
       clearTimeout(this.timeout_id);
+
       const { username, password, host, port, vhost } = this.config;
 
       this.connection = await connect(
@@ -125,7 +112,17 @@ export class BaseAMQP {
       console.info(
         `RabbitMQ: connection established on vhost - ${this.config.vhost}`
       );
-      await this.createChannel();
+      this.channel = await this.connection.createChannel();
+
+      this.channel.on(AMQPChannelEvent.CANCEL, () => {
+        this.reconnect();
+      });
+
+      this.channel.on(AMQPChannelEvent.ERROR, error => {
+        if (error.code === AMQPErrorCode.NOT_FOUND) {
+          this.reconnect();
+        }
+      });
 
       this.startQueue();
     } catch (err: any) {
