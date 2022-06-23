@@ -1,5 +1,5 @@
 import { Container } from './container';
-import { CliModule, Module, HttpModule, BaseAMQP } from './modules';
+import { CliModule, Module, HttpModule, AmqpModule } from './modules';
 
 export class App {
   private cli_module: Module;
@@ -15,7 +15,7 @@ export class App {
     this.http_module = http || new HttpModule(container, 3000);
     this.amqp_module =
       amqp ||
-      new BaseAMQP(container, {
+      new AmqpModule(container, {
         host: 'localhost',
         password: 'admin',
         port: 5672,

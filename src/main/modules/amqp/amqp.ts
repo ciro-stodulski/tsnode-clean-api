@@ -10,7 +10,7 @@ import {
 } from '../../../interface/amqp';
 import { Container } from '../../container';
 
-export class BaseAMQP {
+export class AmqpModule {
   protected connection: Connection;
 
   protected channel: Channel;
@@ -74,15 +74,6 @@ export class BaseAMQP {
     );
   }
 
-  private startQueue(): void {
-    this.consumers.forEach((consumer: Consumer) => {
-      this.registerConsumer(consumer);
-      console.info(
-        `RabbitMQ: 'Started queue '${consumer.consumer_config.queue}' to consume`
-      );
-    });
-  }
-
   private reconnect(): void {
     console.warn(
       `Trying to connect to rabbitmq on virtual host ${this.config.vhost} in 5 seconds`
@@ -124,7 +115,12 @@ export class BaseAMQP {
         }
       });
 
-      this.startQueue();
+      for (const consumer of this.consumers) {
+        this.registerConsumer(consumer);
+        console.info(
+          `RabbitMQ: 'Started queue '${consumer.consumer_config.queue}' to consume`
+        );
+      }
     } catch (err: any) {
       console.error(
         `Error connecting RabbitMQ to virtual host ${this.config.vhost} : ${err.message}`
