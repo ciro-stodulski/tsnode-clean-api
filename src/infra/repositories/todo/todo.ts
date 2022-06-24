@@ -16,6 +16,7 @@ export class TodoRepository
   constructor(protected database: Knex) {
     super();
   }
+
   save(todo: Todo): Promise<string> {
     return this.create(todo);
   }

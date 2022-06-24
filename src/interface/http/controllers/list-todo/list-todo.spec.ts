@@ -23,7 +23,6 @@ describe('Interface - Http', () => {
         list: Sinon.fake.resolves(mock_list),
       };
 
-      
       const controller = new ListTodoController(list_todo_use_case);
 
       const response = await controller.handle();

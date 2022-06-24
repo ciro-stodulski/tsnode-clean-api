@@ -1,2 +1,2 @@
-export * from './knex/interface'
-export * from './knex/knex'
+export * from './knex/interface';
+export * from './knex/knex';
