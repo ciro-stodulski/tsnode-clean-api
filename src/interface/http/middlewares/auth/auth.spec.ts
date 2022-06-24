@@ -1,5 +1,5 @@
 import { expect } from 'chai';
-import { AuthMiddleware, HttpRequest } from '../..';
+import { AuthMiddleware, HttpRequest, Unauthorized } from '../..';
 
 describe('Interface - Http - Middleware', async () => {
   describe('auth', () => {
@@ -32,7 +32,7 @@ describe('Interface - Http - Middleware', async () => {
       }
 
       expect(err).to.be.not.eql(null);
-      expect(err).to.be.instanceOf(Error);
+      expect(err).to.be.instanceOf(Unauthorized);
     });
   });
 });

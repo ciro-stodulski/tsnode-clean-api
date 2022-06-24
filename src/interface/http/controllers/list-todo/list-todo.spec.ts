@@ -20,7 +20,7 @@ describe('Interface - Http', () => {
       ];
 
       const list_todo_use_case = {
-        list: Sinon.fake.returns(mock_list),
+        list: Sinon.fake.resolves(mock_list),
       };
 
       const controller = new ListTodoController(list_todo_use_case);

@@ -1,13 +1,14 @@
 import { expect } from 'chai';
 import sinon from 'sinon';
-import { Todo, TodoLifeCycle, TodoStatus } from '../../../core/entities';
+import { Todo, TodoStatus } from '../../../core/entities';
 import { CreateTodoCommand, CliLine } from '..';
 
 describe('Interface - CLI', () => {
   describe('create-todo', () => {
     it('create-todo', async () => {
+      const result_db = 'yolo';
       const create_todo_use_case_mock = {
-        create: sinon.fake.resolves(TodoLifeCycle.CreateSuccess),
+        create: sinon.fake.resolves(result_db),
       };
 
       const create_todo_command = new CreateTodoCommand(
@@ -26,7 +27,7 @@ describe('Interface - CLI', () => {
 
       const result = await create_todo_command.cmd(fake_lie);
 
-      expect(result).to.be.eqls({ result: TodoLifeCycle.CreateSuccess });
+      expect(result).to.be.eqls({ result: 'yolo' });
     });
   });
 });

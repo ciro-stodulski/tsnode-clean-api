@@ -15,7 +15,7 @@ export class ListTodoController extends Controller {
   }
 
   async handle(): Promise<HttpResponse<Todo[]>> {
-    const todos = this.list_todo_use_case.list();
+    const todos = await this.list_todo_use_case.list();
 
     return {
       data: todos,

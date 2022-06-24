@@ -10,7 +10,7 @@ export class ListTodoUseCase implements IListTodoUseCase {
     this.todo_repository = infra_context.todo_repository;
   }
 
-  list(): Todo[] {
+  async list(): Promise<Todo[]> {
     return this.todo_repository.list();
   }
 }

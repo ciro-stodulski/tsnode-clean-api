@@ -10,6 +10,7 @@ import {
   HttpClient,
   JsonPlaceHolderIntegration,
 } from '../../infra/integrations/http';
+import { Knex } from '../modules/db';
 
 export class Container {
   readonly list_todo_use_case: IListTodoUseCase;
@@ -19,8 +20,11 @@ export class Container {
   constructor() {
     const client_http = new HttpClient();
 
+    const db = new Knex();
+    db.isConnection();
+
     const infra_context: InfraContext = {
-      todo_repository: new TodoRepository([]),
+      todo_repository: new TodoRepository(db.getConnection()),
       json_place_holder_integration: new JsonPlaceHolderIntegration(
         client_http
       ),

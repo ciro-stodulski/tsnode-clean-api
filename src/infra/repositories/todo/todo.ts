@@ -1,14 +1,27 @@
+import Knex from 'knex';
+import { Repository, TableConfig } from '..';
 import { Todo } from '../../../core/entities';
 import { ITodoRepository } from '../../../core/ports';
 
-export class TodoRepository implements ITodoRepository {
-  constructor(private database: Todo[]) {}
+export class TodoRepository
+  extends Repository<Todo>
+  implements ITodoRepository
+{
+  config_table: TableConfig = {
+    name: 'todos',
+  };
 
-  create(todo: Todo): void {
-    this.database.push(todo);
+  protected properties: string[] = ['name', 'status', 'user'];
+
+  constructor(protected database: Knex) {
+    super();
   }
 
-  list(): Todo[] {
-    return this.database;
+  save(todo: Todo): Promise<string> {
+    return this.create(todo);
+  }
+
+  async list(): Promise<Todo[]> {
+    return this.transactionable();
   }
 }
