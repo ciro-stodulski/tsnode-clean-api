@@ -69,7 +69,6 @@ describe('UseCase - ListTodoUseCase', () => {
         getUser: sinon.fake.resolves(''),
       };
 
-
       const todo_cache = {
         list: sinon.fake.resolves([]),
         save: sinon.fake.resolves(undefined),

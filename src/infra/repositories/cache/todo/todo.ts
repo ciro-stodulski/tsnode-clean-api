@@ -4,6 +4,7 @@ import { ITodoCache } from '../../../../core/ports';
 
 export class TodoCache implements ITodoCache {
   constructor(private cache: CacheClient) {}
+
   async save(todos: Todo[]): Promise<void> {
     await this.cache.setWithExpirationTime(
       'todos',

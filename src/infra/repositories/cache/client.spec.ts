@@ -18,17 +18,17 @@ describe('Repositories - Cache - Client', () => {
     });
 
     it('Should get with null', async () => {
-        const cache_fake = {
-          get: sinon.fake.resolves(null),
-        };
-  
-        // @ts-ignore
-        const cache_client = new CacheClient(cache_fake);
-  
-        const result = await cache_client.get('yolo');
-        expect(result).to.be.eqls(null);
-        assert(cache_fake.get.calledOnceWith('yolo'));
-      });
+      const cache_fake = {
+        get: sinon.fake.resolves(null),
+      };
+
+      // @ts-ignore
+      const cache_client = new CacheClient(cache_fake);
+
+      const result = await cache_client.get('yolo');
+      expect(result).to.be.eqls(null);
+      assert(cache_fake.get.calledOnceWith('yolo'));
+    });
   });
   describe('set', () => {
     it('Should set with successfully', async () => {
