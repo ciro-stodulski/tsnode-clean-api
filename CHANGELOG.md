@@ -7,7 +7,8 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 
 ## Ongoing Changes
 
-- add - db module and migrations to database
+- add - cache 
+- add - db and migrations to database
 - fix - adjust errors for cli interface
 - fix - add port in constructor of http module
 - add - server http and consumer for rabbit mq

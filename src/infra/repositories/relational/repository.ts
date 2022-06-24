@@ -1,5 +1,5 @@
 import knex, { QueryBuilder, Transaction } from 'knex';
-import { TableConfig } from '.';
+import { TableConfig } from '..';
 
 export abstract class Repository<T> {
   protected abstract properties: string[];
