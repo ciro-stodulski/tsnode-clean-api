@@ -1,6 +1,6 @@
 import { InfraContext } from '../../../main/container';
 import { IJsonPlaceHolderIntegration, ITodoRepository } from '../../ports';
-import { Todo, TodoLifeCycle } from '../../entities';
+import { Todo } from '../../entities';
 import { ICreateTodoUseCase } from '..';
 
 export class CreateTodoUseCase implements ICreateTodoUseCase {
@@ -25,8 +25,6 @@ export class CreateTodoUseCase implements ICreateTodoUseCase {
       user: user_json.name,
     });
 
-    this.todo_repository.create(new_todo);
-
-    return TodoLifeCycle.CreateSuccess;
+    return this.todo_repository.save(new_todo);
   }
 }

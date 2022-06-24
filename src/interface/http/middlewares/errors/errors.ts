@@ -24,6 +24,8 @@ export class ErrorHandlerMiddleware implements Middleware {
       };
     }
 
+    console.error({ error });
+
     return {
       data: {
         code: 'UNEXPECTED_ERROR',

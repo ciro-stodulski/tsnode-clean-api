@@ -7,9 +7,10 @@ import { CreateTodoUseCase } from '..';
 describe('UseCase - CreateTodoUseCase', () => {
   describe('create', () => {
     it('Should create todo with succeffully', async () => {
+      const result_db = 'yolo';
       const todo_repository_mock = {
-        create: sinon.fake.returns(undefined),
-        list: sinon.fake.returns(undefined),
+        save: sinon.fake.resolves(result_db),
+        list: sinon.fake.resolves(undefined),
       };
 
       const mock_user: JsonPlaceHolderUser = {
@@ -55,9 +56,9 @@ describe('UseCase - CreateTodoUseCase', () => {
       };
 
       const result = await use_case.create(dto);
-      expect(result).to.be.equals('Todo created!');
+      expect(result).to.be.equals(result_db);
 
-      assert(todo_repository_mock.create.calledOnceWith(new Todo(dto)));
+      assert(todo_repository_mock.save.calledOnceWith(new Todo(dto)));
     });
   });
 });

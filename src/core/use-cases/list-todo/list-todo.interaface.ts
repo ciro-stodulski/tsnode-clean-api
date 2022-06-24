@@ -1,5 +1,5 @@
 import { Todo } from '../../entities';
 
 export interface IListTodoUseCase {
-  list(): Todo[];
+  list(): Promise<Todo[]>;
 }
