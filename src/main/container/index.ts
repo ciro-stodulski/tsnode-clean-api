@@ -1,2 +1,2 @@
 export * from './container';
-export * from './container.type';
+export * from './type';
