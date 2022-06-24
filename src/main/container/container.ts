@@ -20,10 +20,11 @@ export class Container {
   constructor() {
     const client_http = new HttpClient();
 
-    const db_connection = new Knex().getConnection();
+    const db = new Knex();
+    db.isConnection();
 
     const infra_context: InfraContext = {
-      todo_repository: new TodoRepository(db_connection),
+      todo_repository: new TodoRepository(db.getConnection()),
       json_place_holder_integration: new JsonPlaceHolderIntegration(
         client_http
       ),
