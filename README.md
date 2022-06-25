@@ -25,3 +25,7 @@
 - knex
 - redis
 - mocha
+
+## Docker 
+
+docker build -t tsnode-clean-api . 
