@@ -7,6 +7,9 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 
 ## Ongoing Changes
 
+- add - Readme
+- add - Dockerfile
+- add - env validation
 - add - cache 
 - add - db and migrations to database
 - fix - adjust errors for cli interface
