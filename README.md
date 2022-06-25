@@ -6,6 +6,10 @@
 2. Install development dependencies:
    `npm install`
 
+## Localhost
+
+`npm run dev`
+
 ## Lint
 
 `npm run lint`
@@ -15,6 +19,9 @@
 
 `npm test`
 
+## Build
+
+`npm run build`
 
 ## Main stacks used
 
