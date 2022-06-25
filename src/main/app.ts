@@ -29,7 +29,7 @@ export class App {
 
   start(): void {
     this.throwEnvValidatorErrors();
-    
+
     this.http_module.start();
     this.cli_module.start();
     this.amqp_module.start();
