@@ -15,6 +15,7 @@ import {
   JsonPlaceHolderIntegration,
 } from '../../infra/integrations/http';
 import { Cache, Knex } from '../../infra/db';
+import { env } from '../env';
 
 export class Container {
   readonly list_todo_use_case: IListTodoUseCase;
@@ -27,7 +28,9 @@ export class Container {
     db.isConnection();
 
     const client_http = new HttpClient();
-    const cache_client = new CacheClient(new Cache().getConnection());
+    const cache_client = new CacheClient(
+      new Cache().getConnection({ host: env.redis_host, port: env.redis_port })
+    );
 
     const infra_context: InfraContext = {
       todo_cache: new TodoCache(cache_client),

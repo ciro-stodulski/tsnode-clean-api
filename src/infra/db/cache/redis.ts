@@ -1,10 +1,11 @@
 import Redis from 'ioredis';
+import { RedisConfig } from '..';
 
 export class Cache {
-  getConnection(): Redis {
+  getConnection(config: RedisConfig): Redis {
     return new Redis({
-      port: 6379,
-      host: 'localhost',
+      port: config.port,
+      host: config.host,
     });
   }
 }
