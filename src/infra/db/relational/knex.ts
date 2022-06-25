@@ -8,14 +8,13 @@ export class Knex implements DBConnection {
     return knex(knexconfig);
   }
 
-  isConnection(): void {
-    knex(knexconfig)
-      .raw('select 1+1 as result')
-      .then(() => {
-        console.info('Database connection established');
-      })
-      .catch((error: any) => {
-        console.error(error);
-      });
+  async isConnection(): Promise<void> {
+    try {
+      await knex(knexconfig).raw('select 1+1 as result');
+      console.info('Database: connection established');
+    } catch (error) {
+      console.error(error);
+      throw error;
+    }
   }
 }

@@ -1,21 +1,12 @@
-import { InfraContext } from '../../../main/container';
-import { IJsonPlaceHolderIntegration, ITodoRepository } from '../../ports';
 import { Todo } from '../../entities';
 import { ICreateTodoUseCase } from '..';
+import { ICreateTodoService } from '../../services';
 
 export class CreateTodoUseCase implements ICreateTodoUseCase {
-  private todo_repository: ITodoRepository;
-
-  private json_place_holder_integration: IJsonPlaceHolderIntegration;
-
-  constructor(infra_context: InfraContext) {
-    this.todo_repository = infra_context.todo_repository;
-    this.json_place_holder_integration =
-      infra_context.json_place_holder_integration;
-  }
+  constructor(private create_todo_service: ICreateTodoService) {}
 
   async create(dto: Todo): Promise<string> {
-    const user_json = await this.json_place_holder_integration.getUser(
+    const user_json = await this.create_todo_service.getUser(
       dto.user
     );
 
@@ -25,6 +16,6 @@ export class CreateTodoUseCase implements ICreateTodoUseCase {
       user: user_json.name,
     });
 
-    return this.todo_repository.save(new_todo);
+    return this.create_todo_service.create(new_todo);
   }
 }
