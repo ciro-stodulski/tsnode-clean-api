@@ -6,6 +6,7 @@ import { JsonPlaceHolderUser } from '../../types';
 
 export class CreateTodoService implements ICreateTodoService {
   private todo_repository: ITodoRepository;
+
   private json_place_holder_integration: IJsonPlaceHolderIntegration;
 
   constructor(infra_context: InfraContext) {

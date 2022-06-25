@@ -5,6 +5,7 @@ import { InfraContext } from '../../../main/container';
 
 export class ListTodoService implements IListService {
   private todo_repository: ITodoRepository;
+
   private todo_cache: ITodoCache;
 
   constructor(infra_context: InfraContext) {

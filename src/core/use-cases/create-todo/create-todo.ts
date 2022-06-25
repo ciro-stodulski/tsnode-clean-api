@@ -6,9 +6,7 @@ export class CreateTodoUseCase implements ICreateTodoUseCase {
   constructor(private create_todo_service: ICreateTodoService) {}
 
   async create(dto: Todo): Promise<string> {
-    const user_json = await this.create_todo_service.getUser(
-      dto.user
-    );
+    const user_json = await this.create_todo_service.getUser(dto.user);
 
     const new_todo = new Todo({
       name: dto.name,
