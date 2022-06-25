@@ -8,11 +8,6 @@ describe('UseCase - CreateTodoUseCase', () => {
   describe('create', () => {
     it('Should create todo with succeffully', async () => {
       const result_db = 'yolo';
-      const todo_repository_mock = {
-        save: sinon.fake.resolves(result_db),
-        list: sinon.fake.resolves(undefined),
-      };
-
       const mock_user: JsonPlaceHolderUser = {
         company: {
           bs: 'yolo',
@@ -37,17 +32,13 @@ describe('UseCase - CreateTodoUseCase', () => {
         },
       };
 
-      const json_place_holder_integration_mock = {
+      const todo_create_service = {
         getUser: sinon.fake.resolves(mock_user),
-      };
-
-      const use_case_context = {
-        todo_repository: todo_repository_mock,
-        json_place_holder_integration: json_place_holder_integration_mock,
+        create: sinon.fake.resolves(result_db),
       };
 
       // @ts-ignore
-      const use_case = new CreateTodoUseCase(use_case_context);
+      const use_case = new CreateTodoUseCase(todo_create_service);
 
       const dto = {
         name: 'GYN',
@@ -58,7 +49,8 @@ describe('UseCase - CreateTodoUseCase', () => {
       const result = await use_case.create(dto);
       expect(result).to.be.equals(result_db);
 
-      assert(todo_repository_mock.save.calledOnceWith(new Todo(dto)));
+      assert(todo_create_service.create.calledOnceWith(new Todo(dto)));
+      assert(todo_create_service.getUser.calledOnceWith(dto.user));
     });
   });
 });

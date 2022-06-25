@@ -1,27 +1,11 @@
 import { Todo } from '../../entities';
-import { ITodoCache, ITodoRepository } from '../../ports';
 import { IListTodoUseCase } from '..';
-import { InfraContext } from '../../../main/container';
+import { IListService } from '../../services';
 
 export class ListTodoUseCase implements IListTodoUseCase {
-  private todo_repository: ITodoRepository;
-
-  private todo_cache: ITodoCache;
-
-  constructor(infra_context: InfraContext) {
-    this.todo_repository = infra_context.todo_repository;
-    this.todo_cache = infra_context.todo_cache;
-  }
+  constructor(private list_todo_service: IListService) {}
 
   async list(): Promise<Todo[]> {
-    const todo_in_cache = await this.todo_cache.list();
-    if (todo_in_cache.length === 0) {
-      const todo_repository = await this.todo_repository.list();
-      this.todo_cache.save(todo_repository);
-
-      return todo_repository;
-    }
-
-    return todo_in_cache;
+    return this.list_todo_service.list();
   }
 }

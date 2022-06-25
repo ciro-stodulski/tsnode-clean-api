@@ -9,13 +9,14 @@ import {
   TodoCache,
   TodoRepository,
 } from '../../infra/repositories';
-import { InfraContext } from '.';
+import { InfraContext, UseCaseContext } from '.';
 import {
   HttpClient,
   JsonPlaceHolderIntegration,
 } from '../../infra/integrations/http';
 import { Cache, Knex } from '../../infra/db';
 import { env } from '../env';
+import { CreateTodoService, ListTodoService } from '../../core/services';
 
 export class Container {
   readonly list_todo_use_case: IListTodoUseCase;
@@ -24,7 +25,6 @@ export class Container {
 
   constructor() {
     const db = new Knex();
-
     db.isConnection();
 
     const client_http = new HttpClient();
@@ -40,7 +40,16 @@ export class Container {
       ),
     };
 
-    this.list_todo_use_case = new ListTodoUseCase(infra_context);
-    this.create_todo_use_case = new CreateTodoUseCase(infra_context);
+    const service_context: UseCaseContext = {
+      create_todo_service: new CreateTodoService(infra_context),
+      list_todo_service: new ListTodoService(infra_context),
+    };
+
+    this.list_todo_use_case = new ListTodoUseCase(
+      service_context.list_todo_service
+    );
+    this.create_todo_use_case = new CreateTodoUseCase(
+      service_context.create_todo_service
+    );
   }
 }
