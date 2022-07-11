@@ -14,7 +14,7 @@ import {
   HttpClient,
   JsonPlaceHolderIntegration,
 } from '../../infra/integrations/http';
-import { Cache, Knex } from '../../infra/db';
+import { Cache, Knex } from '../../infra/adapters/db';
 import { env } from '../env';
 import { CreateTodoService, ListTodoService } from '../../core/services';
 
