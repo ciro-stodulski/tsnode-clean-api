@@ -25,6 +25,8 @@ export class AmqpModule {
     this.consumers = [new CreateTodoConsumer(container.create_todo_use_case)];
   }
 
+  close(): void {}
+
   private async consumeMessage(
     message: ConsumeMessage | null,
     consumer: Consumer

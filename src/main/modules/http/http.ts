@@ -23,9 +23,12 @@ import {
 } from '../../../interface/http';
 import { Container } from '../../container';
 import { Module } from '..';
+import * as http from 'http';
 
 export class HttpModule implements Module {
   readonly app: Express = express();
+
+  private server: http.Server;
 
   readonly router: Router = Router({ mergeParams: true });
 
@@ -36,6 +39,10 @@ export class HttpModule implements Module {
       new ListTodoController(container.list_todo_use_case),
       new CreateTodoController(container.create_todo_use_case),
     ];
+  }
+
+  close(): void {
+    this.server.close();
   }
 
   start(): void {
@@ -78,7 +85,7 @@ export class HttpModule implements Module {
     );
     const error_handler = this.errorHandler() as any;
     this.app.use(error_handler);
-    this.app.listen(this.port, () =>
+    this.server = this.app.listen(this.port, () =>
       console.info(`Http: Server running on port 3000`)
     );
   }

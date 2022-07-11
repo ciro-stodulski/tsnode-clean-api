@@ -9,10 +9,8 @@ describe('Module - CLI', () => {
         on: sinon.fake.returns(undefined),
       };
       const cli = new CliModule(
-        {
-          // @ts-ignore
-          program,
-        },
+        // @ts-ignore
+        {},
         program
       );
 
