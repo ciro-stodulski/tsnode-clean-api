@@ -27,7 +27,7 @@ export class CreateTodoConsumer extends Consumer {
     channel: Channel,
     message: ConsumeMessage | null
   ): void | ConsumerErrorOptions {
-    console.log(err);
+    console.error(err);
     return {
       should_ack: true,
     };

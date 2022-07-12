@@ -11,6 +11,7 @@ import express, {
 import helmet from 'helmet';
 import bodyParser from 'body-parser';
 import compression from 'compression';
+import * as http from 'http';
 import {
   Controller,
   HttpResponse,
@@ -20,10 +21,10 @@ import {
   BadRequest,
   CreateTodoController,
   ListTodoController,
+  NotFoundError,
 } from '../../../interface/http';
 import { Container } from '../../container';
 import { Module } from '..';
-import * as http from 'http';
 
 export class HttpModule implements Module {
   readonly app: Express = express();
@@ -79,8 +80,7 @@ export class HttpModule implements Module {
         res: express.Response,
         next: express.NextFunction
       ) => {
-        console.log('PAGE_NOT_FOUND', 'Page not found');
-        next();
+        next(new NotFoundError('PAGE_NOT_FOUND', 'Page not found'));
       }
     );
     const error_handler = this.errorHandler() as any;
@@ -196,9 +196,9 @@ export class HttpModule implements Module {
       });
 
       if (validation.error) {
-        console.log(req?.body);
-        console.log(req?.params);
-        console.log(req?.query);
+        console.info(req?.body);
+        console.info(req?.params);
+        console.info(req?.query);
         return next(
           new BadRequest(
             'VALIDATION_FAILED',

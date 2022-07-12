@@ -6,23 +6,23 @@ import { CliModule, Module, HttpModule, AmqpModule } from './modules';
 export class App {
   private modules: Module[];
 
-  constructor({ cli = null, http = null, amqp = null }, init_container = null) {
-    this.modules = this.loadModules({ cli, http, amqp }, init_container);
+  constructor({ cli = null, http = null, amqp = null }, container = undefined) {
+    this.loadModules({ cli, http, amqp }, container || new Container());
   }
 
   async restart(): Promise<void> {
     this.modules.forEach(module => module.close());
 
-    this.start();
+    this.loadModules({}, new Container());
+
+    await this.start();
   }
 
   loadModules(
     { cli = null, http = null, amqp = null },
-    init_container: null
-  ): Module[] {
-    const container = init_container || new Container();
-
-    return [
+    container: Container
+  ): void {
+    this.modules = [
       cli || new CliModule(container),
       http || new HttpModule(container, env.http_port),
       amqp ||
@@ -40,7 +40,7 @@ export class App {
   async start(): Promise<void> {
     await this.throwEnvValidatorErrors();
 
-    this.modules.forEach(module => module.start());
+    this.modules.forEach(async module => module.start());
   }
 
   async throwEnvValidatorErrors(): Promise<void> {

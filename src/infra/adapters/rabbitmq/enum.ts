@@ -4,6 +4,11 @@ export enum AMQPChannelEvent {
   CLOSE = 'close',
 }
 
+export enum InstanceType {
+  SERVER = 'Server',
+  CLIENT = 'Client',
+}
+
 export enum AMQPErrorCode {
   NOT_FOUND = 404,
 }

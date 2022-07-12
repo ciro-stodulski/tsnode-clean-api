@@ -1,11 +1,11 @@
 import { Todo } from '../../entities';
 import { IListTodoUseCase } from '..';
-import { IListService } from '../../services';
+import { ITodoService } from '../../services';
 
 export class ListTodoUseCase implements IListTodoUseCase {
-  constructor(private list_todo_service: IListService) {}
+  constructor(private todo_service: ITodoService) {}
 
   async list(): Promise<Todo[]> {
-    return this.list_todo_service.list();
+    return this.todo_service.list();
   }
 }

@@ -1,11 +1,16 @@
 import Redis from 'ioredis';
-import { RedisConfig } from '..';
+import { env } from '../../../../main/env';
 
-export class Cache {
-  getConnection(config: RedisConfig): Redis {
-    return new Redis({
-      port: config.port,
-      host: config.host,
-    });
+export class RedisAdapter {
+  public cache: Redis;
+
+  constructor(redis?: Redis) {
+    this.cache =
+      redis ||
+      new Redis({
+        host: env.redis_host,
+        port: env.redis_port,
+      });
+    console.info('Redis: Connection established');
   }
 }

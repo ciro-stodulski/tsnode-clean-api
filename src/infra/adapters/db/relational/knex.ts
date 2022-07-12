@@ -1,5 +1,5 @@
 import knex from 'knex';
-import { DBConnection } from '..';
+import { DBConnection } from '../..';
 
 const knexconfig = require('../../../../../knexfile.js');
 
@@ -11,7 +11,7 @@ export class Knex implements DBConnection {
   async isConnection(): Promise<void> {
     try {
       await knex(knexconfig).raw('select 1+1 as result');
-      console.info('Database: connection established');
+      console.info('Mysql: connection established');
     } catch (error) {
       console.error(error);
       throw error;
