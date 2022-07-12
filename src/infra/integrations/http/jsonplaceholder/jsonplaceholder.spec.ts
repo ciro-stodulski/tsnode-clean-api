@@ -64,8 +64,10 @@ describe('JsonPlaceHolderIntegration', () => {
       let err = null;
       try {
         const http = new HttpClient();
-        const json_placeholder_integration = new JsonPlaceHolderIntegration(http);
-        
+        const json_placeholder_integration = new JsonPlaceHolderIntegration(
+          http
+        );
+
         await json_placeholder_integration.getUser(fake_id);
       } catch (error) {
         err = error;
