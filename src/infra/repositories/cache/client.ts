@@ -1,8 +1,12 @@
-import { Redis } from 'ioredis';
+import Redis from 'ioredis';
+import { RedisAdapter } from '../../adapters';
 import { Cache } from '..';
 
-export class CacheClient implements Cache {
-  constructor(private cache: Redis) {}
+export class CacheClient extends RedisAdapter implements Cache {
+  constructor(cache?: Redis) {
+    super(cache);
+    cache && console.info('Redis: Testing client');
+  }
 
   get(key: string): Promise<string | null> {
     return this.cache.get(key);

@@ -20,6 +20,8 @@ export class CliModule implements Module {
     this.commands = new CreateTodoCommand(container.create_todo_use_case);
   }
 
+  close(): void {}
+
   start(): void {
     console.info('Cli:App started');
     this.program.on('line', async (line: string) => {

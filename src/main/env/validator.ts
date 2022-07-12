@@ -32,6 +32,9 @@ export class EnvValidator {
   @IsNotEmpty()
   redis_host: string;
 
+  @IsNotEmpty()
+  json_place_holder_url: string;
+
   constructor(props: any) {
     Object.assign(this, props);
   }

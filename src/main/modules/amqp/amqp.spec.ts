@@ -2,7 +2,6 @@ import { assert } from 'chai';
 import amqplib from 'amqplib';
 import Sinon from 'sinon';
 import { AmqpModule } from '..';
-import { RabbitMQConfig } from './types';
 
 describe('Module - Amqp', () => {
   describe('start', () => {
@@ -11,7 +10,7 @@ describe('Module - Amqp', () => {
         create_todo_use_case: Sinon.fake.returns(undefined),
       };
 
-      const config_fake: RabbitMQConfig = {
+      const config_fake = {
         host: 'fake',
         password: 'fake',
         port: 5959,

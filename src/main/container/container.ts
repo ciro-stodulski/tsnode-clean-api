@@ -14,9 +14,10 @@ import {
   HttpClient,
   JsonPlaceHolderIntegration,
 } from '../../infra/integrations/http';
-import { Cache, Knex } from '../../infra/db';
+import { AmqpClient, TodoProducer } from '../../infra/integrations/amqp';
+import { Knex } from '../../infra/adapters';
 import { env } from '../env';
-import { CreateTodoService, ListTodoService } from '../../core/services';
+import { TodoService } from '../../core/services';
 
 export class Container {
   readonly list_todo_use_case: IListTodoUseCase;
@@ -27,29 +28,34 @@ export class Container {
     const db = new Knex();
     db.isConnection();
 
-    const client_http = new HttpClient();
-    const cache_client = new CacheClient(
-      new Cache().getConnection({ host: env.redis_host, port: env.redis_port })
-    );
+    const cache_client = new CacheClient();
+
+    const amqp_client = new AmqpClient({
+      host: env.rabbit_mq_host,
+      password: env.rabbit_mq_password,
+      port: env.rabbit_mq_port,
+      protocol: env.rabbit_mq_protocol,
+      username: env.rabbit_mq_username,
+      vhost: env.rabbit_mq_vhost,
+    });
 
     const infra_context: InfraContext = {
       todo_cache: new TodoCache(cache_client),
       todo_repository: new TodoRepository(db.getConnection()),
       json_place_holder_integration: new JsonPlaceHolderIntegration(
-        client_http
+        new HttpClient()
       ),
+      todo_producer: new TodoProducer(amqp_client),
     };
 
     const service_context: UseCaseContext = {
-      create_todo_service: new CreateTodoService(infra_context),
-      list_todo_service: new ListTodoService(infra_context),
+      todo_service: new TodoService(infra_context),
     };
 
-    this.list_todo_use_case = new ListTodoUseCase(
-      service_context.list_todo_service
-    );
+    this.list_todo_use_case = new ListTodoUseCase(service_context.todo_service);
+
     this.create_todo_use_case = new CreateTodoUseCase(
-      service_context.create_todo_service
+      service_context.todo_service
     );
   }
 }
