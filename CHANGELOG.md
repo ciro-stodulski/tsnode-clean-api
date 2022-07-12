@@ -7,6 +7,8 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 
 ## Ongoing Changes
 
+[1.0.0] - 2022-07-12
+
 - add - add producer notification
 - ref - refactoring service layer
 - ref - refactoring cache client to use adapter redis
