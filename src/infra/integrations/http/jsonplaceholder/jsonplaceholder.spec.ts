@@ -20,7 +20,6 @@ describe('JsonPlaceHolderIntegration', () => {
 
   describe('#getUser', () => {
     it('should return user', async () => {
-      
       const mock_user: JsonPlaceHolderUser = {
         company: {
           bs: 'yolo',
