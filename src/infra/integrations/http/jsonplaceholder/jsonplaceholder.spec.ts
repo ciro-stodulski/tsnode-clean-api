@@ -9,8 +9,11 @@ import { env } from '../../../../main/env';
 describe('JsonPlaceHolderIntegration', () => {
   const sandbox = Sinon.createSandbox();
   const url = 'https://jsonplaceholder.typicode.com';
-  sandbox.replace(env, 'json_place_holder_url', url);
   const nock_instance = nock(url);
+  const http = new HttpClient();
+  const json_placeholder_integration = new JsonPlaceHolderIntegration(http);
+
+  sandbox.replace(env, 'json_place_holder_url', url);
 
   afterEach(() => {
     sandbox.restore();
@@ -42,9 +45,6 @@ describe('JsonPlaceHolderIntegration', () => {
         },
       };
 
-      const http = new HttpClient();
-      const json_placeholder_integration = new JsonPlaceHolderIntegration(http);
-
       const fake_id = 'yolo';
 
       nock_instance.get(`/users/${fake_id}`).reply(200, mock_user);
@@ -55,9 +55,6 @@ describe('JsonPlaceHolderIntegration', () => {
     });
 
     it('should return error user not found', async () => {
-      const http = new HttpClient();
-      const json_placeholder_integration = new JsonPlaceHolderIntegration(http);
-
       const fake_id = 'yolo';
 
       nock_instance.get(`/users/${fake_id}`).reply(404);
