@@ -1,11 +1,20 @@
 import nock from 'nock';
 import { expect } from 'chai';
+import Sinon from 'sinon';
 import { JsonPlaceHolderIntegration, HttpClient } from '..';
 import { JsonPlaceHolderUser } from '../../../../core/types';
 import { UserNotFoundError } from '../../../../core/exceptions';
+import { env } from '../../../../main/env';
 
 describe('JsonPlaceHolderIntegration', () => {
-  const nock_instance = nock(`https://jsonplaceholder.typicode.com`);
+  const sandbox = Sinon.createSandbox();
+  const url = 'https://jsonplaceholder.typicode.com';
+  sandbox.replace(env, 'json_place_holder_url', url);
+  const nock_instance = nock(url);
+
+  afterEach(() => {
+    sandbox.restore();
+  });
 
   describe('#getUser', () => {
     it('should return user', async () => {
