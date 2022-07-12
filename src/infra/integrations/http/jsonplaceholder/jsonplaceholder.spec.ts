@@ -55,36 +55,12 @@ describe('JsonPlaceHolderIntegration', () => {
     });
 
     it('should return error user not found', async () => {
-      const user: JsonPlaceHolderUser = {
-        company: {
-          bs: '',
-          catchPhrase: '',
-          name: '',
-        },
-        email: '',
-        id: 1,
-        name: '',
-        phone: '',
-        username: '',
-        website: '',
-        address: {
-          city: '',
-          geo: {
-            lat: '',
-            lng: '',
-          },
-          street: '',
-          suite: '',
-          zipcode: '',
-        },
-      };
-
       const http = new HttpClient();
       const json_placeholder_integration = new JsonPlaceHolderIntegration(http);
 
       const fake_id = 'yolo';
 
-      nock_instance.get(`/users/${fake_id}`).reply(404, user);
+      nock_instance.get(`/users/${fake_id}`).reply(404);
 
       let err = null;
       try {
