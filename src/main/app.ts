@@ -4,35 +4,43 @@ import { Container } from './container';
 import { CliModule, Module, HttpModule, AmqpModule } from './modules';
 
 export class App {
-  private cli_module: Module;
+  private modules: Module[];
 
-  private http_module: Module;
-
-  private amqp_module: Module;
-
-  constructor({ cli = null, http = null, amqp = null }) {
-    const container = new Container();
-
-    this.cli_module = cli || new CliModule(container);
-    this.http_module = http || new HttpModule(container, env.http_port);
-    this.amqp_module =
-      amqp ||
-      new AmqpModule(container, {
-        host: env.rabbit_mq_host,
-        password: env.rabbit_mq_password,
-        port: env.rabbit_mq_port,
-        protocol: env.rabbit_mq_protocol,
-        username: env.rabbit_mq_username,
-        vhost: env.rabbit_mq_vhost,
-      });
+  constructor({ cli = null, http = null, amqp = null }, container = undefined) {
+    this.loadModules({ cli, http, amqp }, container || new Container());
   }
 
-  start(): void {
-    this.throwEnvValidatorErrors();
+  async restart(): Promise<void> {
+    this.modules.forEach(module => module.close());
 
-    this.http_module.start();
-    this.cli_module.start();
-    this.amqp_module.start();
+    this.loadModules({}, new Container());
+
+    await this.start();
+  }
+
+  loadModules(
+    { cli = null, http = null, amqp = null },
+    container: Container
+  ): void {
+    this.modules = [
+      cli || new CliModule(container),
+      http || new HttpModule(container, env.http_port),
+      amqp ||
+        new AmqpModule(container, {
+          host: env.rabbit_mq_host,
+          password: env.rabbit_mq_password,
+          port: env.rabbit_mq_port,
+          protocol: env.rabbit_mq_protocol,
+          username: env.rabbit_mq_username,
+          vhost: env.rabbit_mq_vhost,
+        }),
+    ];
+  }
+
+  async start(): Promise<void> {
+    await this.throwEnvValidatorErrors();
+
+    this.modules.forEach(async module => module.start());
   }
 
   async throwEnvValidatorErrors(): Promise<void> {

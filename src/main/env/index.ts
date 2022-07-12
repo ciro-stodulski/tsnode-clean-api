@@ -19,6 +19,7 @@ const props = {
   rabbit_mq_vhost: process.env.RABBITMQ_VHOST || '/',
   redis_port: parseInt(process.env.REDIS_PORT || '', 10),
   redis_host: process.env.REDIS_HOST || '',
+  json_place_holder_url: process.env.JSON_PLACE_HOLDER_URL || '',
 };
 
 export const env = new EnvValidator(props);

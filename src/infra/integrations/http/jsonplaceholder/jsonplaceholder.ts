@@ -2,11 +2,12 @@ import { UserNotFoundError } from '../../../../core/exceptions';
 import { Http, HttpErrorCode } from '..';
 import { IJsonPlaceHolderIntegration } from '../../../../core/ports';
 import { JsonPlaceHolderUser } from '../../../../core/types';
+import { env } from '../../../../main/env';
 
 export class JsonPlaceHolderIntegration implements IJsonPlaceHolderIntegration {
   constructor(private readonly http: Http) {
     http.createInstance({
-      base_url: 'https://jsonplaceholder.typicode.com',
+      base_url: env.json_place_holder_url,
     });
   }
 

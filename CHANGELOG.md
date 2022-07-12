@@ -7,6 +7,11 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 
 ## Ongoing Changes
 
+- add - add producer notification
+- ref - refactoring service layer
+- ref - refactoring cache client to use adapter redis
+- ref - refactoring in amqp server to use adapter rabbit mq and resolving issue connections lots 
+- add - create client for amqp client to create producer and create adapter rabbit qm
 - ref - create service layer
 - add - Readme
 - add - Dockerfile

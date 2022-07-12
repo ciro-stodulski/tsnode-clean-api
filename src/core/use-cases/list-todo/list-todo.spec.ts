@@ -19,16 +19,17 @@ describe('UseCase - ListTodoUseCase', () => {
         },
       ];
 
-      const list_todo_service = {
+      const todo_service = {
         list: sinon.fake.resolves(mock_list),
       };
 
-      const use_case = new ListTodoUseCase(list_todo_service);
+      // @ts-ignore
+      const use_case = new ListTodoUseCase(todo_service);
 
       const result = await use_case.list();
 
       expect(result).to.be.equal(mock_list);
-      assert(list_todo_service.list.calledOnce);
+      assert(todo_service.list.calledOnce);
     });
   });
 });
