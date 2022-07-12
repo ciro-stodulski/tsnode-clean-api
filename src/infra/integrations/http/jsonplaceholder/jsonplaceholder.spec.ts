@@ -9,7 +9,6 @@ import { env } from '../../../../main/env';
 describe('JsonPlaceHolderIntegration', () => {
   const sandbox = Sinon.createSandbox();
   const url = 'https://jsonplaceholder.typicode.com';
-  const nock_instance = nock(url);
   const http = new HttpClient();
   const json_placeholder_integration = new JsonPlaceHolderIntegration(http);
 
@@ -46,6 +45,7 @@ describe('JsonPlaceHolderIntegration', () => {
       };
 
       const fake_id = 'yolo';
+      const nock_instance = nock(url);
 
       nock_instance.get(`/users/${fake_id}`).reply(200, mock_user);
 
@@ -56,6 +56,7 @@ describe('JsonPlaceHolderIntegration', () => {
 
     it('should return error user not found', async () => {
       const fake_id = 'yolo';
+      const nock_instance = nock(url);
 
       nock_instance.get(`/users/${fake_id}`).reply(404);
 
@@ -66,7 +67,6 @@ describe('JsonPlaceHolderIntegration', () => {
         err = error;
       }
 
-      expect(err).to.be.not.eql(null);
       expect(err).to.be.instanceOf(UserNotFoundError);
     });
   });
