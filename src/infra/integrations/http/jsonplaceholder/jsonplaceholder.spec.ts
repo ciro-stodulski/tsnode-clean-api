@@ -10,14 +10,17 @@ describe('JsonPlaceHolderIntegration', () => {
   const sandbox = Sinon.createSandbox();
   const url = 'https://jsonplaceholder.typicode.com';
 
-  sandbox.replace(env, 'json_place_holder_url', url);
-
   afterEach(() => {
     sandbox.restore();
   });
 
+  beforeEach(() => {
+    sandbox.replace(env, 'json_place_holder_url', url);
+  });
+
   describe('#getUser', () => {
     it('should return user', async () => {
+      
       const mock_user: JsonPlaceHolderUser = {
         company: {
           bs: 'yolo',
