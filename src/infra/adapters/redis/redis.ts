@@ -1,5 +1,5 @@
 import Redis from 'ioredis';
-import { env } from '../../../../main/env';
+import { env } from '../../../main/env';
 
 export class RedisAdapter {
   public cache: Redis;

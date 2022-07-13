@@ -32,6 +32,7 @@
 - knex
 - redis
 - mocha
+- graphql
 
 ## Docker 
 

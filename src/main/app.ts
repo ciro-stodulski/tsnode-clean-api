@@ -1,13 +1,25 @@
 import { validateOrReject, ValidationError } from 'class-validator';
 import { env } from './env';
 import { Container } from './container';
-import { CliModule, Module, HttpModule, AmqpModule } from './modules';
+import {
+  CliModule,
+  Module,
+  HttpModule,
+  AmqpModule,
+  GraphQLModule,
+} from './modules';
 
 export class App {
   private modules: Module[];
 
-  constructor({ cli = null, http = null, amqp = null }, container = undefined) {
-    this.loadModules({ cli, http, amqp }, container || new Container());
+  constructor(
+    { cli = null, http = null, amqp = null, graphql = null },
+    container = undefined
+  ) {
+    this.loadModules(
+      { cli, http, amqp, graphql },
+      container || new Container()
+    );
   }
 
   async restart(): Promise<void> {
@@ -19,12 +31,13 @@ export class App {
   }
 
   loadModules(
-    { cli = null, http = null, amqp = null },
+    { cli = null, http = null, amqp = null, graphql = null },
     container: Container
   ): void {
     this.modules = [
       cli || new CliModule(container),
       http || new HttpModule(container, env.http_port),
+      graphql || new GraphQLModule(4001),
       amqp ||
         new AmqpModule(container, {
           host: env.rabbit_mq_host,
