@@ -3,7 +3,14 @@
 # !!!   DO NOT MODIFY THIS FILE BY YOURSELF   !!!
 # -----------------------------------------------
 
+type CreateTodoResponse {
+  name: String!
+  status: String!
+  user: String!
+}
+
 type Query {
+  createTodos: [CreateTodoResponse!]!
   getTodos: [TodoResponse!]!
 }
 

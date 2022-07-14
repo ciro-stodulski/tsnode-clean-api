@@ -1,17 +1,23 @@
-import { TodoResolver } from '../../../interface/graphql';
+import { CreateTodoResolver, TodoResolver } from '../../../interface/graphql';
 import { Module } from '..';
 import { ApolloServerAdapter } from '../../../infra/adapters';
+import { Container } from '../../container';
+import { Container as ContainerTypedi } from 'typedi';
 
 export class GraphQLModule extends ApolloServerAdapter implements Module {
-  constructor(private port: number) {
+  constructor(private container: Container, private port: number) {
     super();
-    this.resolvers = [TodoResolver];
+    this.resolvers = [TodoResolver, CreateTodoResolver];
   }
 
   async start(): Promise<void> {
+    ContainerTypedi.set('container', this.container);
+
     await this.startingServer();
 
-    this.server.listen({ port: this.port });
+    this.server.listen({
+      port: this.port,
+    });
 
     console.info(`Graphql: Server starting in port ${this.port}`);
   }

@@ -1,15 +1,15 @@
 import { Query, Resolver } from 'type-graphql';
 import { Container } from '../../../../main/container';
-import { TodoResponse } from '../..';
+import { CreateTodoResponse } from '../..';
 import { Inject, Service } from 'typedi';
 
 @Service()
 @Resolver()
-export class TodoResolver {
+export class CreateTodoResolver {
   constructor(@Inject('container') private container: Container) {}
 
-  @Query(() => [TodoResponse])
-  async getTodos(): Promise<TodoResponse[]> {
+  @Query(() => [CreateTodoResponse])
+  async createTodos(): Promise<CreateTodoResponse[]> {
     return await this.container.list_todo_use_case.list();
   }
 }

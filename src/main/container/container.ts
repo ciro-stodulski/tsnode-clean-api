@@ -21,7 +21,6 @@ import { TodoService } from '../../core/services';
 
 export class Container {
   readonly list_todo_use_case: IListTodoUseCase;
-
   readonly create_todo_use_case: ICreateTodoUseCase;
 
   constructor() {
@@ -57,5 +56,7 @@ export class Container {
     this.create_todo_use_case = new CreateTodoUseCase(
       service_context.todo_service
     );
+
+    //this.classes = [this.list_todo_use_case, this.create_todo_use_case];
   }
 }
