@@ -7,6 +7,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 
 ## Ongoing Changes
 
+- add - add resolver and mutation graphql
 - add - add modulo graphql
 - add - create apollo server adapter
 

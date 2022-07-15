@@ -1,13 +1,16 @@
-import { CreateTodoResolver, TodoResolver } from '../../../interface/graphql';
+import { Container as ContainerTypedi } from 'typedi';
+import {
+  CreateTodoResolver,
+  ListTodoResolver,
+} from '../../../interface/graphql';
 import { Module } from '..';
 import { ApolloServerAdapter } from '../../../infra/adapters';
 import { Container } from '../../container';
-import { Container as ContainerTypedi } from 'typedi';
 
 export class GraphQLModule extends ApolloServerAdapter implements Module {
   constructor(private container: Container, private port: number) {
     super();
-    this.resolvers = [TodoResolver, CreateTodoResolver];
+    this.resolvers = [ListTodoResolver, CreateTodoResolver];
   }
 
   async start(): Promise<void> {

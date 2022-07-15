@@ -10,7 +10,7 @@
     "strict": true,
     "strictPropertyInitialization": false,
     "useUnknownInCatchVariables": false,
-    "lib": ["es2020"],
+    "lib": ["es2020", "esnext.asynciterable"],
     "emitDecoratorMetadata": true,
     "baseUrl": ".",
     "paths": {

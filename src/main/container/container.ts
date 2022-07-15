@@ -56,7 +56,5 @@ export class Container {
     this.create_todo_use_case = new CreateTodoUseCase(
       service_context.todo_service
     );
-
-    //this.classes = [this.list_todo_use_case, this.create_todo_use_case];
   }
 }

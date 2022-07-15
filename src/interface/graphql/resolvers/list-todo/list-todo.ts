@@ -1,15 +1,16 @@
 import { Query, Resolver } from 'type-graphql';
+import { Inject, Service } from 'typedi';
 import { Container } from '../../../../main/container';
 import { TodoResponse } from '../..';
-import { Inject, Service } from 'typedi';
+import 'reflect-metadata';
 
 @Service()
 @Resolver()
-export class TodoResolver {
+export class ListTodoResolver {
   constructor(@Inject('container') private container: Container) {}
 
   @Query(() => [TodoResponse])
   async getTodos(): Promise<TodoResponse[]> {
-    return await this.container.list_todo_use_case.list();
+    return this.container.list_todo_use_case.list();
   }
 }
