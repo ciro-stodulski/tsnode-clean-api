@@ -37,7 +37,7 @@ export class App {
     this.modules = [
       cli || new CliModule(container),
       http || new HttpModule(container, env.http_port),
-      graphql || new GraphQLModule(container, 4001),
+      graphql || new GraphQLModule(container, env.graphql_port),
       amqp ||
         new AmqpModule(container, {
           host: env.rabbit_mq_host,

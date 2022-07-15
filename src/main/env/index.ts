@@ -4,6 +4,7 @@ import { EnvValidator } from './validator';
 dotenv.config();
 
 const props = {
+  graphql_port: parseInt(process.env.GRAPHQL_PORT || '', 10),
   http_port: parseInt(process.env.HTTP_PORT || '', 10),
   db_host: process.env.DB_HOST || '',
   db_user: process.env.DB_USERNAME || '',
