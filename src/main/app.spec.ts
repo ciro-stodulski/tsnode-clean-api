@@ -13,6 +13,7 @@ describe('App', () => {
 
     it('Should start modules', async () => {
       sandbox.replace(env, 'http_port', 3000);
+      sandbox.replace(env, 'graphql_port', 4000);
       sandbox.replace(env, 'redis_host', 'yolo');
       sandbox.replace(env, 'json_place_holder_url', 'yolo');
       sandbox.replace(env, 'rabbit_mq_enabled', true);
@@ -35,9 +36,20 @@ describe('App', () => {
         start: sinon.fake.returns(undefined),
       };
 
+      const graphql_mock = {
+        start: sinon.fake.returns(undefined),
+      };
+
+      const inti_modules_fake = {
+        cli: cli_mock,
+        http: http_mock,
+        amqp: amqp_mock,
+        graphql: graphql_mock,
+      };
+
       const app = new App(
         // @ts-ignore
-        { cli: cli_mock, http: http_mock, amqp: amqp_mock },
+        inti_modules_fake,
         {}
       );
 

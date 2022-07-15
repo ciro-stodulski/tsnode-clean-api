@@ -5,6 +5,10 @@ export class EnvValidator {
   @IsNotEmpty()
   http_port: number;
 
+  @IsInt()
+  @IsNotEmpty()
+  graphql_port: number;
+
   @IsNotEmpty()
   rabbit_mq_enabled: boolean;
 
