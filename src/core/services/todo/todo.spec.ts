@@ -12,6 +12,10 @@ describe('Service - TodoService', () => {
         save: sinon.fake.resolves(result_db),
       };
 
+      const todo_collection = {
+        save: sinon.fake.resolves(result_db),
+      };
+
       const todo_producer = {
         notification: sinon.fake.resolves(undefined),
       };
@@ -19,6 +23,7 @@ describe('Service - TodoService', () => {
       const infra_context = {
         todo_repository: todo_repository_mock,
         todo_producer,
+        todo_collection,
       };
 
       // @ts-ignore
@@ -34,6 +39,7 @@ describe('Service - TodoService', () => {
       expect(result).to.be.equals(result_db);
 
       assert(todo_repository_mock.save.calledOnceWith(dto));
+      assert(todo_collection.save.calledOnceWith(dto));
       assert(todo_producer.notification.calledOnceWith(dto.name));
     });
   });
@@ -98,6 +104,11 @@ describe('Service - TodoService', () => {
         },
       ];
 
+      const todo_collection = {
+        list: sinon.fake.resolves(mock_list),
+        save: sinon.fake.resolves(undefined),
+      };
+
       const todo_repository = {
         save: sinon.fake.resolves(undefined),
         list: sinon.fake.resolves(mock_list),
@@ -114,6 +125,7 @@ describe('Service - TodoService', () => {
 
       // @ts-ignore
       const use_case = new TodoService({
+        todo_collection,
         todo_cache,
         todo_repository,
         json_place_holder_integration,
@@ -123,6 +135,7 @@ describe('Service - TodoService', () => {
 
       expect(result).to.be.equal(mock_list);
       assert(todo_repository.list.notCalled);
+      assert(todo_collection.list.calledOnce);
       assert(todo_cache.list.calledOnce);
     });
 
@@ -140,6 +153,11 @@ describe('Service - TodoService', () => {
         },
       ];
 
+      const todo_collection = {
+        list: sinon.fake.resolves(mock_list),
+        save: sinon.fake.resolves(undefined),
+      };
+
       const todo_repository = {
         save: sinon.fake.resolves(undefined),
         list: sinon.fake.resolves(mock_list),
@@ -156,6 +174,7 @@ describe('Service - TodoService', () => {
 
       // @ts-ignore
       const use_case = new TodoService({
+        todo_collection,
         todo_cache,
         todo_repository,
         json_place_holder_integration,
@@ -164,6 +183,7 @@ describe('Service - TodoService', () => {
       const result = await use_case.list();
 
       expect(result).to.be.equal(mock_list);
+      assert(todo_collection.list.calledOnce);
       assert(todo_repository.list.calledOnce);
       assert(todo_cache.list.calledOnce);
     });
