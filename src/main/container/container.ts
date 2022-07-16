@@ -7,6 +7,7 @@ import {
 import {
   CacheClient,
   TodoCache,
+  TodoCollection,
   TodoRepository,
 } from '../../infra/repositories';
 import { InfraContext, UseCaseContext } from '.';
@@ -15,7 +16,7 @@ import {
   JsonPlaceHolderIntegration,
 } from '../../infra/integrations/http';
 import { AmqpClient, TodoProducer } from '../../infra/integrations/amqp';
-import { Knex } from '../../infra/adapters';
+import { KnexAdapter } from '../../infra/adapters';
 import { env } from '../env';
 import { TodoService } from '../../core/services';
 
@@ -25,8 +26,8 @@ export class Container {
   readonly create_todo_use_case: ICreateTodoUseCase;
 
   constructor() {
-    const db = new Knex();
-    db.isConnection();
+    const db_relational = new KnexAdapter();
+    db_relational.isConnection();
 
     const cache_client = new CacheClient();
 
@@ -40,8 +41,9 @@ export class Container {
     });
 
     const infra_context: InfraContext = {
+      todo_collection: new TodoCollection(),
       todo_cache: new TodoCache(cache_client),
-      todo_repository: new TodoRepository(db.getConnection()),
+      todo_repository: new TodoRepository(db_relational.getConnection()),
       json_place_holder_integration: new JsonPlaceHolderIntegration(
         new HttpClient()
       ),

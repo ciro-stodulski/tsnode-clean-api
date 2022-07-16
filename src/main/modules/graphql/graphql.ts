@@ -27,5 +27,6 @@ export class GraphQLModule extends ApolloServerAdapter implements Module {
 
   close(): void {
     this.server.stop();
+    console.info('Graphql: disconnecting');
   }
 }

@@ -39,6 +39,21 @@ export class EnvValidator {
   @IsNotEmpty()
   json_place_holder_url: string;
 
+  @IsNotEmpty()
+  db_not_sql_database: string;
+
+  @IsNotEmpty()
+  db_not_sql_host: string;
+
+  @IsNotEmpty()
+  db_not_sql_auth_source: string;
+
+  @IsNotEmpty()
+  db_not_sql_user: string;
+
+  @IsNotEmpty()
+  db_not_sql_password: string;
+
   constructor(props: any) {
     Object.assign(this, props);
   }

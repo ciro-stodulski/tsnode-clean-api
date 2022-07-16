@@ -44,6 +44,7 @@ export class HttpModule implements Module {
 
   close(): void {
     this.server.close();
+    console.info('Http: disconnecting');
   }
 
   start(): void {

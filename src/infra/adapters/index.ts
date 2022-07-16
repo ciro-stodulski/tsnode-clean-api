@@ -5,3 +5,4 @@ export * from './kenx/interface';
 export * from './kenx/knex';
 export * from './redis/redis';
 export * from './appollo-server/appolo-server';
+export * from './mongoose/mongoose';

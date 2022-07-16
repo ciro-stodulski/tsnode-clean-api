@@ -7,6 +7,9 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 
 ## Ongoing Changes
 
+- fix - update logs in modules
+- add - collection todo
+- add - mongoose adapter and mongodb module
 - add - add resolver and mutation graphql
 - add - add modulo graphql
 - add - create apollo server adapter
