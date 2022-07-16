@@ -30,6 +30,7 @@
 - rabbitmq
 - axios
 - knex
+- mongoose
 - redis
 - mocha
 - graphql
