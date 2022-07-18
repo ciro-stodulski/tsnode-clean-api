@@ -25,11 +25,10 @@ export abstract class CommanderAdapter {
   }
 
   protected listCommands(): void {
-    const data = [['Index', 'Name', 'Description']];
+    const data = [['Name', 'Description']];
 
-    this.commands.forEach((command, index) => {
+    this.commands.forEach(command => {
       data.push([
-        `${index}`,
         command.config_command.name,
         command.config_command.description,
       ]);
