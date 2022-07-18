@@ -15,6 +15,8 @@
     "test": "nyc mocha --exit --config=.mocha.yml './src/**/*.spec.ts'",
     "lint": "eslint  'src/**/*.ts'",
     "lint:fix": "eslint --fix 'src/**/*.ts'",
+    "cli-dev": "tsnd ./src/main/modules/cli/index.ts",
+    "cli": "node ./dist/main/modules/cli/index.js",
     "migration:create": "knex migrate:make",
     "migration:latest": "knex migrate:latest",
     "migration:rollback": "knex migrate:rollback"
@@ -44,6 +46,7 @@
     "bunyan-format": "^0.2.1",
     "chai": "^4.3.4",
     "class-validator": "^0.13.2",
+    "commander": "^9.4.0",
     "compression": "^1.7.4",
     "dotenv": "^16.0.1",
     "express": "^4.18.1",
@@ -58,6 +61,7 @@
     "nock": "^13.2.7",
     "reflect-metadata": "^0.1.13",
     "sinon": "^11.1.1",
+    "table": "^6.8.0",
     "type-graphql": "^1.1.1",
     "typedi": "^0.10.0",
     "typescript": "^4.6.4"

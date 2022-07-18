@@ -6,3 +6,4 @@ export * from './kenx/knex';
 export * from './redis/redis';
 export * from './appollo-server/appolo-server';
 export * from './mongoose/mongoose';
+export * from './commander/commander';

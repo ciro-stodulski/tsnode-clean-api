@@ -2,7 +2,7 @@ import { UserNotFoundError } from '../../../../core/exceptions';
 import { Http, HttpErrorCode } from '..';
 import { IJsonPlaceHolderIntegration } from '../../../../core/ports';
 import { JsonPlaceHolderUser } from '../../../../core/types';
-import { env } from '../../../../main/env';
+import { env } from '../../../../shared';
 
 export class JsonPlaceHolderIntegration implements IJsonPlaceHolderIntegration {
   constructor(private readonly http: Http) {

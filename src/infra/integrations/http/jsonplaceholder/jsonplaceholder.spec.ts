@@ -4,7 +4,7 @@ import Sinon from 'sinon';
 import { JsonPlaceHolderIntegration, HttpClient } from '..';
 import { JsonPlaceHolderUser } from '../../../../core/types';
 import { UserNotFoundError } from '../../../../core/exceptions';
-import { env } from '../../../../main/env';
+import { env } from '../../../../shared';
 
 describe('JsonPlaceHolderIntegration', () => {
   const sandbox = Sinon.createSandbox();

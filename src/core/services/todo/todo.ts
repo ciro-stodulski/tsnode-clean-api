@@ -48,7 +48,9 @@ export class TodoService implements ITodoService {
   async list(): Promise<Todo[]> {
     const todo_in_cache = await this.todo_cache.list();
 
-    logger.info(['list by mongo'], await this.todo_collection.list());
+    const todos_mongo = await this.todo_collection.list();
+
+    logger.info(['list by mongo'], todos_mongo);
 
     if (todo_in_cache.length === 0) {
       const todo_repository = await this.todo_repository.list();
