@@ -28,6 +28,8 @@ describe('App', () => {
       sandbox.replace(env, 'rabbit_mq_protocol', 'amqp');
       sandbox.replace(env, 'rabbit_mq_username', 'yolo');
       sandbox.replace(env, 'rabbit_mq_vhost', 'yolo');
+      sandbox.replace(env, 'logger_beautify', true);
+      sandbox.replace(env, 'logger_level', 'yolo');
 
       const cli_mock = {
         start: sinon.fake.returns(undefined),

@@ -58,7 +58,7 @@ export class EnvValidator {
   logger_level: string;
 
   @IsNotEmpty()
-  logger_beautify: string;
+  logger_beautify: boolean;
 
   constructor(props: any) {
     Object.assign(this, props);
