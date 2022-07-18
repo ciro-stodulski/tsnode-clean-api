@@ -9,6 +9,7 @@ import {
   GraphQLModule,
   MongodbModule,
 } from './modules';
+import { logger } from './logger';
 
 export class App {
   private modules: Module[];
@@ -67,7 +68,7 @@ export class App {
         for (const key in item.constraints) {
           if (key) {
             const message = item.constraints[key];
-            console.error(message);
+            logger.error('env fail:', message);
           }
         }
       }

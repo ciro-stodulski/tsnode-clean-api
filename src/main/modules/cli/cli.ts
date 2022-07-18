@@ -2,6 +2,7 @@ import readline from 'readline';
 import { CreateTodoCommand, ICreateTodoCommand } from '../../../interface/cli';
 import { Container } from '../../container';
 import { Module } from '..';
+import { logger } from '../../logger';
 
 export class CliModule implements Module {
   private program: readline.Interface;
@@ -23,14 +24,14 @@ export class CliModule implements Module {
   close(): void {}
 
   start(): void {
-    console.info('Cli:App started');
+    logger.info('Cli:App started');
     this.program.on('line', async (line: string) => {
       try {
         const result = await this.commands.cmd(JSON.parse(line));
         // eslint-disable-next-line
-        console.info(result!.result);
+        logger.info(result!.result);
       } catch (error) {
-        console.error(error);
+        logger.error(error);
       }
     });
   }

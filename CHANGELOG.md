@@ -7,6 +7,8 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 
 ## Ongoing Changes
 
+- fix - name project
+- add - add solution to loggers
 - fix - update logs in modules
 - add - collection todo
 - add - mongoose adapter and mongodb module

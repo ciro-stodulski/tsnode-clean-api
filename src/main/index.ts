@@ -1,6 +1,7 @@
 import { App } from './app';
 import { EventEmmiter } from './event';
 import { AppState } from './enum';
+import { logger } from './logger';
 
 const application = new App({});
 
@@ -14,6 +15,6 @@ setImmediate(async () => {
     await application.start();
   } catch (error) {
     // eslint-disable-next-line
-    console.error({ error });
+    logger.error({ error });
   }
 });

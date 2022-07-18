@@ -7,6 +7,7 @@ import {
   create_todo_schema,
   TodoMessage,
 } from '../..';
+import { logger } from '../../../../main/logger';
 
 export class CreateTodoConsumer extends Consumer {
   consumer_config: ConsumerConfig = {
@@ -27,7 +28,7 @@ export class CreateTodoConsumer extends Consumer {
     channel: Channel,
     message: ConsumeMessage | null
   ): void | ConsumerErrorOptions {
-    console.error(err);
+    logger.error(err);
     return {
       should_ack: true,
     };

@@ -1,5 +1,6 @@
 import { ITodoProducer } from '../../../../../core/ports';
 import { Producer, AMQPPublishOptions, IAmqp, ProducerConfig } from '../..';
+import { logger } from '../../../../../main/logger';
 
 export class TodoProducer extends Producer implements ITodoProducer {
   producer_config: ProducerConfig = {
@@ -28,7 +29,7 @@ export class TodoProducer extends Producer implements ITodoProducer {
       routing_key,
     });
 
-    console.info(
+    logger.info(
       `Sending message to exchange - ${exchange} and routingKey - ${routing_key}`
     );
   }

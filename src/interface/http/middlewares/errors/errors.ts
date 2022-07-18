@@ -1,3 +1,4 @@
+import { logger } from '../../../../main/logger';
 import { Middleware, HttpRequest, HttpResponse, HttpError } from '../..';
 
 export class ErrorHandlerMiddleware implements Middleware {
@@ -24,7 +25,7 @@ export class ErrorHandlerMiddleware implements Middleware {
       };
     }
 
-    console.error({ error });
+    logger.error({ error });
 
     return {
       data: {
