@@ -1,5 +1,6 @@
 import Redis from 'ioredis';
 import { env } from '../../../main/env';
+import { logger } from '../../../shared/logger';
 
 export class RedisAdapter {
   public cache: Redis;
@@ -11,6 +12,6 @@ export class RedisAdapter {
         host: env.redis_host,
         port: env.redis_port,
       });
-    console.info('Redis: Connection established');
+    logger.info('Redis: Connection established');
   }
 }

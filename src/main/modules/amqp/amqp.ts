@@ -13,6 +13,7 @@ import {
   InstanceType,
 } from '../../../infra/adapters';
 import { Module } from '..';
+import { logger } from '../../../shared/logger';
 
 export class AmqpModule extends RabbitqmAdapter implements Module {
   private channel_server: Channel;
@@ -83,12 +84,12 @@ export class AmqpModule extends RabbitqmAdapter implements Module {
 
       for (const consumer of this.consumers) {
         this.registerConsumer(consumer);
-        console.info(
-          `RabbitMQ: Started queue '${consumer.consumer_config.queue}' to consume`
+        logger.info(
+          `Amqp: Started queue '${consumer.consumer_config.queue}' to consume`
         );
       }
     } catch (error) {
-      console.error('RabbitMQ: Error to started queues');
+      logger.error('Amqp: Error to started queues', error);
     }
   }
 }

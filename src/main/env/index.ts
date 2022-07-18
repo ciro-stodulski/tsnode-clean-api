@@ -18,6 +18,8 @@ const props = {
   db_port: process.env.DB_PORT || 3365,
   rabbit_mq_enabled: process.env.RABBITMQ_ENABLED === 'true',
   rabbit_mq_protocol: process.env.RABBITMQ_PROTOCOL || '',
+  logger_beautify: process.env.LOGGER_BEAUTIFY === 'true',
+  logger_level: process.env.LOGGER_LEVEL || '',
   rabbit_mq_host: process.env.RABBITMQ_HOST || '',
   rabbit_mq_port: parseInt(process.env.RABBITMQ_PORT || '5672', 10),
   rabbit_mq_username: process.env.RABBITMQ_USERNAME || '',

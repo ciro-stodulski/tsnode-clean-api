@@ -9,6 +9,7 @@ import {
 import { Todo } from '../../entities';
 import { ITodoService } from '..';
 import { JsonPlaceHolderUser } from '../../types';
+import { logger } from '../../../shared/logger';
 
 export class TodoService implements ITodoService {
   private todo_repository: ITodoRepository;
@@ -47,7 +48,7 @@ export class TodoService implements ITodoService {
   async list(): Promise<Todo[]> {
     const todo_in_cache = await this.todo_cache.list();
 
-    console.info(['list by mongo'], await this.todo_collection.list());
+    logger.info(['list by mongo'], await this.todo_collection.list());
 
     if (todo_in_cache.length === 0) {
       const todo_repository = await this.todo_repository.list();

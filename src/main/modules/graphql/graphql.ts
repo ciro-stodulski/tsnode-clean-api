@@ -6,6 +6,7 @@ import {
 import { Module } from '..';
 import { ApolloServerAdapter } from '../../../infra/adapters';
 import { Container } from '../../container';
+import { logger } from '../../../shared/logger';
 
 export class GraphQLModule extends ApolloServerAdapter implements Module {
   constructor(private container: Container, private port: number) {
@@ -22,11 +23,11 @@ export class GraphQLModule extends ApolloServerAdapter implements Module {
       port: this.port,
     });
 
-    console.info(`Graphql: Server starting in port ${this.port}`);
+    logger.info(`Graphql: Server starting in port ${this.port}`);
   }
 
   close(): void {
     this.server.stop();
-    console.info('Graphql: disconnecting');
+    logger.warn('Graphql: disconnecting');
   }
 }
