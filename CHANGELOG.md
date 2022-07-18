@@ -13,6 +13,7 @@ Fixed name project.
 
 ## Changed
 
+Update changelog format by http://keepachangelog.com
 Refactoring layer to event and logger.
 Update logs in modules.
 
