@@ -1,7 +1,7 @@
 import { App } from './app';
-import { EventEmmiter } from './event';
+import { EventEmmiter } from '../shared/event';
 import { AppState } from './enum';
-import { logger } from './logger';
+import { logger } from '../shared/logger';
 
 const application = new App({});
 

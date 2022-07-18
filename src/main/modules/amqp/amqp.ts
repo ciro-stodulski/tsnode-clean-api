@@ -13,7 +13,7 @@ import {
   InstanceType,
 } from '../../../infra/adapters';
 import { Module } from '..';
-import { logger } from '../../logger';
+import { logger } from '../../../shared/logger';
 
 export class AmqpModule extends RabbitqmAdapter implements Module {
   private channel_server: Channel;

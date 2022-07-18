@@ -6,7 +6,7 @@ import {
 import { Module } from '..';
 import { ApolloServerAdapter } from '../../../infra/adapters';
 import { Container } from '../../container';
-import { logger } from '../../logger';
+import { logger } from '../../../shared/logger';
 
 export class GraphQLModule extends ApolloServerAdapter implements Module {
   constructor(private container: Container, private port: number) {

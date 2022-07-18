@@ -9,7 +9,7 @@ import {
   GraphQLModule,
   MongodbModule,
 } from './modules';
-import { logger } from './logger';
+import { logger } from '../shared/logger';
 
 export class App {
   private modules: Module[];

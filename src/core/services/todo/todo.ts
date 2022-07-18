@@ -9,7 +9,7 @@ import {
 import { Todo } from '../../entities';
 import { ITodoService } from '..';
 import { JsonPlaceHolderUser } from '../../types';
-import { logger } from '../../../main/logger';
+import { logger } from '../../../shared/logger';
 
 export class TodoService implements ITodoService {
   private todo_repository: ITodoRepository;

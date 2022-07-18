@@ -2,7 +2,7 @@ import readline from 'readline';
 import { CreateTodoCommand, ICreateTodoCommand } from '../../../interface/cli';
 import { Container } from '../../container';
 import { Module } from '..';
-import { logger } from '../../logger';
+import { logger } from '../../../shared/logger';
 
 export class CliModule implements Module {
   private program: readline.Interface;

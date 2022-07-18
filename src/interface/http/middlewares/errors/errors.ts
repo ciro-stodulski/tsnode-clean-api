@@ -1,4 +1,4 @@
-import { logger } from '../../../../main/logger';
+import { logger } from '../../../../shared/logger';
 import { Middleware, HttpRequest, HttpResponse, HttpError } from '../..';
 
 export class ErrorHandlerMiddleware implements Middleware {

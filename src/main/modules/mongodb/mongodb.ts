@@ -1,6 +1,6 @@
 import { MongooseAdapter } from '../../../infra/adapters';
 import { Module } from '..';
-import { logger } from '../../logger';
+import { logger } from '../../../shared/logger';
 
 export class MongodbModule extends MongooseAdapter implements Module {
   async start(): Promise<void> {

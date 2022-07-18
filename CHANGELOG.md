@@ -7,6 +7,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 
 ## Ongoing Changes
 
+- ref - refactoring layer to event and logger
 - fix - name project
 - add - add solution to loggers
 - fix - update logs in modules

@@ -1,6 +1,6 @@
 import { ITodoProducer } from '../../../../../core/ports';
 import { Producer, AMQPPublishOptions, IAmqp, ProducerConfig } from '../..';
-import { logger } from '../../../../../main/logger';
+import { logger } from '../../../../../shared/logger';
 
 export class TodoProducer extends Producer implements ITodoProducer {
   producer_config: ProducerConfig = {

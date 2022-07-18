@@ -1,8 +1,8 @@
 import bformat from 'bunyan-format';
 import { init } from '@somosphi/logger';
-import { env } from './env';
+import { env } from '../../main/env';
 
-const project_pack = require('../../package');
+const project_pack = require('../../../package');
 
 const format_out = bformat({
   outputMode: env.logger_beautify ? 'short' : 'bunyan',

@@ -7,7 +7,7 @@ import {
   create_todo_schema,
   TodoMessage,
 } from '../..';
-import { logger } from '../../../../main/logger';
+import { logger } from '../../../../shared/logger';
 
 export class CreateTodoConsumer extends Consumer {
   consumer_config: ConsumerConfig = {
