@@ -21,7 +21,7 @@ describe('Interface - CLI', () => {
       // @ts-ignore
       const create_todo_command = new ListTodoCommand({ list_todo_use_case });
 
-      await create_todo_command.cmd();
+      await create_todo_command.run();
 
       assert(list_todo_use_case.list.calledOnce);
     });
