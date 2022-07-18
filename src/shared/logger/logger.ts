@@ -1,6 +1,6 @@
 import bformat from 'bunyan-format';
 import { init } from '@somosphi/logger';
-import { env } from '../../main/env';
+import { env } from '../env';
 
 const project_pack = require('../../../package');
 

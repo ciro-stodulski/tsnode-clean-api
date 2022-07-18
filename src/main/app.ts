@@ -1,5 +1,5 @@
 import { validateOrReject, ValidationError } from 'class-validator';
-import { env } from './env';
+import { env } from '../shared/env';
 import { Container } from './container';
 import {
   CliModule,
@@ -15,11 +15,11 @@ export class App {
   private modules: Module[];
 
   constructor(
-    { cli = null, http = null, amqp = null, graphql = null, mongodb = null },
+    { http = null, amqp = null, graphql = null, mongodb = null },
     container = undefined
   ) {
     this.loadModules(
-      { cli, http, amqp, graphql, mongodb },
+      { http, amqp, graphql, mongodb },
       container || new Container()
     );
   }
@@ -33,12 +33,11 @@ export class App {
   }
 
   loadModules(
-    { cli = null, http = null, amqp = null, graphql = null, mongodb = null },
+    { http = null, amqp = null, graphql = null, mongodb = null },
     container: Container
   ): void {
     this.modules = [
       mongodb || new MongodbModule(),
-      cli || new CliModule(container),
       http || new HttpModule(container, env.http_port),
       graphql || new GraphQLModule(container, env.graphql_port),
       amqp ||

@@ -13,18 +13,20 @@ Fixed name project.
 
 ## Changed
 
+Refactored module cli
 Update changelog format by http://keepachangelog.com
-Refactoring layer to event and logger.
+Refactored layer to event and logger.
 Update logs in modules.
 
 ### Added
 
+Create adapter commander 
 Added solution to loggers.
 Collection todo.
-Create mongoose adapter and mongodb module.
+Created mongoose adapter and mongodb module.
 Added resolver and mutation graphql.
 Added modulo graphql.
-Create apollo server adapter.
+Created apollo server adapter.
 
 ## [1.0.0] - 2022-07-12
 
@@ -36,25 +38,25 @@ interfaces cli and http.
 
 ## Changed
 
-refactoring container and cli module.
-refactoring service layer.
-refactoring cache client to use adapter redis.
-refactoring in amqp server to use adapter rabbit mq and resolving issue connections lots.
-create service layer and refactoring use cases.
+Refactored container and cli module.
+Refactored service layer.
+Refactored cache client to use adapter redis.
+Refactored in amqp server to use adapter rabbit mq and resolving issue connections lots.
+Created service layer and refactoring use cases.
 
 ### Added
 
 Added producer notification.
-Create client for amqp client to create producer and create adapter rabbit qm.
+Created client for amqp client to create producer and create adapter rabbit qm.
 Added Readme.
-Create Dockerfile.
+Created Dockerfile.
 Added env validation.
-Create cache.
+Created cache.
 Added db and migrations to database.
-Create server http and consumer for rabbit mq.
-Create integration json place holder.
-Create client http.
-Create error handler http.
+Created server http and consumer for rabbit mq.
+Created integration json place holder.
+Created client http.
+Created error handler http.
 Validation body schema for request http.
 Module http.
 Module cli.

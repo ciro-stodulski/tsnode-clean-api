@@ -35,6 +35,29 @@
 - mocha
 - graphql
 
+
 ## Docker 
 
 docker build -t tsnode-clean-api . 
+
+## CLI
+
+- Dev (TS):
+  - `npm run cli-dev -- <command> <arg>`
+  - `yarn cli-dev <command> <arg>`
+- PRD (JS):
+  - `npm run cli -- <command> <arg>`
+  - `yarn cli <command> <arg>`
+
+| Description | Command               | Short           |
+| ----------- | --------------------- | --------------- |
+| Help        | `--help`              | `-h`            |
+| List jobs   | `--list-jobs`         | `-lj`           |
+| Run job     | `--run-command <command_name>` | `-rj <command_name>` |
+
+```
+Ex:
+- npm run cli -- -rc "list-todo"
+- npm run cli-dev -- -lc
+- npm run cli-dev -- --help
+- yarn cli-dev -lc

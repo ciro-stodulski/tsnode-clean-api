@@ -17,7 +17,7 @@ import {
 } from '../../infra/integrations/http';
 import { AmqpClient, TodoProducer } from '../../infra/integrations/amqp';
 import { KnexAdapter } from '../../infra/adapters';
-import { env } from '../env';
+import { env, logger } from '../../shared';
 import { TodoService } from '../../core/services';
 
 export class Container {
@@ -59,5 +59,7 @@ export class Container {
     this.create_todo_use_case = new CreateTodoUseCase(
       service_context.todo_service
     );
+
+    logger.info('Container: load instances with successfully');
   }
 }

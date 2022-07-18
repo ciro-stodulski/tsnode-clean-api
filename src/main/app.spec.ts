@@ -1,7 +1,7 @@
 import { assert } from 'chai';
 import sinon from 'sinon';
 import { App } from './app';
-import { env } from './env';
+import { env } from '../shared';
 
 describe('App', () => {
   describe('start', () => {
@@ -31,10 +31,6 @@ describe('App', () => {
       sandbox.replace(env, 'logger_beautify', true);
       sandbox.replace(env, 'logger_level', 'yolo');
 
-      const cli_mock = {
-        start: sinon.fake.returns(undefined),
-      };
-
       const http_mock = {
         start: sinon.fake.returns(undefined),
       };
@@ -52,7 +48,6 @@ describe('App', () => {
       };
 
       const inti_modules_fake = {
-        cli: cli_mock,
         http: http_mock,
         amqp: amqp_mock,
         graphql: graphql_mock,
@@ -67,7 +62,6 @@ describe('App', () => {
 
       await app.start();
 
-      assert(cli_mock.start.calledOnce);
       assert(http_mock.start.calledOnce);
       assert(amqp_mock.start.calledOnce);
       assert(graphql_mock.start.calledOnce);
