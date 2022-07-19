@@ -1,6 +1,8 @@
 # tsnode-clean-api
 
-- design based on clean architecture
+design based on clean architecture
+
+ https://blog.cleancoder.com/uncle-bob/2012/08/13/the-clean-architecture.html
 ## Setup
 
 1. Create **.env** file in the root folder using **.env.sample** as an example and replace the content with your project configs/secrets.
