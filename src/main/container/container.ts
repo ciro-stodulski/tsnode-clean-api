@@ -14,11 +14,12 @@ import { InfraContext, UseCaseContext } from '.';
 import {
   HttpClient,
   JsonPlaceHolderIntegration,
-} from '../../infra/integrations/http';
-import { AmqpClient, TodoProducer } from '../../infra/integrations/amqp';
+  AmqpClient,
+  TodoProducer,
+} from '../../infra/integrations';
 import { KnexAdapter } from '../../infra/adapters';
 import { env, logger } from '../../shared';
-import { TodoService } from '../../core/services';
+import { TodoService } from '../../infra/services';
 
 export class Container {
   readonly list_todo_use_case: IListTodoUseCase;

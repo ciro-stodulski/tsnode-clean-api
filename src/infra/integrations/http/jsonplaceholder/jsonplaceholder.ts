@@ -1,6 +1,5 @@
 import { UserNotFoundError } from '../../../../core/exceptions';
-import { Http, HttpErrorCode } from '..';
-import { IJsonPlaceHolderIntegration } from '../../../../core/ports';
+import { IJsonPlaceHolderIntegration, Http, HttpErrorCode } from '../..';
 import { JsonPlaceHolderUser } from '../../../../core/types';
 import { env } from '../../../../shared';
 

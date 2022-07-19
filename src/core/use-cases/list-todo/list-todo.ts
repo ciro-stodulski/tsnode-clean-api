@@ -1,6 +1,6 @@
 import { Todo } from '../../entities';
 import { IListTodoUseCase } from '..';
-import { ITodoService } from '../../services';
+import { ITodoService } from '../../ports';
 
 export class ListTodoUseCase implements IListTodoUseCase {
   constructor(private todo_service: ITodoService) {}

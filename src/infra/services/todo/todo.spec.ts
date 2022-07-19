@@ -1,7 +1,7 @@
 import { assert, expect } from 'chai';
 import sinon from 'sinon';
-import { Todo, TodoStatus } from '../../entities';
-import { JsonPlaceHolderUser } from '../../types';
+import { Todo, TodoStatus } from '../../../core/entities';
+import { JsonPlaceHolderUser } from '../../../core/types';
 import { TodoService } from '..';
 
 describe('Service - TodoService', () => {

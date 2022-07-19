@@ -1,5 +1,10 @@
-import { ITodoProducer } from '../../../../../core/ports';
-import { Producer, AMQPPublishOptions, IAmqp, ProducerConfig } from '../..';
+import {
+  Producer,
+  AMQPPublishOptions,
+  IAmqp,
+  ProducerConfig,
+  ITodoProducer,
+} from '../../..';
 import { logger } from '../../../../../shared/logger';
 
 export class TodoProducer extends Producer implements ITodoProducer {
