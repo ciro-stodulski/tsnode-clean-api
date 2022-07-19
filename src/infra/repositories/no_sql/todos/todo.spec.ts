@@ -1,6 +1,6 @@
 import { assert, expect } from 'chai';
 import Sinon from 'sinon';
-import { TodoCollection } from '..';
+import { TodoCollection } from '../..';
 import { Todo, TodoStatus } from '../../../../core/entities';
 
 describe('Collection - todo', () => {

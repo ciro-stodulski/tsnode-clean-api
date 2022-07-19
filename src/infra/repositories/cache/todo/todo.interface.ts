@@ -1,4 +1,4 @@
-import { Todo } from '../entities';
+import { Todo } from '../../../../core/entities';
 
 export interface ITodoCache {
   list(): Promise<Todo[]>;

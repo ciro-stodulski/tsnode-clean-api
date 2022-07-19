@@ -1,6 +1,6 @@
 import { Channel, Options } from 'amqplib';
 import { InstanceType, RabbitMQConfig, RabbitqmAdapter } from '../../adapters';
-import { AMQPPublishData, IAmqp, AMQPPublishOptions } from '.';
+import { AMQPPublishData, IAmqp, AMQPPublishOptions } from '..';
 import { converter } from '../../../shared';
 
 export class AmqpClient extends RabbitqmAdapter implements IAmqp {

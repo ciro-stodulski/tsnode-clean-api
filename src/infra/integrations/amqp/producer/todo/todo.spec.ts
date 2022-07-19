@@ -1,6 +1,6 @@
 import sinon from 'sinon';
 import { assert } from 'chai';
-import { TodoProducer, AMQPPublishOptions } from '../..';
+import { TodoProducer, AMQPPublishOptions } from '../../..';
 
 describe('TodoProducer', () => {
   const sandbox = sinon.createSandbox();

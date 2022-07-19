@@ -1,14 +1,13 @@
 import { InfraContext } from '../../../main/container';
 import {
-  IJsonPlaceHolderIntegration,
   ITodoCache,
   ITodoCollection,
-  ITodoProducer,
   ITodoRepository,
-} from '../../ports';
-import { Todo } from '../../entities';
-import { ITodoService } from '..';
-import { JsonPlaceHolderUser } from '../../types';
+} from '../../repositories';
+import { IJsonPlaceHolderIntegration, ITodoProducer } from '../../integrations';
+import { Todo } from '../../../core/entities';
+import { ITodoService } from '../../../core/ports';
+import { JsonPlaceHolderUser } from '../../../core/types';
 import { logger } from '../../../shared/logger';
 
 export class TodoService implements ITodoService {

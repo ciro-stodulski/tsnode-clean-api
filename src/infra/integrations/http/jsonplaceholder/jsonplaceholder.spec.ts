@@ -1,7 +1,7 @@
 import nock from 'nock';
 import { expect } from 'chai';
 import Sinon from 'sinon';
-import { JsonPlaceHolderIntegration, HttpClient } from '..';
+import { JsonPlaceHolderIntegration, HttpClient } from '../..';
 import { JsonPlaceHolderUser } from '../../../../core/types';
 import { UserNotFoundError } from '../../../../core/exceptions';
 import { env } from '../../../../shared';

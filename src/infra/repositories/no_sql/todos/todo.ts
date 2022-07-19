@@ -1,6 +1,5 @@
 import { Model } from 'mongoose';
-import { ITodoCollection } from '../../../../core/ports';
-import { todo_model } from '../..';
+import { ITodoCollection, todo_model } from '../..';
 import { Todo } from '../../../../core/entities';
 
 export class TodoCollection implements ITodoCollection {

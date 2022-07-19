@@ -1,4 +1,4 @@
-import { Todo } from '../entities';
+import { Todo } from '../../../../core/entities';
 
 export interface ITodoRepository {
   save(todo: Todo): Promise<string>;

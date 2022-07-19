@@ -13,6 +13,7 @@ Fixed name project.
 
 ## Changed
 
+Refactored core layer
 Refactored module cli
 Update changelog format by http://keepachangelog.com
 Refactored layer to event and logger.
