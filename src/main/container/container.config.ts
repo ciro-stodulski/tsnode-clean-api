@@ -4,11 +4,11 @@ import { KnexAdapter } from '../../infra/adapters';
 import { env, logger } from '../../shared';
 
 export class ContainerConfig {
-   db: KnexAdapter;
+   readonly db: KnexAdapter;
 
-   client_cache: CacheClient;
+   readonly client_cache: CacheClient;
 
-   amqp_client: AmqpClient;
+   readonly amqp_client: AmqpClient;
 
   constructor() {
     this.db = new KnexAdapter();
