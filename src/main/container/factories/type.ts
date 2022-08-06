@@ -1,13 +1,13 @@
-import { ITodoService } from '../../core/ports';
+import { ITodoService } from '../../../core/ports';
 import {
   ITodoCache,
   ITodoRepository,
   ITodoCollection,
-} from '../../infra/repositories';
+} from '../../../infra/repositories';
 import {
   IJsonPlaceHolderIntegration,
   ITodoProducer,
-} from '../../infra/integrations';
+} from '../../../infra/integrations';
 
 export type InfraContext = {
   todo_repository: ITodoRepository;
@@ -17,6 +17,6 @@ export type InfraContext = {
   todo_collection: ITodoCollection;
 };
 
-export type UseCaseContext = {
+export type ServiceCaseContext = {
   todo_service: ITodoService;
 };

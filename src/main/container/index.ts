@@ -1,2 +1,2 @@
+export * from './container.config';
 export * from './container';
-export * from './type';

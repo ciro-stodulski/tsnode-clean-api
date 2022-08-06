@@ -1,4 +1,4 @@
-import { InfraContext } from '../../../main/container';
+import { InfraContext } from '../../../main/container/factories';
 import {
   ITodoCache,
   ITodoCollection,

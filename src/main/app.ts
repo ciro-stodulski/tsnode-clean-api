@@ -2,7 +2,6 @@ import { validateOrReject, ValidationError } from 'class-validator';
 import { env } from '../shared/env';
 import { Container } from './container';
 import {
-  CliModule,
   Module,
   HttpModule,
   AmqpModule,
