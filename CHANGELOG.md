@@ -13,6 +13,7 @@ Fixed name project.
 
 ## Changed
 
+Refactored in container layer add factories in structure
 Refactored core layer
 Refactored module cli
 Update changelog format by http://keepachangelog.com
