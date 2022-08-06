@@ -3,6 +3,19 @@
 design based on clean architecture
 
  https://blog.cleancoder.com/uncle-bob/2012/08/13/the-clean-architecture.html
+ 
+## Main stacks used
+
+- typescript
+- express
+- rabbitmq
+- axios
+- knex
+- mongoose
+- redis
+- mocha
+- graphql
+ 
 ## Setup
 
 1. Create **.env** file in the root folder using **.env.sample** as an example and replace the content with your project configs/secrets.
@@ -25,19 +38,6 @@ design based on clean architecture
 ## Build
 
 `npm run build`
-
-## Main stacks used
-
-- typescript
-- express
-- rabbitmq
-- axios
-- knex
-- mongoose
-- redis
-- mocha
-- graphql
-
 
 ## Docker 
 
