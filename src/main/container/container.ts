@@ -7,18 +7,19 @@ import {
 
 import { logger } from '../../shared';
 import { ContainerConfig } from '.';
-import { makeInfraContext, makeServiceContext } from './factories';
+import { make_infra_context, make_service_context } from './factories';
 
 export class Container extends ContainerConfig {
   readonly list_todo_use_case: IListTodoUseCase;
+
   readonly create_todo_use_case: ICreateTodoUseCase;
 
   constructor() {
     super();
 
-    const todo_service = makeServiceContext(
-      makeInfraContext(this.client_cache, this.db, this.amqp_client)
-    ).todo_service;
+    const { todo_service } = make_service_context(
+      make_infra_context(this.client_cache, this.db, this.amqp_client)
+    );
 
     this.list_todo_use_case = new ListTodoUseCase(todo_service);
 
