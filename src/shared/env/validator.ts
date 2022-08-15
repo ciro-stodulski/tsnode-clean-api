@@ -60,6 +60,9 @@ export class EnvValidator {
   @IsNotEmpty()
   logger_beautify: boolean;
 
+  @IsNotEmpty()
+  grpc_host: string;
+
   constructor(props: any) {
     Object.assign(this, props);
   }
