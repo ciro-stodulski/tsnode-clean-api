@@ -2,35 +2,35 @@
   "name": "tsnode-clean-api",
   "version": "1.0.0",
   "description": "",
-  "main": "index.js",
+  "homepage": "https://github.com/ciro-stodulski/tsnocde-clean-api#readme",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/ciro-stodulski/tsnocde-clean-api.git"
   },
-  "homepage": "https://github.com/ciro-stodulski/tsnocde-clean-api#readme",
+  "main": "index.js",
   "scripts": {
-    "start": "node  ./src/main/index.js",
-    "dev": "tsnd ./src/main/index.ts --transpile-only",
     "build": "npm i && rimraf dist && tsc -p .",
-    "test": "nyc mocha --exit --config=.mocha.yml './src/**/*.spec.ts'",
+    "cli": "node ./dist/main/modules/cli/index.js",
+    "cli-dev": "tsnd ./src/main/modules/cli/index.ts",
+    "dev": "tsnd ./src/main/index.ts --transpile-only",
     "lint": "eslint  'src/**/*.ts'",
     "lint:fix": "eslint --fix 'src/**/*.ts'",
-    "cli-dev": "tsnd ./src/main/modules/cli/index.ts",
-    "cli": "node ./dist/main/modules/cli/index.js",
     "migration:create": "knex migrate:make",
     "migration:latest": "knex migrate:latest",
-    "migration:rollback": "knex migrate:rollback"
+    "migration:rollback": "knex migrate:rollback",
+    "start": "node  ./src/main/index.js",
+    "test": "nyc mocha --exit --config=.mocha.yml './src/**/*.spec.ts'"
   },
   "nyc": {
+    "all": true,
+    "exclude": [
+      "**/*.d.ts"
+    ],
     "extension": [
       ".ts"
     ],
-    "all": true,
     "include": [
       "src"
-    ],
-    "exclude": [
-      "**/*.d.ts"
     ],
     "reporter": [
       "lcov",
@@ -38,6 +38,8 @@
     ]
   },
   "dependencies": {
+    "@grpc/grpc-js": "^1.6.9",
+    "@grpc/proto-loader": "^0.7.0",
     "@somosphi/logger": "^1.6.0",
     "amqplib": "^0.10.0",
     "apollo-server": "^3.10.0",
@@ -51,6 +53,7 @@
     "dotenv": "^16.0.1",
     "express": "^4.18.1",
     "graphql": "^15.8.0",
+    "grpc-node-server-reflection": "^1.0.2",
     "helmet": "^5.1.0",
     "ioredis": "^5.0.6",
     "joi": "^17.6.0",

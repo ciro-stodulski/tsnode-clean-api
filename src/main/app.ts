@@ -7,6 +7,7 @@ import {
   AmqpModule,
   GraphQLModule,
   MongodbModule,
+  GrpcModule,
 } from './modules';
 import { logger } from '../shared/logger';
 
@@ -14,11 +15,11 @@ export class App {
   private modules: Module[];
 
   constructor(
-    { http = null, amqp = null, graphql = null, mongodb = null },
+    { http = null, amqp = null, graphql = null, mongodb = null, grpc = null },
     container = undefined
   ) {
     this.loadModules(
-      { http, amqp, graphql, mongodb },
+      { http, amqp, graphql, mongodb, grpc },
       container || new Container()
     );
   }
@@ -32,7 +33,7 @@ export class App {
   }
 
   loadModules(
-    { http = null, amqp = null, graphql = null, mongodb = null },
+    { http = null, amqp = null, graphql = null, mongodb = null, grpc = null },
     container: Container
   ): void {
     this.modules = [
@@ -48,6 +49,7 @@ export class App {
           username: env.rabbit_mq_username,
           vhost: env.rabbit_mq_vhost,
         }),
+      grpc || new GrpcModule(container),
     ];
   }
 
