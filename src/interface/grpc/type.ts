@@ -3,7 +3,7 @@ import Joi from 'joi';
 export type GRPCConfig = {
   proto_param: string;
   implementation: string;
-  grpc_package: string,
+  grpc_package: string;
   schema?: Joi.Schema;
   service: string;
 };

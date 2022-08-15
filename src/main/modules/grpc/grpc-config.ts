@@ -18,7 +18,9 @@ export type LoadedRPC = {
 
 export class GrpcConfigModule {
   protected server: grpc.Server;
+
   private proto_dir = '../../../interface/grpc/services';
+
   protected services: GrpcBase[];
 
   registerServices(loaded_protos: LoadedRPC[]): void {

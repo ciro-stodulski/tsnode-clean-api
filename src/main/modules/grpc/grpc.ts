@@ -9,9 +9,7 @@ import { Container } from '../../container';
 export class GrpcModule extends GrpcConfigModule implements Module {
   constructor(container: Container) {
     super();
-    this.services = [
-      new VerifyGrpc(container.list_todo_use_case),
-    ];
+    this.services = [new VerifyGrpc(container.list_todo_use_case)];
   }
 
   start(): void {

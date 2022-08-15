@@ -1,8 +1,4 @@
-import {
-  GRPCResponse,
-  GRPCRequest,
-  GRPCConfig,
-} from '.';
+import { GRPCResponse, GRPCRequest, GRPCConfig } from '.';
 
 export abstract class GrpcBase {
   abstract service_configs: GRPCConfig;
