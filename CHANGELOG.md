@@ -22,6 +22,7 @@ Update logs in modules.
 
 ### Added
 
+Create new module for grpc server
 Create adapter commander 
 Added solution to loggers.
 Collection todo.
