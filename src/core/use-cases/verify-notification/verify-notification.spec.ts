@@ -17,7 +17,7 @@ describe('UseCase - VerifyNotificationUseCase', () => {
         name: 'yolinho',
       };
 
-      await use_case.Notify(dto);
+      await use_case.notify(dto);
 
       assert(notification_service.checkNotify.calledOnceWith(dto.name));
     });

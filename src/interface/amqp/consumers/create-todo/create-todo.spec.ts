@@ -23,7 +23,7 @@ describe('Interface - Amqp', () => {
       assert(create_todo_use_case.create.calledOnceWith(message_fake));
     });
 
-    it('create todo with successfully', async () => {
+    it('validate error consumer', async () => {
       const create_todo_use_case = {
         create: Sinon.fake.resolves(undefined),
       };
