@@ -7,7 +7,7 @@ import {
 
 import { logger } from '../../shared';
 import { ContainerConfig } from '.';
-import { make_infra_context, make_service_context } from './factories';
+import { make_infra_context, make_service_todo_context } from './factories';
 
 export class Container extends ContainerConfig {
   readonly list_todo_use_case: IListTodoUseCase;
@@ -17,7 +17,7 @@ export class Container extends ContainerConfig {
   constructor() {
     super();
 
-    const { todo_service } = make_service_context(
+    const { todo_service } = make_service_todo_context(
       make_infra_context(this.client_cache, this.db, this.amqp_client)
     );
 
