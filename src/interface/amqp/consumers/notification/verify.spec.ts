@@ -17,7 +17,7 @@ describe('Interface - Amqp', () => {
 
       const consumer = new VerifyConsumer(verify_notification_use_case);
 
-      await consumer.handle(message_fake);
+      await consumer.handle({body: message_fake});
 
       assert(verify_notification_use_case.notify.calledOnceWith(message_fake));
     });

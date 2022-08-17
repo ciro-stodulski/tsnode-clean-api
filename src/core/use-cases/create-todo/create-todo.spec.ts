@@ -37,8 +37,15 @@ describe('UseCase - CreateTodoUseCase', () => {
         create: sinon.fake.resolves(result_db),
       };
 
-      // @ts-ignore
-      const use_case = new CreateTodoUseCase(todo_create_service);
+      const notification_service = {
+        sendNotify: sinon.fake.resolves(undefined),
+      };
+
+      const use_case = new CreateTodoUseCase(
+        // @ts-ignore
+        todo_create_service,
+        notification_service
+      );
 
       const dto = {
         name: 'GYN',
@@ -51,6 +58,12 @@ describe('UseCase - CreateTodoUseCase', () => {
 
       assert(todo_create_service.create.calledOnceWith(new Todo(dto)));
       assert(todo_create_service.getUser.calledOnceWith(dto.user));
+      assert(
+        notification_service.sendNotify.calledOnceWith({
+          describe: dto.status,
+          name: dto.name,
+        })
+      );
     });
   });
 });
