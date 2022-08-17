@@ -22,6 +22,7 @@ Update logs in modules.
 
 ### Added
 
+Create client integration for grpc server
 Create new module for grpc server
 Create adapter commander 
 Added solution to loggers.
