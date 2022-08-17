@@ -1,7 +1,7 @@
-import { TodoService } from '../../../infra/services';
+import { NotificationService, TodoService } from '../../../infra/services';
 import { ServiceCaseContext, InfraContext } from '.';
 
-export const make_service_todo_context = (
+export const make_service_context = (
   infra_context: InfraContext
 ): ServiceCaseContext => {
   const {
@@ -10,6 +10,8 @@ export const make_service_todo_context = (
     todo_collection,
     todo_producer,
     todo_repository,
+    notification_proto,
+    notification_producer,
   } = infra_context;
 
   return {
@@ -19,6 +21,10 @@ export const make_service_todo_context = (
       json_place_holder_integration,
       todo_cache,
       todo_producer
+    ),
+    notification_service: new NotificationService(
+      notification_proto,
+      notification_producer
     ),
   };
 };

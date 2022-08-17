@@ -15,13 +15,16 @@ export class AmqpClient extends RabbitqmAdapter implements IAmqp {
     const { exchange, message, routing_key, options } = data;
 
     const publish_options = this.getPublishOptions(options);
+
     try {
-      return (await this.channel_client).publish(
+      const result = await (await this.channel_client).publish(
         exchange || '',
         routing_key,
         converter({ body: message }),
         publish_options
       );
+
+      return result
     } catch (err) {
       throw Error(
         `Error Posting Message to RabbitMQ Server - cause ${err.message}`

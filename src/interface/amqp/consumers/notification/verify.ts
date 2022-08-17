@@ -1,11 +1,15 @@
 import { Channel, ConsumeMessage } from 'amqplib';
-import { IVerifyNotificationUseCase, EventDto} from '../../../../core/use-cases';
+import {
+  IVerifyNotificationUseCase,
+  EventDto,
+} from '../../../../core/use-cases';
 import {
   Consumer,
   ConsumerErrorOptions,
   ConsumerConfig,
   verify_schema,
 } from '../..';
+import { logger } from '../../../../shared';
 
 export class VerifyConsumer extends Consumer {
   consumer_config: ConsumerConfig = {
@@ -19,8 +23,8 @@ export class VerifyConsumer extends Consumer {
     super();
   }
 
-  async handle(message: EventDto): Promise<void> {
-    await this.verify_notification_use_case.notify(message);
+  async handle(message: { body: EventDto }): Promise<void> {
+    await this.verify_notification_use_case.notify(message.body);
   }
 
   exception(
@@ -28,6 +32,7 @@ export class VerifyConsumer extends Consumer {
     channel: Channel,
     message: ConsumeMessage | null
   ): void | ConsumerErrorOptions {
+    logger.error(JSON.stringify(err));
     return {
       should_ack: true,
     };

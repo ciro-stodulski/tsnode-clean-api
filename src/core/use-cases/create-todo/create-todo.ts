@@ -1,9 +1,12 @@
 import { Todo } from '../../entities';
 import { ICreateTodoUseCase } from '..';
-import { ITodoService } from '../../ports';
+import { INotificationService, ITodoService } from '../../ports';
 
 export class CreateTodoUseCase implements ICreateTodoUseCase {
-  constructor(private todo_service: ITodoService) {}
+  constructor(
+    private todo_service: ITodoService,
+    private notification_service: INotificationService
+  ) {}
 
   async create(dto: Todo): Promise<string> {
     const user_json = await this.todo_service.getUser(dto.user);
@@ -14,6 +17,15 @@ export class CreateTodoUseCase implements ICreateTodoUseCase {
       user: user_json.name,
     });
 
-    return this.todo_service.create(new_todo);
+    const result = await this.todo_service.create(new_todo);
+
+    const event = {
+      describe: dto.status,
+      name: dto.name,
+    };
+
+    await this.notification_service.sendNotify(event);
+
+    return result;
   }
 }

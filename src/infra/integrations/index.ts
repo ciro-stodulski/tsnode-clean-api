@@ -14,3 +14,7 @@ export * from './amqp/producer/todo/todo.interface';
 export * from './grpc/notification/notification.interface';
 export * from './amqp/producer/notification/notification.interface';
 export * from './amqp/producer/notification/notification';
+export * from './grpc/grpc.client';
+export * from './grpc/grpc.interface';
+export * from './grpc/type';
+export * from './grpc/notification/notification';

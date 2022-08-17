@@ -1,4 +1,4 @@
-import { ITodoService } from '../../../core/ports';
+import { INotificationService, ITodoService } from '../../../core/ports';
 import {
   ITodoCache,
   ITodoRepository,
@@ -6,6 +6,8 @@ import {
 } from '../../../infra/repositories';
 import {
   IJsonPlaceHolderIntegration,
+  INotificationProducer,
+  INotificationProto,
   ITodoProducer,
 } from '../../../infra/integrations';
 
@@ -15,8 +17,11 @@ export type InfraContext = {
   json_place_holder_integration: IJsonPlaceHolderIntegration;
   todo_producer: ITodoProducer;
   todo_collection: ITodoCollection;
+  notification_producer: INotificationProducer;
+  notification_proto: INotificationProto;
 };
 
 export type ServiceCaseContext = {
   todo_service: ITodoService;
+  notification_service: INotificationService;
 };

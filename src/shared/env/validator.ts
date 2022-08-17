@@ -63,6 +63,9 @@ export class EnvValidator {
   @IsNotEmpty()
   grpc_host: string;
 
+  @IsNotEmpty()
+  client_grpc_host: string;
+
   constructor(props: any) {
     Object.assign(this, props);
   }

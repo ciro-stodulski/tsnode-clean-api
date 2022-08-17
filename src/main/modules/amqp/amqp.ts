@@ -5,6 +5,7 @@ import {
   Consumer,
   ConsumerErrorOptions,
   CreateTodoConsumer,
+  VerifyConsumer,
 } from '../../../interface/amqp';
 import { Container } from '../../container';
 import {
@@ -22,7 +23,7 @@ export class AmqpModule extends RabbitqmAdapter implements Module {
 
   constructor(container: Container, config: RabbitMQConfig) {
     super(config, InstanceType.SERVER);
-    this.consumers = [new CreateTodoConsumer(container.create_todo_use_case)];
+    this.consumers = [new CreateTodoConsumer(container.create_todo_use_case), new VerifyConsumer(container.verify_notification_use_case)];
   }
 
   async close(): Promise<void> {}

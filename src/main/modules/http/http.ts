@@ -88,7 +88,7 @@ export class HttpModule implements Module {
     const error_handler = this.errorHandler() as any;
     this.app.use(error_handler);
     this.server = this.app.listen(this.port, () =>
-      logger.info(`Http: Server running on port 3000`)
+      logger.info(`Http: Server running on port ${this.port}`)
     );
   }
 

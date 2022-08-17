@@ -10,7 +10,7 @@ import { logger } from '../../../../../shared/logger';
 export class TodoProducer extends Producer implements ITodoProducer {
   producer_config: ProducerConfig = {
     exchange: 'todo.dx',
-    routing_key: 'notificationTodo',
+    routing_key: 'notify.create',
   };
 
   constructor(private readonly amqp: IAmqp) {
@@ -29,7 +29,7 @@ export class TodoProducer extends Producer implements ITodoProducer {
 
     await this.amqp.publish({
       options,
-      message: { name },
+      message: { name, describe: "service client producer" },
       exchange,
       routing_key,
     });

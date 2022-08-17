@@ -1,6 +1,7 @@
 import { EventDto } from '../../../core/use-cases';
 import { INotificationService } from '../../../core/ports';
 import { INotificationProto, INotificationProducer } from '../../integrations';
+import { logger } from '../../../shared';
 
 export class NotificationService implements INotificationService {
   constructor(
@@ -13,6 +14,8 @@ export class NotificationService implements INotificationService {
   }
 
   async checkNotify(msg: string): Promise<void> {
-    await this.notification_proto.verify(msg);
+    const result = await this.notification_proto.verify(msg);
+
+    logger.info({result});
   }
 }
