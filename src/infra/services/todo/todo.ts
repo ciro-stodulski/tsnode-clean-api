@@ -1,4 +1,3 @@
-import { InfraContext } from '../../../main/container/factories';
 import {
   ITodoCache,
   ITodoCollection,
@@ -11,24 +10,13 @@ import { JsonPlaceHolderUser } from '../../../core/types';
 import { logger } from '../../../shared/logger';
 
 export class TodoService implements ITodoService {
-  private todo_repository: ITodoRepository;
-
-  private todo_collection: ITodoCollection;
-
-  private json_place_holder_integration: IJsonPlaceHolderIntegration;
-
-  private todo_cache: ITodoCache;
-
-  private todo_producer: ITodoProducer;
-
-  constructor(infra_context: InfraContext) {
-    this.todo_repository = infra_context.todo_repository;
-    this.json_place_holder_integration =
-      infra_context.json_place_holder_integration;
-    this.todo_cache = infra_context.todo_cache;
-    this.todo_producer = infra_context.todo_producer;
-    this.todo_collection = infra_context.todo_collection;
-  }
+  constructor(
+    private todo_repository: ITodoRepository,
+    private todo_collection: ITodoCollection,
+    private json_place_holder_integration: IJsonPlaceHolderIntegration,
+    private todo_cache: ITodoCache,
+    private todo_producer: ITodoProducer
+  ) {}
 
   getUser(id: string): Promise<JsonPlaceHolderUser> {
     return this.json_place_holder_integration.getUser(id);

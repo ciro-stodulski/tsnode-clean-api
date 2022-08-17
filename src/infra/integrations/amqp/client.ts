@@ -15,6 +15,7 @@ export class AmqpClient extends RabbitqmAdapter implements IAmqp {
     const { exchange, message, routing_key, options } = data;
 
     const publish_options = this.getPublishOptions(options);
+
     try {
       return (await this.channel_client).publish(
         exchange || '',

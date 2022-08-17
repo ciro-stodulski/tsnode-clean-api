@@ -22,6 +22,7 @@ Update logs in modules.
 
 ### Added
 
+Create client integration for grpc server
 Create new module for grpc server
 Create adapter commander 
 Added solution to loggers.
@@ -35,6 +36,7 @@ Created apollo server adapter.
 
 ### Fixed
 
+Adjust body parser message in amqp integrations
 Adjust errors for cli interface.
 Add port in constructor of http module.
 interfaces cli and http.

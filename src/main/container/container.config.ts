@@ -1,5 +1,5 @@
 import { CacheClient } from '../../infra/repositories';
-import { AmqpClient } from '../../infra/integrations';
+import { AmqpClient, GRPCClient, IGRPCClient } from '../../infra/integrations';
 import { KnexAdapter } from '../../infra/adapters';
 import { env, logger } from '../../shared';
 
@@ -9,6 +9,8 @@ export class ContainerConfig {
   readonly client_cache: CacheClient;
 
   readonly amqp_client: AmqpClient;
+
+  readonly grpc_client: IGRPCClient;
 
   constructor() {
     this.db = new KnexAdapter();
@@ -21,6 +23,7 @@ export class ContainerConfig {
       username: env.rabbit_mq_username,
       vhost: env.rabbit_mq_vhost,
     });
+    this.grpc_client = new GRPCClient();
 
     logger.info('Container: load config with succeffully');
   }

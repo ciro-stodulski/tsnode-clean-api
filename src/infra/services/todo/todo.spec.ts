@@ -20,14 +20,16 @@ describe('Service - TodoService', () => {
         notification: sinon.fake.resolves(undefined),
       };
 
-      const infra_context = {
-        todo_repository: todo_repository_mock,
-        todo_producer,
-        todo_collection,
-      };
+      const infra_context = {};
 
-      // @ts-ignore
-      const use_case = new TodoService(infra_context);
+      const use_case = new TodoService(
+        // @ts-ignore
+        todo_repository_mock,
+        todo_collection,
+        null,
+        null,
+        todo_producer
+      );
 
       const dto = {
         name: 'GYN',
@@ -74,11 +76,15 @@ describe('Service - TodoService', () => {
         getUser: sinon.fake.resolves(mock_user),
       };
 
-      const infra_context = {
-        json_place_holder_integration: json_place_holder_integration_mock,
-      };
-      // @ts-ignore
-      const use_case = new TodoService(infra_context);
+      const use_case = new TodoService(
+        // @ts-ignore
+        null,
+        null,
+        json_place_holder_integration_mock,
+        null,
+        null
+      );
+
       const fake_id = 'yolo';
       const result = await use_case.getUser(fake_id);
 
@@ -123,13 +129,14 @@ describe('Service - TodoService', () => {
         save: sinon.fake.resolves(undefined),
       };
 
-      // @ts-ignore
-      const use_case = new TodoService({
-        todo_collection,
-        todo_cache,
+      const use_case = new TodoService(
         todo_repository,
+        todo_collection,
         json_place_holder_integration,
-      });
+        todo_cache,
+        // @ts-ignore
+        null
+      );
 
       const result = await use_case.list();
 
@@ -172,13 +179,14 @@ describe('Service - TodoService', () => {
         save: sinon.fake.resolves(undefined),
       };
 
-      // @ts-ignore
-      const use_case = new TodoService({
-        todo_collection,
-        todo_cache,
+      const use_case = new TodoService(
         todo_repository,
+        todo_collection,
         json_place_holder_integration,
-      });
+        todo_cache,
+        // @ts-ignore
+        null
+      );
 
       const result = await use_case.list();
 

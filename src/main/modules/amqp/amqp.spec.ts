@@ -1,4 +1,4 @@
-import { assert } from 'chai';
+import { assert, expect } from 'chai';
 import amqplib from 'amqplib';
 import Sinon from 'sinon';
 import { AmqpModule } from '..';
@@ -39,10 +39,11 @@ describe('Module - Amqp', () => {
 
       await amqp.start();
 
+      expect(chanel_fake.consume.callCount).to.be.eqls(2);
+
       assert(connection_fake.on.calledOnce);
       assert(connection_fake.createChannel.calledOnce);
       assert(chanel_fake.on.calledTwice);
-      assert(chanel_fake.consume.calledOnce);
       assert(chanel_fake.ack.notCalled);
       assert(chanel_fake.nack.notCalled);
     });

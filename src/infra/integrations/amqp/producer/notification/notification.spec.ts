@@ -1,6 +1,7 @@
 import sinon from 'sinon';
 import { assert } from 'chai';
-import { TodoProducer, AMQPPublishOptions } from '../../..';
+import { NotificationProducer, AMQPPublishOptions } from '../../..';
+import { EventDto } from '../../../../../core/use-cases';
 
 describe('TodoProducer', () => {
   const sandbox = sinon.createSandbox();
@@ -9,16 +10,18 @@ describe('TodoProducer', () => {
     sandbox.restore();
   });
 
-  describe('#sync', () => {
-    it('should send message to queue', () => {
+  describe('#SendNotify', () => {
+    it('should send message to queue', async () => {
       const amqp = {
         publish: sandbox.fake.resolves(undefined),
       };
 
-      // @ts-ignore
-      const producer = new TodoProducer(amqp);
+      const producer = new NotificationProducer(amqp);
 
-      const message = 'yolo';
+      const dto: EventDto = {
+        describe: 'yolo',
+        name: 'yolo',
+      };
 
       const options_config: AMQPPublishOptions = {
         priority: 0,
@@ -27,13 +30,13 @@ describe('TodoProducer', () => {
         content_type: 'application/json',
       };
 
-      producer.notification(message);
+      await producer.SendNotify(dto);
 
       assert(
         amqp.publish.calledOnceWith({
-          message: { name: message, describe: 'service client producer' },
+          message: dto,
           options: options_config,
-          exchange: 'todo.dx',
+          exchange: 'notification.dx',
           routing_key: 'notify.create',
         })
       );

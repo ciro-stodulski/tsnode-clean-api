@@ -1,15 +1,19 @@
+import { EventDto } from '../../../../../core/use-cases';
 import {
   Producer,
   AMQPPublishOptions,
   IAmqp,
   ProducerConfig,
-  ITodoProducer,
+  INotificationProducer,
 } from '../../..';
 import { logger } from '../../../../../shared/logger';
 
-export class TodoProducer extends Producer implements ITodoProducer {
+export class NotificationProducer
+  extends Producer
+  implements INotificationProducer
+{
   producer_config: ProducerConfig = {
-    exchange: 'todo.dx',
+    exchange: 'notification.dx',
     routing_key: 'notify.create',
   };
 
@@ -17,7 +21,7 @@ export class TodoProducer extends Producer implements ITodoProducer {
     super();
   }
 
-  async notification(name: string): Promise<void> {
+  async SendNotify(dto: EventDto): Promise<void> {
     const options: AMQPPublishOptions = {
       priority: 0,
       delivery_mode: 2,
@@ -29,7 +33,7 @@ export class TodoProducer extends Producer implements ITodoProducer {
 
     await this.amqp.publish({
       options,
-      message: { name, describe: 'service client producer' },
+      message: dto,
       exchange,
       routing_key,
     });

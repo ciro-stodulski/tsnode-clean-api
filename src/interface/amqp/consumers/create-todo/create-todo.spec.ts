@@ -18,12 +18,12 @@ describe('Interface - Amqp', () => {
 
       const consumer = new CreateTodoConsumer(create_todo_use_case);
 
-      await consumer.handle(message_fake);
+      await consumer.handle({ body: message_fake });
 
       assert(create_todo_use_case.create.calledOnceWith(message_fake));
     });
 
-    it('create todo with successfully', async () => {
+    it('validate error consumer', async () => {
       const create_todo_use_case = {
         create: Sinon.fake.resolves(undefined),
       };
