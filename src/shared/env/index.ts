@@ -29,7 +29,7 @@ const props = {
   redis_host: process.env.REDIS_HOST || '',
   json_place_holder_url: process.env.JSON_PLACE_HOLDER_URL || '',
   grpc_host: process.env.GRPC_HOST || 'localhost:50054',
-  client_grpc_host:  process.env.CLIENT_GRPC_HOST || 'localhost:50044',
+  client_grpc_host: process.env.CLIENT_GRPC_HOST || 'localhost:50044',
 };
 
 export const env = new EnvValidator(props);

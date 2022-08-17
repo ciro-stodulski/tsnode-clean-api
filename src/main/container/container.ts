@@ -13,7 +13,9 @@ import { make_infra_context, make_service_context } from './factories';
 
 export class Container extends ContainerConfig {
   readonly list_todo_use_case: IListTodoUseCase;
+
   readonly create_todo_use_case: ICreateTodoUseCase;
+
   readonly verify_notification_use_case: IVerifyNotificationUseCase;
 
   constructor() {

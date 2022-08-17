@@ -1,13 +1,11 @@
 import { Channel, ConsumeMessage } from 'amqplib';
-import {
-  IVerifyNotificationUseCase,
-  EventDto,
-} from '../../../../core/use-cases';
+import { IVerifyNotificationUseCase } from '../../../../core/use-cases';
 import {
   Consumer,
   ConsumerErrorOptions,
   ConsumerConfig,
   verify_schema,
+  Message,
 } from '../..';
 import { logger } from '../../../../shared';
 
@@ -23,7 +21,7 @@ export class VerifyConsumer extends Consumer {
     super();
   }
 
-  async handle(message: { body: EventDto }): Promise<void> {
+  async handle(message: Message): Promise<void> {
     await this.verify_notification_use_case.notify(message.body);
   }
 

@@ -16,6 +16,6 @@ export class NotificationService implements INotificationService {
   async checkNotify(msg: string): Promise<void> {
     const result = await this.notification_proto.verify(msg);
 
-    logger.info({result});
+    logger.info({ result });
   }
 }

@@ -5,7 +5,7 @@ import {
   ConsumerErrorOptions,
   ConsumerConfig,
   create_todo_schema,
-  TodoMessage,
+  Message,
 } from '../..';
 import { logger } from '../../../../shared/logger';
 
@@ -19,8 +19,8 @@ export class CreateTodoConsumer extends Consumer {
     super();
   }
 
-  async handle(message: TodoMessage): Promise<void> {
-    this.create_todo_use_case.create(message);
+  async handle(message: Message): Promise<void> {
+    this.create_todo_use_case.create(message.body);
   }
 
   exception(

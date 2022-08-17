@@ -18,7 +18,7 @@ describe('Interface - Amqp', () => {
 
       const consumer = new CreateTodoConsumer(create_todo_use_case);
 
-      await consumer.handle(message_fake);
+      await consumer.handle({ body: message_fake });
 
       assert(create_todo_use_case.create.calledOnceWith(message_fake));
     });

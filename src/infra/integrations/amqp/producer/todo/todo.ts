@@ -29,7 +29,7 @@ export class TodoProducer extends Producer implements ITodoProducer {
 
     await this.amqp.publish({
       options,
-      message: { name, describe: "service client producer" },
+      message: { name, describe: 'service client producer' },
       exchange,
       routing_key,
     });

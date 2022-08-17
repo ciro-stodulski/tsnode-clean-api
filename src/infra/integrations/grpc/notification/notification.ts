@@ -1,8 +1,9 @@
 import path from 'path';
+import { plainToInstance } from 'class-transformer';
 import { env, logger } from '../../../../shared';
 import { INotificationProto, IGRPCClient, INotificationPB } from '../..';
 import { EventDto } from '../../../../core/use-cases';
-import { plainToInstance } from 'class-transformer';
+
 export class NotificationPB implements INotificationProto {
   protected readonly service: INotificationPB;
 
@@ -18,8 +19,7 @@ export class NotificationPB implements INotificationProto {
   async verify(msg: string): Promise<EventDto> {
     try {
       const data = await this.service.verify(msg);
-      // @ts-ignore
-      console.log(plainToInstance(EventDto, data.event))
+
       return plainToInstance(EventDto, data.event);
     } catch (err) {
       logger.error(err);

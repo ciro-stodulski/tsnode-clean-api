@@ -38,7 +38,7 @@ describe('Module - Amqp', () => {
       Sinon.stub(amqplib, 'connect').resolves(connection_fake);
 
       await amqp.start();
-      
+
       expect(chanel_fake.consume.callCount).to.be.eqls(2);
 
       assert(connection_fake.on.calledOnce);

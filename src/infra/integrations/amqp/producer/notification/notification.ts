@@ -30,7 +30,7 @@ export class NotificationProducer
     };
 
     const { exchange, routing_key } = this.producer_config;
-    
+
     await this.amqp.publish({
       options,
       message: dto,

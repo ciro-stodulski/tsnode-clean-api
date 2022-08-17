@@ -31,7 +31,7 @@ describe('TodoProducer', () => {
 
       assert(
         amqp.publish.calledOnceWith({
-          message: { name: message , describe: "service client producer" },
+          message: { name: message, describe: 'service client producer' },
           options: options_config,
           exchange: 'todo.dx',
           routing_key: 'notify.create',

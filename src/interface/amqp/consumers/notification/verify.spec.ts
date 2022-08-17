@@ -1,7 +1,7 @@
 import Sinon from 'sinon';
 import { assert, expect } from 'chai';
 import { VerifyConsumer } from '../..';
-import {  EventDto} from '../../../../core/use-cases';
+import { EventDto } from '../../../../core/use-cases';
 
 describe('Interface - Amqp', () => {
   describe('verify - consumer', () => {
@@ -17,7 +17,7 @@ describe('Interface - Amqp', () => {
 
       const consumer = new VerifyConsumer(verify_notification_use_case);
 
-      await consumer.handle({body: message_fake});
+      await consumer.handle({ body: message_fake });
 
       assert(verify_notification_use_case.notify.calledOnceWith(message_fake));
     });
