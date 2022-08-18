@@ -13,6 +13,7 @@ Fixed name project.
 
 ## Changed
 
+Update readme
 Refactored in container layer add factories in structure
 Refactored core layer
 Refactored module cli
@@ -22,6 +23,7 @@ Update logs in modules.
 
 ### Added
 
+Create docker compose for setup
 Create client integration for grpc server
 Create new module for grpc server
 Create adapter commander 

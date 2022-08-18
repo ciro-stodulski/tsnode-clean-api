@@ -15,12 +15,17 @@ design based on clean architecture
 - redis
 - mocha
 - graphql
+- grcp
  
 ## Setup
 
 1. Create **.env** file in the root folder using **.env.sample** as an example and replace the content with your project configs/secrets.
 2. Install development dependencies:
    `npm install`
+3. Init infrastructure: 
+  `docker-compose up -d`
+4. Create structure db:
+  `npm run migration:latest`
 
 ## Localhost
 
