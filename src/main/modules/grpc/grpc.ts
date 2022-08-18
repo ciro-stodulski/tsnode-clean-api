@@ -24,7 +24,7 @@ export class GrpcModule extends GrpcConfigModule implements Module {
         env.grpc_host,
         grpc.ServerCredentials.createInsecure(),
         () => {
-          logger.info(`Grpc: server is running on localhost:50044`);
+          logger.info(`Grpc: server is running on ${env.grpc_host}`);
           this.server.start();
         }
       );
