@@ -7,7 +7,7 @@ on:
     branches: [ main , develop]
 
 jobs:
-  pipeline:
+  extract-branch:
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v2
@@ -16,25 +16,35 @@ jobs:
       run: echo "##[set-output name=branch;]$(echo ${GITHUB_REF#refs/heads/})"
       id: extract_branch
 
-
+  pull-request:
+    runs-on: ubuntu-latest
+    steps:
     - uses: actions/checkout@v2
     - name: Executing Pull Request
-      uses: ./.github/templates/pull-request
+      uses: ciro-stodulski/tsnode-clean-api/.github/templates/pull-request.yml
       with:
         version: v1.0.0
         namespace: "${{ steps.extract_branch.outputs.branch }}"
 
+  build:
+    needs: pull-request
+    runs-on: ubuntu-latest
+    steps:
     - uses: actions/checkout@v2
     - name: Executing Build
-      uses: ./.github/templates/build
+      uses: ciro-stodulski/tsnode-clean-api/.github/templates/build.yaml
       with:
         version: v1.0.0
         namespace: "${{ steps.extract_branch.outputs.branch }}"
       if: ${{ steps.extract_branch.outputs.branch == 'develop' || steps.extract_branch.outputs.branch == 'main' }}
 
+  publish:
+    needs: [pull-request, build]
+    runs-on: ubuntu-latest
+    steps:
     - uses: actions/checkout@v2
     - name: Executing Publish
-      uses: ./.github/templates/publish
+      uses: ./.github/templates/publish.yaml
       with:
         version: v1.0.0
         namespace: "${{ steps.extract_branch.outputs.branch }}"

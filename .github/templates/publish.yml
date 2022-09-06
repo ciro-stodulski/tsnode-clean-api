@@ -1,5 +1,4 @@
 name: publish
-needs: [pull-request, build]
 # Were we can define the inputs that our action will accept
 inputs:
   version:
