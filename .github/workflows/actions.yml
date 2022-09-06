@@ -1,60 +1,60 @@
-name: actions
+# name: actions
 
-on:
-  push:
-    branches: [ develop ]
-  pull_request:
-    branches: [ main , develop]
-  workflow_dispatch:
-    branches: [ main , develop]
+# on:
+#   push:
+#     branches: [ develop ]
+#   pull_request:
+#     branches: [ main , develop]
+#   workflow_dispatch:
+#     branches: [ main , develop]
 
-jobs:
-  # extract-branch:
-  #   runs-on: ubuntu-latest
-  #   steps:
-  #   - uses: actions/checkout@v2
-  #   - name: Extract branch name
-  #     shell: bash
-  #     run: echo "##[set-output name=branch;]$(echo ${GITHUB_REF#refs/heads/})"
-  #     id: extract_branch
+# jobs:
+#   # extract-branch:
+#   #   runs-on: ubuntu-latest
+#   #   steps:
+#   #   - uses: actions/checkout@v2
+#   #   - name: Extract branch name
+#   #     shell: bash
+#   #     run: echo "##[set-output name=branch;]$(echo ${GITHUB_REF#refs/heads/})"
+#   #     id: extract_branch
 
-  pull-request:
-    runs-on: ubuntu-latest
-    steps:
-    - uses: actions/checkout@v2
-    - name: Executing Pull Request
-      uses: ./../.github/templates/pull-request.yml
+#   pull-request:
+#     runs-on: ubuntu-latest
+#     steps:
+#     - uses: actions/checkout@v2
+#     - name: Executing Pull Request
+#       uses: ./../.github/templates/pull-request.yml
 
-  # build:
-  #   needs: [extract-branch, pull-request]
-  #   runs-on: ubuntu-latest
-  #   steps:
-  #   - uses: actions/checkout@v2
-  #   - name: Executing Build
-  #     uses: ciro-stodulski/tsnode-clean-api/.github/templates/build.yaml
-  #     with:
-  #       version: v1.0.0
-  #       namespace: "${{ steps.extract_branch.outputs.branch }}"
-  #     if: ${{ steps.extract_branch.outputs.branch == 'develop' || steps.extract_branch.outputs.branch == 'main' }}
+#   # build:
+#   #   needs: [extract-branch, pull-request]
+#   #   runs-on: ubuntu-latest
+#   #   steps:
+#   #   - uses: actions/checkout@v2
+#   #   - name: Executing Build
+#   #     uses: ciro-stodulski/tsnode-clean-api/.github/templates/build.yaml
+#   #     with:
+#   #       version: v1.0.0
+#   #       namespace: "${{ steps.extract_branch.outputs.branch }}"
+#   #     if: ${{ steps.extract_branch.outputs.branch == 'develop' || steps.extract_branch.outputs.branch == 'main' }}
 
-  # publish:
-  #   needs: [extract-branch, pull-request, build]
-  #   runs-on: ubuntu-latest
-  #   steps:
-  #   - uses: actions/checkout@v2
-  #   - name: Executing Publish
-  #     uses: ./.github/templates/publish.yaml
-  #     with:
-  #       version: v1.0.0
-  #       namespace: "${{ steps.extract_branch.outputs.branch }}"
-  #     if: ${{ steps.extract_branch.outputs.branch == 'develop' || steps.extract_branch.outputs.branch == 'main' }}
+#   # publish:
+#   #   needs: [extract-branch, pull-request, build]
+#   #   runs-on: ubuntu-latest
+#   #   steps:
+#   #   - uses: actions/checkout@v2
+#   #   - name: Executing Publish
+#   #     uses: ./.github/templates/publish.yaml
+#   #     with:
+#   #       version: v1.0.0
+#   #       namespace: "${{ steps.extract_branch.outputs.branch }}"
+#   #     if: ${{ steps.extract_branch.outputs.branch == 'develop' || steps.extract_branch.outputs.branch == 'main' }}
 
-  # deploy:
-  #   runs-on: ubuntu-latest
-  #   steps:
-  #   - name: Executing Deploy
-  #     uses: ./.github/templates/deploy
-  #     with:
-  #       version: v1.0.0
-  #       namespace: "${{ steps.extract_branch.outputs.branch }}"
-  #     if: ${{ steps.extract_branch.outputs.branch == 'develop' || steps.extract_branch.outputs.branch == 'main' }}
+#   # deploy:
+#   #   runs-on: ubuntu-latest
+#   #   steps:
+#   #   - name: Executing Deploy
+#   #     uses: ./.github/templates/deploy
+#   #     with:
+#   #       version: v1.0.0
+#   #       namespace: "${{ steps.extract_branch.outputs.branch }}"
+#   #     if: ${{ steps.extract_branch.outputs.branch == 'develop' || steps.extract_branch.outputs.branch == 'main' }}
