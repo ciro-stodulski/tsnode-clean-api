@@ -23,7 +23,7 @@ jobs:
     steps:
     - uses: actions/checkout@v2
     - name: Executing Pull Request
-      uses: ./../.github/templates/pull-request.ymol
+      uses: ./../.github/templates/pull-request.yml
 
   # build:
   #   needs: [extract-branch, pull-request]
