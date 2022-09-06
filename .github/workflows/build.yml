@@ -29,13 +29,13 @@ jobs:
     - name: Archive production artifacts
       uses: actions/upload-artifact@v3
       with:
-        name: app-node
+        name: dist
         path: dist
 
     - name: Download artifact
       uses: actions/download-artifact@v3
       with:
-        name: app-node 
+        name: dist
 
     - uses: actions/checkout@v2
     - name: Use Node.js ${{ matrix.node-version }}
