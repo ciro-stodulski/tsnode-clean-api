@@ -16,27 +16,27 @@ jobs:
       id: extract_branch
 
     - name: Executing Pull Request
-      uses: ./.github/workflows/pull-request
+      uses: ./.github/templates/pull-request
       with:
         version: v1.0.0
         namespace: "${{ steps.extract_branch.outputs.branch }}"
 
     - name: Executing Build
-      uses: ./.github/workflows/build
+      uses: ./.github/templates/build
       with:
         version: v1.0.0
         namespace: "${{ steps.extract_branch.outputs.branch }}"
       if: ${{ steps.extract_branch.outputs.branch == 'develop' || steps.extract_branch.outputs.branch == 'main' }}
 
     - name: Executing Publish
-      uses: ./.github/workflows/publish
+      uses: ./.github/templates/publish
       with:
         version: v1.0.0
         namespace: "${{ steps.extract_branch.outputs.branch }}"
       if: ${{ steps.extract_branch.outputs.branch == 'develop' || steps.extract_branch.outputs.branch == 'main' }}
 
     # - name: Executing Deploy
-    #   uses: ./.github/workflows/deploy
+    #   uses: ./.github/templates/deploy
     #   with:
     #     version: v1.0.0
     #     namespace: "${{ steps.extract_branch.outputs.branch }}"
