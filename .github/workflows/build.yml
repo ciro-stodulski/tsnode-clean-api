@@ -8,7 +8,7 @@ on:
 
 jobs:
   build:
-
+    needs: [pull-request]
     runs-on: ubuntu-latest
 
     strategy:
