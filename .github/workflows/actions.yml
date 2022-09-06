@@ -7,6 +7,7 @@ jobs:
   extract-branch:
     runs-on: ubuntu-latest
     steps:
+    - uses: actions/checkout@v2
     - name: Extract branch name
       shell: bash
       run: echo "##[set-output name=branch;]$(echo ${GITHUB_REF#refs/heads/})"
@@ -15,6 +16,7 @@ jobs:
   pull-request:
     runs-on: ubuntu-latest
     steps:
+    - uses: actions/checkout@v2
     - name: Executing Pull Request
       uses: ./.github/templates/pull-request
       with:
@@ -24,6 +26,7 @@ jobs:
   build:
     runs-on: ubuntu-latest
     steps:
+    - uses: actions/checkout@v2
     - name: Executing Build
       uses: ./.github/templates/build
       with:
@@ -34,6 +37,7 @@ jobs:
   publish:
     runs-on: ubuntu-latest
     steps:
+    - uses: actions/checkout@v2
     - name: Executing Publish
       uses: ./.github/templates/publish
       with:
