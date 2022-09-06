@@ -36,10 +36,6 @@ jobs:
       uses: actions/download-artifact@v3
       with:
         name: dist
-    - name: Display structure of downloaded files
-      run: ls -R
-
-    - uses: actions/checkout@v2
     - name: Use Node.js ${{ matrix.node-version }}
       uses: actions/setup-node@v2
       with:
