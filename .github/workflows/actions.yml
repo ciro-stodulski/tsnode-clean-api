@@ -1,4 +1,4 @@
-name: pull-request 
+name: actions
 
 on:
   push:
