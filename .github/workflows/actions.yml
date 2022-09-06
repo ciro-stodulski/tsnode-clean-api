@@ -19,7 +19,6 @@ jobs:
   #     id: extract_branch
 
   pull-request:
-    needs: extract-branch
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v2
