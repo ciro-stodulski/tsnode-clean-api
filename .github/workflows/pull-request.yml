@@ -27,4 +27,3 @@ jobs:
         npm run build --if-present
         npm run lint
         npm test
-    if: ${{ steps.extract_branch.outputs.branch == 'develop' || steps.extract_branch.outputs.branch == 'main' }}
