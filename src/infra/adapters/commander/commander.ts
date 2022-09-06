@@ -82,7 +82,7 @@ export abstract class CommanderAdapter {
       logger.error(`${command_name} failed: ${error}`);
       process.exit(1);
     }
-    
+
     process.exit(0);
   }
 
