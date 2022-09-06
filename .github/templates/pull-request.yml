@@ -1,9 +1,4 @@
 name: pull-request
-inputs:
-  version:
-    required: true
-  namespace:
-    required: true
 
   runs:
     using: 'composite'
