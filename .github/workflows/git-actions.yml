@@ -1,13 +1,10 @@
 name: pull-request 
 
 on:
-  push:
-    branches: [ "develop", "main" ]
-  pull_request:
-    branches: [ "develop", "main" ]
+  workflow_dispatch:
 
 jobs:
-  job:
+  extract-branch:
     runs-on: ubuntu-latest
     steps:
     - name: Extract branch name
@@ -15,12 +12,18 @@ jobs:
       run: echo "##[set-output name=branch;]$(echo ${GITHUB_REF#refs/heads/})"
       id: extract_branch
 
+  pull-request:
+    runs-on: ubuntu-latest
+    steps:
     - name: Executing Pull Request
       uses: ./.github/templates/pull-request
       with:
         version: v1.0.0
         namespace: "${{ steps.extract_branch.outputs.branch }}"
 
+  build:
+    runs-on: ubuntu-latest
+    steps:
     - name: Executing Build
       uses: ./.github/templates/build
       with:
@@ -28,6 +31,9 @@ jobs:
         namespace: "${{ steps.extract_branch.outputs.branch }}"
       if: ${{ steps.extract_branch.outputs.branch == 'develop' || steps.extract_branch.outputs.branch == 'main' }}
 
+  publish:
+    runs-on: ubuntu-latest
+    steps:
     - name: Executing Publish
       uses: ./.github/templates/publish
       with:
@@ -35,9 +41,12 @@ jobs:
         namespace: "${{ steps.extract_branch.outputs.branch }}"
       if: ${{ steps.extract_branch.outputs.branch == 'develop' || steps.extract_branch.outputs.branch == 'main' }}
 
-    # - name: Executing Deploy
-    #   uses: ./.github/templates/deploy
-    #   with:
-    #     version: v1.0.0
-    #     namespace: "${{ steps.extract_branch.outputs.branch }}"
-    #   if: ${{ steps.extract_branch.outputs.branch == 'develop' || steps.extract_branch.outputs.branch == 'main' }}
+  # deploy:
+  #   runs-on: ubuntu-latest
+  #   steps:
+  #   - name: Executing Deploy
+  #     uses: ./.github/templates/deploy
+  #     with:
+  #       version: v1.0.0
+  #       namespace: "${{ steps.extract_branch.outputs.branch }}"
+  #     if: ${{ steps.extract_branch.outputs.branch == 'develop' || steps.extract_branch.outputs.branch == 'main' }}
