@@ -1,0 +1,26 @@
+name: publish
+needs: [pull-request, build]
+# Were we can define the inputs that our action will accept
+inputs:
+  version:
+    required: true
+  namespace:
+    required: true
+
+  runs:
+    using: 'composite'
+    # Defining the action steps(Just one step to be simple)
+    steps:
+    - name: Download artifact
+        uses: actions/download-artifact@v3
+        with:
+          name: dist
+
+    - uses: actions/checkout@v2
+    - name: Use Node.js ${{ matrix.node-version }}
+      uses: actions/setup-node@v2
+      with:
+        node-version: ${{ matrix.node-version }}
+    - run: docker login -u ${{secrets.DOCKER_USERNAME}} -p ${{secrets.DOCKER_PASSWORD}}
+    - run: docker build . --file Dockerfile --tag ${{secrets.DOCKER_USERNAME}}/product-service:$(git rev-parse --short "$GITHUB_SHA")
+    - run: docker push ${{secrets.DOCKER_USERNAME}}/product-service:$(git rev-parse --short "$GITHUB_SHA")

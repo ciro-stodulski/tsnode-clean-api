@@ -1,0 +1,28 @@
+name: build
+needs: pull-request
+# Were we can define the inputs that our action will accept
+inputs:
+  version:
+    required: true
+  namespace:
+    required: true
+
+  runs:
+    using: 'composite'
+    # Defining the action steps(Just one step to be simple)
+    steps:
+      - name: Use Node.js ${{ matrix.node-version }}
+        uses: actions/checkout@v3
+        uses: actions/setup-node@v3
+        with:
+          node-version: ${{ matrix.node-version }}
+          cache: 'npm'
+      - run: |
+          npm ci
+          npm run build --if-present
+          
+      - name: Archive production artifacts
+        uses: actions/upload-artifact@v3
+        with:
+          name: app-node
+          path: dist

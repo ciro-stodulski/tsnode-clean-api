@@ -1,0 +1,43 @@
+name: pull-request 
+
+on:
+  push:
+    branches: [ "develop", "main" ]
+  pull_request:
+    branches: [ "develop", "main" ]
+
+jobs:
+  job:
+    runs-on: ubuntu-latest
+    steps:
+    - name: Extract branch name
+      shell: bash
+      run: echo "##[set-output name=branch;]$(echo ${GITHUB_REF#refs/heads/})"
+      id: extract_branch
+
+    - name: Executing Pull Request
+      uses: ./.github/workflows/pull-request
+      with:
+        version: v1.0.0
+        namespace: "${{ steps.extract_branch.outputs.branch }}"
+
+    - name: Executing Build
+      uses: ./.github/workflows/build
+      with:
+        version: v1.0.0
+        namespace: "${{ steps.extract_branch.outputs.branch }}"
+      if: ${{ steps.extract_branch.outputs.branch == 'develop' || steps.extract_branch.outputs.branch == 'main' }}
+
+    - name: Executing Publish
+      uses: ./.github/workflows/publish
+      with:
+        version: v1.0.0
+        namespace: "${{ steps.extract_branch.outputs.branch }}"
+      if: ${{ steps.extract_branch.outputs.branch == 'develop' || steps.extract_branch.outputs.branch == 'main' }}
+
+    # - name: Executing Deploy
+    #   uses: ./.github/workflows/deploy
+    #   with:
+    #     version: v1.0.0
+    #     namespace: "${{ steps.extract_branch.outputs.branch }}"
+    #   if: ${{ steps.extract_branch.outputs.branch == 'develop' || steps.extract_branch.outputs.branch == 'main' }}
