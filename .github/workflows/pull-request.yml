@@ -1,4 +1,4 @@
-name: Node.js CI
+name: pull-request
 
 on:
   push:
@@ -7,7 +7,7 @@ on:
     branches: [ "develop" ]
 
 jobs:
-  build:
+  pull-request:
     runs-on: ubuntu-latest
 
     strategy:
