@@ -24,7 +24,7 @@ jobs:
     steps:
     - uses: actions/checkout@v2
     - name: Executing Pull Request
-      uses: ciro-stodulski/tsnode-clean-api/.github/templates/pull-request
+      uses: ./.github/templates/pull-request
 
   # build:
   #   needs: [extract-branch, pull-request]
