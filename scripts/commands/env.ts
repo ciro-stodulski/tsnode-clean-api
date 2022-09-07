@@ -16,7 +16,7 @@ const env = {
   PROJECT_NAMESPACE: 'develop',
   PROJECT_DIR: "develop",
   PROJECT_NAME: name,
-  USER_EMAIL: 'ciro.sda@gmail',
+  USER_EMAIL: 'ciro.sda@gmail.com',
   USER_NAME: 'ciro-stodulski',
   COMMIT_SHORT_SHA,
   ENVIRONMENT_NAME: 'develop',
