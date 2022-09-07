@@ -9,7 +9,7 @@ runs:
         node-version: ${{ matrix.node-version }}
         cache: 'npm'
   
-    - name: Install and build
+    - name: Install and commit flux
       shell: bash
       run: |
         npm ci
