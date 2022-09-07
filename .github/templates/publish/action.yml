@@ -16,15 +16,10 @@ runs:
       with:
         name: app
 
-    - name: Use Node.js ${{ matrix.node-version }}
-      uses: actions/setup-node@v3
-      with:
-        node-version: ${{ matrix.node-version }}
-
     - name: Push docker image
       shell: bash
       run: |
-        ls 
+        cd dist
         docker login -u ${{inputs.docker_username}} -p ${{inputs.docker_password}}
         docker build . --file Dockerfile --tag ${{inputs.docker_username}}/${{ github.event.repository.name }}:$(git rev-parse --short "$GITHUB_SHA")
         docker push ${{inputs.docker_username}}/${{ github.event.repository.name }}:$(git rev-parse --short "$GITHUB_SHA")
