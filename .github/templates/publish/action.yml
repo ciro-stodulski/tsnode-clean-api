@@ -21,10 +21,6 @@ runs:
       with:
         name: app
         path: dist
-        
-    - name: Display structure of downloaded files
-      shell: bash
-      run: ls -R
 
     - name: Push docker image
       shell: bash
