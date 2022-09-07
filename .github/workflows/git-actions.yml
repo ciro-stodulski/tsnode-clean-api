@@ -30,18 +30,15 @@ jobs:
     steps:
     - uses: actions/checkout@v2
     - name: Executing Build
-      uses: ciro-stodulski/tsnode-clean-api/.github/templates/build@feat/pipeline
+      uses: ciro-stodulski/tsnode-clean-api/.github/templates/publish@feat/pipeline
 
-
-#   publish:
-#     runs-on: ubuntu-latest
-#     steps:
-#     - name: Executing Publish
-#       uses: ./.github/templates/publish
-#       with:
-#         version: v1.0.0
-#         namespace: "${{ steps.extract_branch.outputs.branch }}"
-#       if: ${{ steps.extract_branch.outputs.branch == 'develop' || steps.extract_branch.outputs.branch == 'main' }}
+  publish:
+      needs: [prepare-branch, pull-request]
+      runs-on: ubuntu-latest
+      steps:
+      - uses: actions/checkout@v2
+      - name: Executing Publish
+        uses: ciro-stodulski/tsnode-clean-api/.github/templates/publish@feat/pipeline
 
 #   # deploy:
 #   #   runs-on: ubuntu-latest
