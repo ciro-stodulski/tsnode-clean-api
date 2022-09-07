@@ -8,6 +8,7 @@ runs:
         with:
           node-version: ${{ matrix.node-version }}
           cache: 'npm'
+      - name: install, build, lint and test
         shell: bash
         - run: |
             npm ci
