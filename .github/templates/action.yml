@@ -4,6 +4,7 @@ runs:
   using: "composite"
   steps:
       - name: Use Node.js ${{ matrix.node-version }}
+        shell: bash
         uses: actions/setup-node@v3
         with:
           node-version: ${{ matrix.node-version }}
