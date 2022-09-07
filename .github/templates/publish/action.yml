@@ -6,7 +6,8 @@ runs:
     - name: Download artifact
         uses: actions/download-artifact@v3
         with:
-        name: dist
+          name: dist
+          path: dist
     - name: Use Node.js ${{ matrix.node-version }}
         uses: actions/setup-node@v2
         with:
