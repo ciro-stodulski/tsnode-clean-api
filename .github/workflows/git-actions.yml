@@ -30,7 +30,7 @@ jobs:
     steps:
     - uses: actions/checkout@v2
     - name: Executing Build
-      uses: ciro-stodulski/tsnode-clean-api/.github/templates/publish@feat/pipeline
+      uses: ciro-stodulski/tsnode-clean-api/.github/templates/build@feat/pipeline
 
   publish:
       needs: [prepare-branch, pull-request, build]
