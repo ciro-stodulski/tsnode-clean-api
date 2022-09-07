@@ -22,23 +22,11 @@ glob(pattern, (err, files) => {
 
     const yaml = `${raw}`
       .replace(/\$PROJECT_NAME/g, env.PROJECT_NAME)
-      .replace(/\$COMMIT_REF_NAME/g, env.COMMIT_REF_NAME)
       .replace(/\$COMMIT_SHORT_SHA/g, env.COMMIT_SHORT_SHA)
       .replace(/\$NAMESPACE/g, env.PROJECT_NAMESPACE)
       .replace(/\$ENVIRONMENT_NAME/g, env.ENVIRONMENT_NAME)
       .replace(/\$SERVICEPORT/g, env.SERVICEPORT)
-      .replace(/\$REPLICAS_MIN_P/g, env.REPLICAS_MIN_P)
-      .replace(/\$REPLICAS_MIN_M/g, env.REPLICAS_MIN_P)
-      .replace(/\$REPLICAS_MIN_G/g, env.REPLICAS_MIN_G)
-      .replace(/\$REPLICAS_MIN_GG/g, env.REPLICAS_MIN_GG)
-      .replace(/\$REPLICAS_MAX_P/g, env.REPLICAS_MAX_P)
-      .replace(/\$REPLICAS_MAX_M/g, env.REPLICAS_MAX_M)
-      .replace(/\$REPLICAS_MAX_G/g, env.REPLICAS_MAX_G)
-      .replace(/\$REPLICAS_MAX_GG/g, env.REPLICAS_MAX_GG)
-      .replace(/\$ISTIO_VIRTUAL_SERVICE/g, env.ISTIO_VIRTUAL_SERVICE)
       .replace(/\$APP_VERSION/g, env.VERSION)
-      .replace(/\$OIDC_SERVICES_ISSUER/g, env.OIDC_SERVICES_ISSUER)
-      .replace(/\$OIDC_SERVICES_JWKS_URI/g, env.OIDC_SERVICES_JWKS_URI)
       .replace(/\$DOCKER_IMAGE/g, env.DOCKER_IMAGE);
 
     fs.writeFileSync(path.join(env.KUBERNETES_DIR, name), yaml);
