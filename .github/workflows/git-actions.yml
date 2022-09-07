@@ -29,11 +29,8 @@ jobs:
     runs-on: ubuntu-latest
     steps:
     - name: Executing Build
-      uses: ciro-stodulski/tsnode-clean-api/.github/templates/build
-      with:
-        version: v1.0.0
-        namespace: "${{ steps.prepare_branch.outputs.branch }}"
-      if: ${{ steps.prepare_branch.outputs.branch == 'develop' || steps.prepare_branch.outputs.branch == 'main' }}
+      uses: ciro-stodulski/tsnode-clean-api/.github/templates/build@feat/pipeline
+
 
 #   publish:
 #     runs-on: ubuntu-latest
