@@ -20,10 +20,12 @@ runs:
       uses: actions/setup-node@v3
       with:
         node-version: ${{ matrix.node-version }}
+        cache: 'npm'
 
     - name: Push docker image
       shell: bash
       run: |
+        ls 
         docker login -u ${{inputs.docker_username}} -p ${{inputs.docker_password}}
         docker build . --file Dockerfile --tag ${{inputs.docker_username}}/${{ github.event.repository.name }}:$(git rev-parse --short "$GITHUB_SHA")
         docker push ${{inputs.docker_username}}/${{ github.event.repository.name }}:$(git rev-parse --short "$GITHUB_SHA")

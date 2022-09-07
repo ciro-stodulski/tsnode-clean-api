@@ -7,27 +7,27 @@ on:
     branches: [ "develop" ]
 
 jobs:    
-  prepare-branch:
-    runs-on: ubuntu-latest
-    steps:
-    - uses: actions/checkout@v2
+  # prepare-branch:
+  #   runs-on: ubuntu-latest
+  #   steps:
+  #   - uses: actions/checkout@v2
 
-    - name: Extract branch name
-      shell: bash
-      run: echo "##[set-output name=branch;]$(echo ${GITHUB_REF#refs/heads/})"
-      id: prepare_branch
+  #   - name: Extract branch name
+  #     shell: bash
+  #     run: echo "##[set-output name=branch;]$(echo ${GITHUB_REF#refs/heads/})"
+  #     id: prepare_branch
 
-  pull-request:
-    needs: prepare-branch
-    runs-on: ubuntu-latest
-    steps:
-    - uses: actions/checkout@v2
+  # pull-request:
+  #   needs: prepare-branch
+  #   runs-on: ubuntu-latest
+  #   steps:
+  #   - uses: actions/checkout@v2
   
-    - name: Validating Pull Request
-      uses: ciro-stodulski/tsnode-clean-api/.github/templates/pull-request@feat/pipeline
+  #   - name: Validating Pull Request
+  #     uses: ciro-stodulski/tsnode-clean-api/.github/templates/pull-request@feat/pipeline
 
   build:
-    needs: [prepare-branch, pull-request]
+    # needs: [prepare-branch, pull-request]
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v2
@@ -36,7 +36,7 @@ jobs:
       uses: ciro-stodulski/tsnode-clean-api/.github/templates/build@feat/pipeline
 
   publish:
-      needs: [prepare-branch, pull-request, build]
+      needs: [build]
       runs-on: ubuntu-latest
       steps:
       - uses: actions/checkout@v2
