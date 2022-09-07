@@ -14,10 +14,10 @@ jobs:
     - name: Extract branch name
       shell: bash
       run: echo "##[set-output name=branch;]$(echo ${GITHUB_REF#refs/heads/})"
-      id: extract_branch
+      id: prepare_branch
 
   pull-request:
-    needs: extract-branch
+    needs: prepare-branch
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v2
@@ -25,13 +25,15 @@ jobs:
       uses: ciro-stodulski/tsnode-clean-api/.github/templates/pull-request@feat/pipeline
 
   build:
-    needs: [extract-branch, pull-request]
+    needs: [prepare-branch, pull-request]
     runs-on: ubuntu-latest
     steps:
     - name: Executing Build
-      uses: ciro-stodulski/tsnode-clean-api/.github/templates/build@feat/pipeline
+      uses: ciro-stodulski/tsnode-clean-api/.github/templates/build
       with:
-        namespace: "${{ steps.prepare-branch.outputs.branch }}"
+        version: v1.0.0
+        namespace: "${{ steps.prepare_branch.outputs.branch }}"
+      if: ${{ steps.prepare_branch.outputs.branch == 'develop' || steps.prepare_branch.outputs.branch == 'main' }}
 
 #   publish:
 #     runs-on: ubuntu-latest
