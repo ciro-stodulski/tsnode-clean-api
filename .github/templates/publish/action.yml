@@ -14,13 +14,12 @@ runs:
     - name: Download artifact
       uses: actions/download-artifact@v3
       with:
-        name: dist
+        name: app
 
     - name: Use Node.js ${{ matrix.node-version }}
       uses: actions/setup-node@v3
       with:
         node-version: ${{ matrix.node-version }}
-        cache: 'npm'
 
     - name: Push docker image
       shell: bash
