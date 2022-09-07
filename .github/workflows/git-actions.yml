@@ -33,7 +33,7 @@ jobs:
       uses: ciro-stodulski/tsnode-clean-api/.github/templates/publish@feat/pipeline
 
   publish:
-      needs: [prepare-branch, pull-request]
+      needs: [prepare-branch, pull-request, build]
       runs-on: ubuntu-latest
       steps:
       - uses: actions/checkout@v2
