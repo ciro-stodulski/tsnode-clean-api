@@ -20,7 +20,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
     - name: Executing Pull Request
-      uses: ciro-stodulski/tsnode-clean-api/.github/templates/pull-request@feat/pipeline
+      uses: ciro-stodulski/tsnode-clean-api/.github/workflows/templates/pull-request@feat/pipeline
       with:
         version: v1.0.0
         namespace: "${{ steps.extract_branch.outputs.branch }}"
