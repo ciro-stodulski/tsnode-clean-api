@@ -43,6 +43,9 @@ jobs:
   
       - name: Executing Publish
         uses: ciro-stodulski/tsnode-clean-api/.github/templates/publish@feat/pipeline
+        with:
+          docker_username: ${{ secrets.DOCKER_USERNAME }}
+          docker_password: ${{ secrets.DOCKER_PASSWORD }}
 
 #   # deploy:
 #   #   runs-on: ubuntu-latest
