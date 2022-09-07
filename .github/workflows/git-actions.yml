@@ -21,13 +21,14 @@ jobs:
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v2
-    - name: Executing Pull Request
+    - name: Validating Pull Request
       uses: ciro-stodulski/tsnode-clean-api/.github/templates/pull-request@feat/pipeline
 
   build:
     needs: [prepare-branch, pull-request]
     runs-on: ubuntu-latest
     steps:
+    - uses: actions/checkout@v2
     - name: Executing Build
       uses: ciro-stodulski/tsnode-clean-api/.github/templates/build@feat/pipeline
 

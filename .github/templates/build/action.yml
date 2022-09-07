@@ -11,8 +11,7 @@ runs:
     - name: Install and build
       shell: bash
       run: |
-        ls -a
-        npm i
+        npm ci
         npm run build --if-present
         
     - name: Archive production artifacts
