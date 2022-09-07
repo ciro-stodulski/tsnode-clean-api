@@ -23,6 +23,7 @@ runs:
 
     - name: Push docker image
       shell: bash
-    - run: docker login -u ${{inputs.docker_username}} -p ${{inputs.docker_password}}
-    - run: docker build . --file Dockerfile --tag ${{inputs.docker_username}}/${{ github.event.repository.name }}:$(git rev-parse --short "$GITHUB_SHA")
-    - run: docker push ${{inputs.docker_username}}/${{ github.event.repository.name }}:$(git rev-parse --short "$GITHUB_SHA")
+      run: |
+        docker login -u ${{inputs.docker_username}} -p ${{inputs.docker_password}}
+        docker build . --file Dockerfile --tag ${{inputs.docker_username}}/${{ github.event.repository.name }}:$(git rev-parse --short "$GITHUB_SHA")
+        docker push ${{inputs.docker_username}}/${{ github.event.repository.name }}:$(git rev-parse --short "$GITHUB_SHA")
