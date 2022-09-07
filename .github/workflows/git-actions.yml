@@ -22,7 +22,7 @@ jobs:
     steps:
     - uses: actions/checkout@v2
     - name: Executing Pull Request
-      uses: ciro-stodulski/tsnode-clean-api/.github/actions/pull-request@feat/pipeline
+      uses: ciro-stodulski/tsnode-clean-api/.github/templates/pull-request@feat/pipeline
 
 #   build:
 #     runs-on: ubuntu-latest
