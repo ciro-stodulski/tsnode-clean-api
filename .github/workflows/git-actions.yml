@@ -47,12 +47,11 @@ jobs:
           docker_username: ${{ secrets.DOCKER_USERNAME }}
           docker_password: ${{ secrets.DOCKER_PASSWORD }}
 
-#   # deploy:
-#   #   runs-on: ubuntu-latest
-#   #   steps:
-#   #   - name: Executing Deploy
-#   #     uses: ./.github/templates/deploy
-#   #     with:
-#   #       version: v1.0.0
-#   #       namespace: "${{ steps.extract_branch.outputs.branch }}"
-#   #     if: ${{ steps.extract_branch.outputs.branch == 'develop' || steps.extract_branch.outputs.branch == 'main' }}
+  deploy:
+      needs: publish
+      runs-on: ubuntu-latest
+      steps:
+      - uses: actions/checkout@v2
+
+      - name: Executing Deploy
+        uses: ciro-stodulski/tsnode-clean-api/.github/templates/deploy@feat/pipeline

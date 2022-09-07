@@ -9,6 +9,7 @@
   },
   "main": "index.js",
   "scripts": {
+    "ts": "ts-node",
     "build": "npm i && rimraf dist && tsc -p .",
     "cli": "node ./dist/main/modules/cli/index.js",
     "cli-dev": "tsnd ./src/main/modules/cli/index.ts",
