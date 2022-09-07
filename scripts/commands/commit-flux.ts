@@ -7,7 +7,7 @@ const flux = path.join(env.PROJECT_DIR, 'flux');
 
 command(`git config --global user.email "${env.USER_EMAIL}"`);
 command(`git config --global user.name "${env.USER_NAME}"`);
-command(`git clone --single-branch --depth=1 -b  ${env.FLUX_REPOSITORY} flux`, { log: false });
+command(`git clone --single-branch --depth=1 -b  ${env.FLUX_REPOSITORY} infra-banking`, { log: false });
 command(`mkdir -p  ${env.RELEASE_DIR}`, { cwd: flux });
 command(`cp -r ../deployment/kubernetes/* ${env.RELEASE_DIR}`, { cwd: flux });
 command(`git add ${env.RELEASE_DIR}`, { cwd: flux });
