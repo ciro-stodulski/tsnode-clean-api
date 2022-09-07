@@ -22,4 +22,4 @@ runs:
         name: app
         path: |
            dist
-           !dist/**/*.JS
+           !dist/**/*.ts
