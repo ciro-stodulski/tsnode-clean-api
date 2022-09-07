@@ -1,23 +1,24 @@
 name: pull-request
 # Were we can define the inputs that our action will accept
-inputs:
-  version:
-    required: true
-  namespace:
-    required: true
+on:
+  workflow_call:
+    version:
+      required: true
+    namespace:
+      required: true
 
-  runs:
-    using: 'composite'
+    runs:
+      using: 'composite'
 
-    steps:
-    - uses: actions/checkout@v3
-    - name: Use Node.js ${{ matrix.node-version }}
-      uses: actions/setup-node@v3
-      with:
-        node-version: ${{ matrix.node-version }}
-        cache: 'npm'
-    - run: |
-        npm ci
-        npm run build --if-present
-        npm run lint
-        npm test
+      steps:
+      - uses: actions/checkout@v3
+      - name: Use Node.js ${{ matrix.node-version }}
+        uses: actions/setup-node@v3
+        with:
+          node-version: ${{ matrix.node-version }}
+          cache: 'npm'
+      - run: |
+          npm ci
+          npm run build --if-present
+          npm run lint
+          npm test
