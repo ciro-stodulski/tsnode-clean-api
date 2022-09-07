@@ -98,6 +98,17 @@ const RELEASE_DIR = path.join(
   env.PROJECT_NAME
 );
 
+console.log(Object.freeze({
+  ...env,
+  DOCKER_REPOSITORY,
+  DOCKER_TAG,
+  DOCKER_IMAGE,
+  DEPLOYMENT_DIR,
+  KUBERNETES_DIR,
+  SCRIPT_DIR,
+  RELEASE_DIR,
+}))
+
 export default Object.freeze({
   ...env,
   DOCKER_REPOSITORY,
