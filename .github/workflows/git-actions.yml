@@ -7,7 +7,7 @@ on:
     branches: [ "develop" ]
 
 jobs:    
-  extract-branch:
+  prepare-branch:
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v2
@@ -22,17 +22,16 @@ jobs:
     steps:
     - uses: actions/checkout@v2
     - name: Executing Pull Request
-      uses: ciro-stodulski/tsnode-clean-api/.github/templates@feat/pipeline
+      uses: ciro-stodulski/tsnode-clean-api/.github/templates/pull-request@feat/pipeline
 
-#   build:
-#     runs-on: ubuntu-latest
-#     steps:
-#     - name: Executing Build
-#       uses: ./.github/templates/build
-#       with:
-#         version: v1.0.0
-#         namespace: "${{ steps.extract_branch.outputs.branch }}"
-#       if: ${{ steps.extract_branch.outputs.branch == 'develop' || steps.extract_branch.outputs.branch == 'main' }}
+  build:
+    needs: [extract-branch, pull-request]
+    runs-on: ubuntu-latest
+    steps:
+    - name: Executing Build
+      uses: ciro-stodulski/tsnode-clean-api/.github/templates/build@feat/pipeline
+      with:
+        namespace: "${{ steps.prepare-branch.outputs.branch }}"
 
 #   publish:
 #     runs-on: ubuntu-latest

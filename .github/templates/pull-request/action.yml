@@ -1,5 +1,5 @@
 name: pull-request
-# Were we can define the inputs that our action will accept
+
 runs:
   using: "composite"
   steps:
