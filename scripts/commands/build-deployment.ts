@@ -29,6 +29,8 @@ glob(pattern, (err, files) => {
       .replace(/\$APP_VERSION/g, env.VERSION)
       .replace(/\$DOCKER_IMAGE/g, env.DOCKER_IMAGE);
 
+    console.log(yaml);
+
     fs.writeFileSync(path.join(env.KUBERNETES_DIR, name), yaml);
   }
 
