@@ -10,8 +10,7 @@ export class ListTodoController implements Controller {
     status_code: 200,
   };
 
-  constructor(private list_todo_use_case: IListTodoUseCase) {
-  }
+  constructor(private list_todo_use_case: IListTodoUseCase) {}
 
   async handle(): Promise<HttpResponse<Todo[]>> {
     const todos = await this.list_todo_use_case.list();
