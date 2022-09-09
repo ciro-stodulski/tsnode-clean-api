@@ -3,16 +3,14 @@ import { logger } from '../../../shared/logger';
 import { Container } from '../../../main/container';
 import { MongodbModule } from '../../../main/modules';
 
-export class ListTodoCommand extends Command {
+export class ListTodoCommand implements Command {
   config_command: ConfigCommand = {
     name: 'list-todo',
     description: 'command to list a todo',
     modules: [new MongodbModule()],
   };
 
-  constructor(private container: Container) {
-    super();
-  }
+  constructor(private container: Container) {}
 
   async run(): Promise<void> {
     const result = await this.container.list_todo_use_case.list();

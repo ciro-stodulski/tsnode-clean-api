@@ -1,9 +1,9 @@
 import { GRPCResponse, GRPCRequest, GRPCConfig } from '.';
 
-export abstract class GrpcBase {
-  abstract service_configs: GRPCConfig;
+export interface GrpcBase {
+   service_configs: GRPCConfig;
 
-  abstract handle(request: GRPCRequest): Promise<GRPCResponse>;
+   handle(request: GRPCRequest): Promise<GRPCResponse>;
 
-  abstract exception(error: Error): Error;
+   exception(error: Error): Error;
 }
