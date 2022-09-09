@@ -14,7 +14,7 @@ const env = {
   VERSION: version,
   COMMIT_REF_NAME,
   SERVICEPORT: '3000',
-  FLUX_REPOSITORY: 'https://github.com/ciro-stodulski/flux',
+  FLUX_REPOSITORY: 'git@github.com:ciro-stodulski/flux.git',
   PROJECT_NAMESPACE: 'develop',
   PROJECT_DIR: "develop",
   PROJECT_NAME: name,
