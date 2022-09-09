@@ -9,7 +9,7 @@ import {
 } from '../..';
 import { logger } from '../../../../shared';
 
-export class VerifyConsumer extends Consumer {
+export class VerifyConsumer implements Consumer {
   consumer_config: ConsumerConfig = {
     queue: 'notify.create',
     schema: verify_schema,
@@ -17,9 +17,7 @@ export class VerifyConsumer extends Consumer {
 
   constructor(
     private verify_notification_use_case: IVerifyNotificationUseCase
-  ) {
-    super();
-  }
+  ) {}
 
   async handle(message: Message): Promise<void> {
     await this.verify_notification_use_case.notify(message.body);

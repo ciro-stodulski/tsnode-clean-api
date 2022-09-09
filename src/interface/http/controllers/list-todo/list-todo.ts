@@ -3,7 +3,7 @@ import { IListTodoUseCase } from '../../../../core/use-cases';
 
 import { HttpResponse, Controller, RouteConfig } from '../..';
 
-export class ListTodoController extends Controller {
+export class ListTodoController implements Controller {
   route_configs: RouteConfig = {
     method: 'get',
     path: '/todos',
@@ -11,7 +11,6 @@ export class ListTodoController extends Controller {
   };
 
   constructor(private list_todo_use_case: IListTodoUseCase) {
-    super();
   }
 
   async handle(): Promise<HttpResponse<Todo[]>> {
