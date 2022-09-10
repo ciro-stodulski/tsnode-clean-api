@@ -11,9 +11,9 @@ runs:
       uses: actions/setup-node@v3
       with:
         node-version: ${{ matrix.node-version }}
-      shell: bash
 
     - name: create flux repo
+      shell: bash
       run: |
         mkdir repo-folder-flux
         cd repo-folder-flux
