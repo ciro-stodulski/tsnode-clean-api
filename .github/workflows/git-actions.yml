@@ -51,7 +51,7 @@ jobs:
           docker_password: ${{ secrets.DOCKER_PASSWORD }}
 
   deploy:
-      needs: [prepare-branch, build, publish]
+      needs: [prepare-branch, build]
       if: github.ref_name != 'develop' #|| ${{ steps.prepare_branch.outputs.branch }} == 'main'
       runs-on: ubuntu-latest
       steps:
