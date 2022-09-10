@@ -1,7 +1,13 @@
 name: deploy
 inputs:
   token: 
-     description: "docker username"
+     description: "token"
+     required: true
+  cluster: 
+     description: "cluster"
+     required: true
+  namespace: 
+     description: "namespace"
      required: true
 
 runs:
@@ -40,13 +46,13 @@ runs:
       run: |
           git config --global user.name ciro-stodulski
           git config --global user.email ciro-stodulski@github.com
-          mkdir -p lab-stodulski/lab
-          mkdir -p lab-stodulski/lab/${{ github.event.repository.name }}
-          cp -r scripts/kubernetes/*  lab-stodulski/lab/${{ github.event.repository.name }}
+          mkdir -p ${{ inputs.cluster }}/ ${{ inputs.namespace }}
+          mkdir -p ${{ inputs.cluster }}/${{ inputs.namespace }}/${{ github.event.repository.name }}
+          cp -r scripts/kubernetes/*  ${{ inputs.cluster }}/lab/${{ github.event.repository.name }}
           rm -rf scripts
           git add .
           git status
-          git commit -m "${{ github.event.head_commit.message }}-$(git rev-parse --short "$GITHUB_SHA")"
+          git commit -m "$(git rev-parse --short "$GITHUB_SHA")"
           git push origin develop
       # criar diretorio dentro do pasta 
       # git add .
