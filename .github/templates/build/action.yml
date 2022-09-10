@@ -25,7 +25,7 @@ runs:
       shell: bash
       run: |
         ls -R
-        cd script/kubernetes
+        cd scripts/kubernetes
         ./test.sh
         cat deployment.yaml
         cat hpa.yaml
