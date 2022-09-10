@@ -11,13 +11,17 @@ runs:
       uses: actions/setup-node@v3
       with:
         node-version: ${{ matrix.node-version }}
-      
+      shell: bash
+      run: |
+        mkdir repo-folder-flux
+        cd repo-folder-flux
     - name: Checkout private tools
       uses: actions/checkout@v3
       with:
         repository: ciro-stodulski/flux
         token: ${{ inputs.token }} # `GH_PAT` is a secret that contains your PAT
-
+      run: |
+          cd ..
     - name: Download artifact
       uses: actions/download-artifact@v3
       with:
@@ -29,6 +33,8 @@ runs:
       run: |
           git config --global user.name ciro-stodulski
           git config --global user.email ciro-stodulski@github.com
+          cp -r scripts/kubernetes/*  repo-folder-flux/lab-stodulski/lab/tsnode-clean-api
+      # criar diretorio dentro do pasta 
           ls -R
       # git add .
       # git commit -m "generated"
