@@ -34,6 +34,8 @@ jobs:
   
     - name: Executing Build
       uses: ciro-stodulski/tsnode-clean-api/.github/templates/build@feat/pipeline
+      with:
+        docker_username: ${{ secrets.DOCKER_USERNAME }}
 
   # publish:
   #     needs: [prepare-branch, pull-request, build]

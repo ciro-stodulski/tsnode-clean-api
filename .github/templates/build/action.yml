@@ -1,5 +1,10 @@
 name: build
 
+inputs:
+  docker_username: 
+     description: "docker username"
+     required: true
+     
 runs:
   using: 'composite'
   steps:
@@ -25,11 +30,12 @@ runs:
       shell: bash
       run: |
         cd scripts/kubernetes
-        export APP_NAME=${{ github.event.repository.name }}
-        export APP_IMAGE_VERSION=$(git rev-parse --short "$GITHUB_SHA")
-        export APP_IMAGE_REPO= ${{github.event.repository.name}}
-        export APP_IMAGE= ${{inputs.docker_username}}
         ./test.sh
         cat deployment.yaml
         cat hpa.yaml
         cat service.yaml
+      env:
+        APP_IMAGE_VERSION: $(git rev-parse --short "$GITHUB_SHA")
+        APP_IMAGE_REPO:  ${{github.event.repository.name}}
+        APP_IMAGE: ${{inputs.docker_username}}
+        APP_NAME: ${{ github.event.repository.name }}
