@@ -57,5 +57,5 @@ jobs:
         uses: ciro-stodulski/tsnode-clean-api/.github/templates/deploy@feat/pipeline
         with:
           token: ${{ secrets.GH_PAT }} # `GH_PAT` is a secret that contains your PAT
-          cluster: ${{ environments.KUBERNETES.CLUSTER }} # `GH_PAT` is a secret that contains your PAT
-          namespace: ${{ environments.KUBERNETES.NAMESPACE }} # `GH_PAT` is a secret that contains your PAT
+          cluster: ${{ secrets.KUBERNETES.CLUSTER }} # `GH_PAT` is a secret that contains your PAT
+          namespace: ${{ secrets.KUBERNETES.NAMESPACE }} # `GH_PAT` is a secret that contains your PAT
