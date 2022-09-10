@@ -46,7 +46,7 @@ runs:
           rm -rf scripts
           git add .
           git status
-          git push -u origin develop
+          git push origin develop
       # criar diretorio dentro do pasta 
       # git add .
       # git commit -m "generated"
