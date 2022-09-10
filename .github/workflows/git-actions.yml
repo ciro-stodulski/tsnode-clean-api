@@ -7,27 +7,26 @@ on:
     branches: [ "develop" ]
 
 jobs:    
-  # prepare-branch:
-  #   runs-on: ubuntu-latest
-  #   steps:
-  #   - uses: actions/checkout@v2
+  prepare-branch:
+    runs-on: ubuntu-latest
+    steps:
+    - name: Extract branch name
+      shell: bash
+      run: echo "##[set-output name=branch;]$(echo ${GITHUB_REF#refs/heads/})"
+      id: prepare_branch
 
-  #   - name: Extract branch name
-  #     shell: bash
-  #     run: echo "##[set-output name=branch;]$(echo ${GITHUB_REF#refs/heads/})"
-  #     id: prepare_branch
-
-  # pull-request:
-  #   needs: prepare-branch
-  #   runs-on: ubuntu-latest
-  #   steps:
-  #   - uses: actions/checkout@v2
+  pull-request:
+    if: ${{ steps.extract_branch.outputs.branch }} != 'develop'
+    needs: prepare-branch
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v2
   
-  #   - name: Validating Pull Request
-  #     uses: ciro-stodulski/tsnode-clean-api/.github/templates/pull-request@feat/pipeline
+    - name: Validating Pull Request
+      uses: ciro-stodulski/tsnode-clean-api/.github/templates/pull-request@feat/pipeline
 
   build:
-  #  needs: [prepare-branch, pull-request]
+    if: ${{ steps.extract_branch.outputs.branch }} == 'develop' #|| ${{ steps.extract_branch.outputs.branch }} == 'main'
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v2
@@ -35,20 +34,22 @@ jobs:
     - name: Executing Build
       uses: ciro-stodulski/tsnode-clean-api/.github/templates/build@feat/pipeline
 
-  # publish:
-  #     needs: [prepare-branch, pull-request, build]
-  #     runs-on: ubuntu-latest
-  #     steps:
-  #     - uses: actions/checkout@v2
+  publish:
+      if: ${{ steps.extract_branch.outputs.branch }} == 'develop' #|| ${{ steps.extract_branch.outputs.branch }} == 'main'
+      needs: [prepare-branch, build]
+      runs-on: ubuntu-latest
+      steps:
+      - uses: actions/checkout@v2
   
-  #     - name: Executing Publish
-  #       uses: ciro-stodulski/tsnode-clean-api/.github/templates/publish@feat/pipeline
-  #       with:
-  #         docker_username: ${{ secrets.DOCKER_USERNAME }}
-  #         docker_password: ${{ secrets.DOCKER_PASSWORD }}
+      - name: Executing Publish
+        uses: ciro-stodulski/tsnode-clean-api/.github/templates/publish@feat/pipeline
+        with:
+          docker_username: ${{ secrets.DOCKER_USERNAME }}
+          docker_password: ${{ secrets.DOCKER_PASSWORD }}
 
   deploy:
-      needs: [build]
+      if: ${{ steps.extract_branch.outputs.branch }} == 'develop' #|| ${{ steps.extract_branch.outputs.branch }} == 'main'
+      needs: [prepare-branch, build, publish]
       runs-on: ubuntu-latest
       steps:
       - uses: actions/checkout@v2
@@ -56,6 +57,7 @@ jobs:
       - name: Executing Deploy
         uses: ciro-stodulski/tsnode-clean-api/.github/templates/deploy@feat/pipeline
         with:
-          token: ${{ secrets.GH_PAT }} # `GH_PAT` is a secret that contains your PAT
-          cluster: ${{ secrets.CLUSTER }} # `GH_PAT` is a secret that contains your PAT
-          namespace: ${{ secrets.NAMESPACE }} # `GH_PAT` is a secret that contains your PAT
+          token: ${{ secrets.GH_PAT }} 
+          cluster: ${{ secrets.CLUSTER }} 
+          namespace: ${{ secrets.NAMESPACE }}
+          branch: ${{ steps.extract_branch.outputs.branch }}

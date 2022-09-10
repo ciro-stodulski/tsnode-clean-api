@@ -9,6 +9,9 @@ inputs:
   namespace: 
      description: "namespace"
      required: true
+  branch: 
+     description: "namespace"
+     required: true
 
 runs:
   using: 'composite'
@@ -53,11 +56,4 @@ runs:
           git add .
           git status
           git commit -m "$(git rev-parse --short "$GITHUB_SHA")"
-          git push origin develop
-      # criar diretorio dentro do pasta 
-      # git add .
-      # git commit -m "generated"
-      # git pull
-      # git push
-      # npm ci
-      # npm run ts -- scripts/commands/commit-flux.ts
+          git push origin ${{ inputs.branch }}
