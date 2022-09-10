@@ -25,6 +25,10 @@ runs:
       shell: bash
       run: |
         cd scripts/kubernetes
+        export APP_NAME=${{ github.event.repository.name }}
+        export APP_IMAGE_VERSION=$(git rev-parse --short "$GITHUB_SHA")
+        export APP_IMAGE_REPO= ${{github.event.repository.name}}
+        export APP_IMAGE= ${{inputs.docker_username}}
         ./test.sh
         cat deployment.yaml
         cat hpa.yaml
