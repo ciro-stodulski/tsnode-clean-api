@@ -40,8 +40,8 @@ runs:
       run: |
           git config --global user.name ciro-stodulski
           git config --global user.email ciro-stodulski@github.com
-          mkdir lab-stodulski/lab
-          mkdir lab-stodulski/lab/${{ github.event.repository.name }}
+          mkdir -p lab-stodulski/lab
+          mkdir -p lab-stodulski/lab/${{ github.event.repository.name }}
           cp -r scripts/kubernetes/*  lab-stodulski/lab/${{ github.event.repository.name }}
           rm -rf scripts
           git add .
