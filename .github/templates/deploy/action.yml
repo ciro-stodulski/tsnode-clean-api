@@ -15,13 +15,16 @@ runs:
       run: |
         mkdir repo-folder-flux
         cd repo-folder-flux
+
     - name: Checkout private tools
       uses: actions/checkout@v3
       with:
         repository: ciro-stodulski/flux
         token: ${{ inputs.token }} # `GH_PAT` is a secret that contains your PAT
+      shell: bash
       run: |
           cd ..
+
     - name: Download artifact
       uses: actions/download-artifact@v3
       with:
