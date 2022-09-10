@@ -11,20 +11,19 @@ runs:
       uses: actions/setup-node@v3
       with:
         node-version: ${{ matrix.node-version }}
+      
+    - name: Checkout private tools
+      uses: actions/checkout@v3
+      with:
+        repository: ciro-stodulski/flux
+        token: ${{ inputs.token }} # `GH_PAT` is a secret that contains your PAT
 
-    - uses: actions/checkout@v2
-    
     - name: Download artifact
       uses: actions/download-artifact@v3
       with:
         name: deployments
         path: scripts/kubernetes
   
-    - name: Checkout private tools
-      uses: actions/checkout@v3
-      with:
-        repository: ciro-stodulski/flux
-        token: ${{ inputs.token }} # `GH_PAT` is a secret that contains your PAT
     - name: Install and commit flux
       shell: bash
       run: |
