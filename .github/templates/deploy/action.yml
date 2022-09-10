@@ -46,6 +46,7 @@ runs:
           rm -rf scripts
           git add .
           git status
+          git commit -m "first commit with pipeline"
           git push origin develop
       # criar diretorio dentro do pasta 
       # git add .
