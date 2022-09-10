@@ -20,5 +20,8 @@ runs:
     - name: Install and commit flux
       shell: bash
       run: |
-        npm ci
-        npm run ts -- scripts/commands/commit-flux.ts
+        ls
+        ls -r
+
+      # npm ci
+      # npm run ts -- scripts/commands/commit-flux.ts
