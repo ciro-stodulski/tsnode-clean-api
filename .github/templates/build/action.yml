@@ -24,6 +24,7 @@ runs:
     - name: Install and build
       shell: bash
       run: |
+        ls -R
         cd script/kubernetes
         ./test.sh
         cat deployment.yaml
