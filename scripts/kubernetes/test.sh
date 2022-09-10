@@ -18,17 +18,18 @@ function readJson {
 }
 
 APP_VERSION=`readJson ../../package.json version` || exit 1;
+NAME=`readJson ../../package.json name` || exit 1;
 
-sed -i  "s/\$PROJECT_NAME/${{ toJSON(github.event.repository.name) }}/"   deployment.yaml
+sed -i  "s/\$PROJECT_NAME/${{NAME}}/"   deployment.yaml
 sed -i  "s/\$APP_VERSION/${APP_VERSION}/"     deployment.yaml
 sed -i  "s/\$NAMESPACE/lab/"     deployment.yaml
-sed -i  "s/\$DOCKER_IMAGE/${{toJSON(inputs.docker_username)}}/${{ toJSON(github.event.repository.name) }}:$(git rev-parse --short "$GITHUB_SHA")/"     deployment.yaml
+sed -i  "s/\$DOCKER_IMAGE/${{toJSON(inputs.docker_username)}}/${{NAME}}:$(git rev-parse --short "$GITHUB_SHA")/"     deployment.yaml
 sed -i  "s/\$SERVICEPORT/3000/"     deployment.yaml
 
 
-sed -i  "s/\$PROJECT_NAME/${{ toJSON(github.event.repository.name )}}/"   hpa.yaml
+sed -i  "s/\$PROJECT_NAME/${{NAME}}/"   hpa.yaml
 sed -i  "s/\$NAMESPACE/lab/"     hpa.yaml
 
 
-sed -i  "s/\$PROJECT_NAME/${{ toJSON(github.event.repository.name) }}/"   service.yaml
+sed -i  "s/\$PROJECT_NAME/${{NAME}}/"   service.yaml
 sed -i  "s/\$NAMESPACE/lab/"     service.yaml
