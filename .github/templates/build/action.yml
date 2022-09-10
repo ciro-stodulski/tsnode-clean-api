@@ -1,10 +1,5 @@
 name: build
 
-inputs:
-  docker_username: 
-     description: "docker username"
-     required: true
-
 runs:
   using: 'composite'
   steps:
