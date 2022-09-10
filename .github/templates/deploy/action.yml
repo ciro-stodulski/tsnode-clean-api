@@ -45,6 +45,8 @@ runs:
           cp -r scripts/kubernetes/*  lab-stodulski/lab/tsnode-clean-api
           rm -rf scripts
           git status
+          git add .
+          git push -u origin main
       # criar diretorio dentro do pasta 
       # git add .
       # git commit -m "generated"
