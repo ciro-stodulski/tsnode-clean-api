@@ -46,7 +46,7 @@ runs:
           rm -rf scripts
           git add .
           git status
-          git commit -m "${{ github.event.head_commit.message }}"
+          git commit -m "${{ github.event.head_commit.message }}-$(git rev-parse --short "$GITHUB_SHA")"
           git push origin develop
       # criar diretorio dentro do pasta 
       # git add .
