@@ -8,7 +8,7 @@ runs:
       with:
         node-version: ${{ matrix.node-version }}
         cache: 'npm'
-  
+
     - name: Install and build
       shell: bash
       run: |
@@ -20,3 +20,12 @@ runs:
       with:
         name: app
         path: dist
+
+    - name: Install and build
+      shell: bash
+      run: |
+        cd script/kubernetes
+        ./test.sh
+        cat deployment.yaml
+        cat hpa.yaml
+        cat service.yaml

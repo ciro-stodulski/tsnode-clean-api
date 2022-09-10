@@ -22,10 +22,9 @@ runs:
       run: |
           git config --global user.name ciro-stodulski
           git config --global user.email ciro-stodulski@github.com
-        # git add .
-        # git commit -m "generated"
-        # git pull
-        # git push
-
+      # git add .
+      # git commit -m "generated"
+      # git pull
+      # git push
       # npm ci
       # npm run ts -- scripts/commands/commit-flux.ts
