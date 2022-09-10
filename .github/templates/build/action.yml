@@ -29,7 +29,9 @@ runs:
     - name: Set outputs
       id: vars
       shell: bash
-      run: echo "::set-output name=sha_short::$(git rev-parse --short HEAD)"
+      run: |
+        echo "::set-output name=sha_short::$(git rev-parse --short HEAD)"
+        echo "::set-output name=docker_repo::cirosda"
 
     - name: Install and build
       shell: bash
@@ -40,6 +42,6 @@ runs:
 
       env:
         APP_IMAGE_VERSION: ${{ steps.vars.outputs.sha_short }}
-        APP_IMAGE_REPO: cirosda
+        APP_IMAGE_REPO: ${{ steps.vars.outputs.docker_repo }}
         APP_IMAGE: ${{ github.event.repository.name }}
         APP_NAME: ${{ github.event.repository.name }}
