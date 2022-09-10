@@ -20,15 +20,3 @@ runs:
       with:
         name: app
         path: dist
-
-
-    - name: Install and build
-      shell: bash
-      run: |
-        chmod u+x scripts/test.ts 
-        ./scripts/test.ts
-    # - name: Archive production artifacts
-    #   uses: actions/upload-artifact@v3
-    #   with:
-    #     name: app
-    #     path: dist

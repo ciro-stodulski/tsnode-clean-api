@@ -26,14 +26,14 @@ jobs:
   #   - name: Validating Pull Request
   #     uses: ciro-stodulski/tsnode-clean-api/.github/templates/pull-request@feat/pipeline
 
-  build:
-    # needs: [prepare-branch, pull-request]
-    runs-on: ubuntu-latest
-    steps:
-    - uses: actions/checkout@v2
+  # build:
+  #   needs: [prepare-branch, pull-request]
+  #   runs-on: ubuntu-latest
+  #   steps:
+  #   - uses: actions/checkout@v2
   
-    - name: Executing Build
-      uses: ciro-stodulski/tsnode-clean-api/.github/templates/build@feat/pipeline
+  #   - name: Executing Build
+  #     uses: ciro-stodulski/tsnode-clean-api/.github/templates/build@feat/pipeline
 
   # publish:
   #     needs: [prepare-branch, pull-request, build]
@@ -47,12 +47,12 @@ jobs:
   #         docker_username: ${{ secrets.DOCKER_USERNAME }}
   #         docker_password: ${{ secrets.DOCKER_PASSWORD }}
 
-  # deploy:
-  #     runs-on: ubuntu-latest
-  #     steps:
-  #     - uses: actions/checkout@v2
+  deploy:
+      runs-on: ubuntu-latest
+      steps:
+      - uses: actions/checkout@v2
 
-  #     - name: Executing Deploy
-  #       uses: ciro-stodulski/tsnode-clean-api/.github/templates/deploy@feat/pipeline
-  #       with:
-  #         token: ${{ secrets.GH_PAT }} # `GH_PAT` is a secret that contains your PAT
+      - name: Executing Deploy
+        uses: ciro-stodulski/tsnode-clean-api/.github/templates/deploy@feat/pipeline
+        with:
+          token: ${{ secrets.GH_PAT }} # `GH_PAT` is a secret that contains your PAT
