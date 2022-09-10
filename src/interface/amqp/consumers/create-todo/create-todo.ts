@@ -9,15 +9,13 @@ import {
 } from '../..';
 import { logger } from '../../../../shared/logger';
 
-export class CreateTodoConsumer extends Consumer {
+export class CreateTodoConsumer implements Consumer {
   consumer_config: ConsumerConfig = {
     queue: 'create-todo',
     schema: create_todo_schema,
   };
 
-  constructor(private create_todo_use_case: ICreateTodoUseCase) {
-    super();
-  }
+  constructor(private create_todo_use_case: ICreateTodoUseCase) {}
 
   async handle(message: Message): Promise<void> {
     this.create_todo_use_case.create(message.body);

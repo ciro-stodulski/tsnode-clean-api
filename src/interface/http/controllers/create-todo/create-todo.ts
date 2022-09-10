@@ -9,7 +9,7 @@ import {
 } from '../..';
 import { UserNotFoundError } from '../../../../core/exceptions';
 
-export class CreateTodoController extends Controller {
+export class CreateTodoController implements Controller {
   route_configs: RouteConfig = {
     method: 'post',
     path: '/todos',
@@ -18,9 +18,7 @@ export class CreateTodoController extends Controller {
     middlewares: [new AuthMiddleware()],
   };
 
-  constructor(private create_todo_use_case: ICreateTodoUseCase) {
-    super();
-  }
+  constructor(private create_todo_use_case: ICreateTodoUseCase) {}
 
   async handle(req: HttpRequest): Promise<void> {
     await this.create_todo_use_case.create(req.body);

@@ -1,7 +1,7 @@
 import { GrpcBase, GRPCResponse, GRPCConfig } from '../../..';
 import { IListTodoUseCase } from '../../../../../core/use-cases';
 
-export class VerifyGrpc extends GrpcBase {
+export class VerifyGrpc implements GrpcBase {
   service_configs: GRPCConfig = {
     implementation: 'Verify',
     proto_param: 'notification.proto',
@@ -9,9 +9,7 @@ export class VerifyGrpc extends GrpcBase {
     service: 'NotificationService',
   };
 
-  constructor(private list_todo_use_case: IListTodoUseCase) {
-    super();
-  }
+  constructor(private list_todo_use_case: IListTodoUseCase) {}
 
   async handle(): Promise<GRPCResponse<any>> {
     const todos = await this.list_todo_use_case.list();

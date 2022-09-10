@@ -1,9 +1,9 @@
 import { CliLine, ConfigCommand } from '.';
 
-export abstract class Command {
-  abstract readonly config_command: ConfigCommand;
+export interface Command {
+  config_command: ConfigCommand;
 
-  abstract run(line: CliLine): Promise<void>;
+  run(line: CliLine): Promise<void>;
 
-  abstract error(error: any): Promise<void>;
+  error(error: any): Promise<void>;
 }

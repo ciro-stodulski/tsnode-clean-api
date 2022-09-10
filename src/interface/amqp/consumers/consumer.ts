@@ -5,14 +5,14 @@ export type Message = {
   body: any;
 };
 
-export abstract class Consumer {
-  abstract handle(message: Message): Promise<void>;
+export interface Consumer {
+  handle(message: Message): Promise<void>;
 
-  abstract exception(
+  exception(
     err: any,
     channel: Channel,
     message: ConsumeMessage | null
   ): ConsumerErrorOptions | void;
 
-  abstract consumer_config: ConsumerConfig;
+  consumer_config: ConsumerConfig;
 }
