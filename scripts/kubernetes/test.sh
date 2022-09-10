@@ -26,7 +26,7 @@ DOCKER_VERSION=$(git rev-parse --short "$GITHUB_SHA")
 sed -i  "s/\$PROJECT_NAME/${NAME}/"   deployment.yaml
 sed -i  "s/\$APP_VERSION/${APP_VERSION}/"     deployment.yaml
 sed -i  "s/\$NAMESPACE/lab/"     deployment.yaml
-sed -i  "s/\$DOCKER_IMAGE/${DOCKER_USERNAME}/${NAME}:$(git rev-parse --short "${DOCKER_VERSION}")/"     deployment.yaml
+sed -i  "s/\$DOCKER_IMAGE/${DOCKER_USERNAME}/${NAME}:${DOCKER_VERSION}/"     deployment.yaml
 sed -i  "s/\$SERVICEPORT/3000/"     deployment.yaml
 
 
