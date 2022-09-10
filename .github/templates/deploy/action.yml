@@ -43,7 +43,7 @@ runs:
           mkdir lab-stodulski/lab
           mkdir lab-stodulski/lab/tsnode-clean-api
           cp -r scripts/kubernetes/*  lab-stodulski/lab/tsnode-clean-api
-          rm rf scripts
+          rm -rf scripts
           git status
       # criar diretorio dentro do pasta 
       # git add .
