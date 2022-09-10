@@ -17,7 +17,7 @@ jobs:
 
   pull-request:
     needs: prepare-branch
-    if: ${{ steps.prepare_branch.outputs.branch }} != 'develop'
+    if: (!contains(github.base_ref, 'develop'))
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v2
@@ -27,7 +27,7 @@ jobs:
 
   build:
     needs: prepare-branch
-    if: ${{ steps.prepare_branch.outputs.branch }} == 'develop' #|| ${{ steps.prepare_branch.outputs.branch }} == 'main'
+    if: (contains(github.base_ref, 'develop')) #|| ${{ steps.prepare_branch.outputs.branch }} == 'main'
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v2
@@ -37,7 +37,7 @@ jobs:
 
   publish:
       needs: [prepare-branch, build]
-      if: ${{ steps.prepare_branch.outputs.branch }} == 'develop' #|| ${{ steps.prepare_branch.outputs.branch }} == 'main'
+      if: (contains(github.base_ref, 'develop')) #|| ${{ steps.prepare_branch.outputs.branch }} == 'main'
       runs-on: ubuntu-latest
       steps:
       - uses: actions/checkout@v2
@@ -50,7 +50,7 @@ jobs:
 
   deploy:
       needs: [prepare-branch, build, publish]
-      if: ${{ steps.prepare_branch.outputs.branch }} == 'develop' #|| ${{ steps.prepare_branch.outputs.branch }} == 'main'
+      if: (contains(github.base_ref, 'develop')) #|| ${{ steps.prepare_branch.outputs.branch }} == 'main'
       runs-on: ubuntu-latest
       steps:
       - uses: actions/checkout@v2
