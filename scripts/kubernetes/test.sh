@@ -22,8 +22,8 @@ NAMESPACE=`readJson ../../package.json namespace` || exit 1;
 
 sed -i  "s/\$PROJECT_NAME/${APP_NAME}/"   deployment.yaml
 sed -i  "s/\$APP_VERSION/${APP_VERSION}/"     deployment.yaml
-sed -i  "s/\$NAMESPACE/lab/"     deployment.yaml
-sed -i  "s/\$DOCKER_IMAGE/${APP_IMAGE_REPO}/${APP_IMAGE}:${APP_IMAGE_VERSION}/"     deployment.yaml
+sed -i  "s/\$NAMESPACE/${NAMESPACE}/"     deployment.yaml
+sed -i  "s/\$DOCKER_IMAGE/${APP_IMAGE_REPO}\/${APP_IMAGE}:${APP_IMAGE_VERSION}/"     deployment.yaml
 sed -i  "s/\$SERVICEPORT/3000/"     deployment.yaml
 
 
