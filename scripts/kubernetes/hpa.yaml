@@ -2,17 +2,17 @@ apiVersion: autoscaling/v2beta2
 kind: HorizontalPodAutoscaler
 metadata:
   name: "$PROJECT_NAME"
-  namespace: "$NAMESPACE-$ENVIRONMENT_NAME"
+  namespace: "$NAMESPACE"
   labels:
-    app: "$NAMESPACE-$PROJECT_NAME"
+    app: "$NAMESPACE"
     version: "$APP_VERSION"
 spec:
   scaleTargetRef:
     apiVersion: apps/v1
     kind: Deployment
     name: "$PROJECT_NAME"
-  minReplicas: $REPLICAS_MIN_P
-  maxReplicas: $REPLICAS_MAX_P
+  minReplicas: 2
+  maxReplicas: 4
   metrics:
   - type: Resource
     resource:
