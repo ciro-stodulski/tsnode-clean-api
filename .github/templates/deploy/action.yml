@@ -51,7 +51,7 @@ runs:
           git config --global user.email ciro-stodulski@github.com
           mkdir -p ${{ inputs.cluster }}/ ${{ inputs.namespace }}
           mkdir -p ${{ inputs.cluster }}/${{ inputs.namespace }}/${{ github.event.repository.name }}
-          cp -r scripts/kubernetes/*  ${{ inputs.cluster }}/lab/${{ github.event.repository.name }}
+          cp -r scripts/kubernetes/*.yaml  ${{ inputs.cluster }}/lab/${{ github.event.repository.name }}
           rm -rf scripts
           git add .
           git status
