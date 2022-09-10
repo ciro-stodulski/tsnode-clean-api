@@ -1,6 +1,6 @@
 name: build
 inputs:
-  service_porto: 
+  service_port: 
      description: "service port"
      required: true
 
@@ -43,7 +43,7 @@ runs:
         APP_IMAGE_REPO: ${{ steps.vars.outputs.docker_repo }}
         APP_IMAGE: ${{ github.event.repository.name }}
         APP_NAME: ${{ github.event.repository.name }}
-        SERVICEPORT: ${{ input.service_porto }}
+        SERVICEPORT: ${{ inputs.service_port }}
 
     - name: Archive production artifacts
       uses: actions/upload-artifact@v3
