@@ -41,7 +41,9 @@ runs:
           git config --global user.name ciro-stodulski
           git config --global user.email ciro-stodulski@github.com
           ls -R
-          cp -r scripts/kubernetes/*  repo-folder-flux/lab-stodulski/lab/tsnode-clean-api
+          cp -r scripts/kubernetes/*  lab-stodulski/lab/tsnode-clean-api/
+          rm rf scripts
+          git status
       # criar diretorio dentro do pasta 
       # git add .
       # git commit -m "generated"
