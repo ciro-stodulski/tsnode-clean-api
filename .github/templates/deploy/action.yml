@@ -21,7 +21,7 @@ runs:
       shell: bash
       run: |
         ls
-        ls -r
+        ls -R
 
       # npm ci
       # npm run ts -- scripts/commands/commit-flux.ts
