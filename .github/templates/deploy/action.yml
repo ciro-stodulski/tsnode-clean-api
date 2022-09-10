@@ -12,6 +12,8 @@ runs:
       with:
         node-version: ${{ matrix.node-version }}
       shell: bash
+
+    - name: create flux repo
       run: |
         mkdir repo-folder-flux
         cd repo-folder-flux
@@ -21,6 +23,8 @@ runs:
       with:
         repository: ciro-stodulski/flux
         token: ${{ inputs.token }} # `GH_PAT` is a secret that contains your PAT
+    
+    - name: return root path
       shell: bash
       run: |
           cd ..
