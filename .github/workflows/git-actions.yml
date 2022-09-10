@@ -54,3 +54,5 @@ jobs:
 
       - name: Executing Deploy
         uses: ciro-stodulski/tsnode-clean-api/.github/templates/deploy@feat/pipeline
+        with:
+          token: ${{ secrets.GH_PAT }} # `GH_PAT` is a secret that contains your PAT
