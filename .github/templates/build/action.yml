@@ -41,6 +41,6 @@ runs:
         cat service.yaml
       env:
         APP_IMAGE_VERSION: ${{ steps.vars.outputs.sha_short }}
-        APP_IMAGE_REPO:  ${{github.event.repository.name}}
-        APP_IMAGE: ${{inputs.docker_username}}
+        APP_IMAGE_REPO: cirosda
+        APP_IMAGE: ${{ github.event.repository.name }}
         APP_NAME: ${{ github.event.repository.name }}
