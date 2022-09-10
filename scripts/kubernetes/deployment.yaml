@@ -2,7 +2,7 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: '$PROJECT_NAME'
-  namespace: 'lab'
+  namespace: '$NAMESPACE'
 spec:
   progressDeadlineSeconds: 600
   replicas: 2
@@ -21,7 +21,7 @@ spec:
         sidecar.istio.io/inject: 'true'
       labels:
         app: '$PROJECT_NAME'
-        version: '1.0.0'
+        version: '$APP_VERSION'
     spec:
       imagePullSecrets:
         - name: azure-acr
@@ -51,12 +51,12 @@ spec:
             periodSeconds: 60
             successThreshold: 1
             tcpSocket:
-              port: 3000
+              port: $SERVICEPORT
             timeoutSeconds: 60
           name: '$PROJECT_NAME'
           ports:
             - name: http
-              containerPort: 3000
+              containerPort: $SERVICEPORT
               protocol: TCP
           resources:
             limits:
