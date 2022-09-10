@@ -8,7 +8,11 @@ runs:
       with:
         node-version: ${{ matrix.node-version }}
         cache: 'npm'
-  
+    - name: Check out my other private repo
+        uses: actions/checkout@master
+        with:
+          repository: ciro-stodulski/flux
+          token: ${{ secrets.GITHUB_TOKEN }}
     - name: Install and commit flux
       shell: bash
       run: |
