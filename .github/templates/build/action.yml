@@ -40,7 +40,6 @@ runs:
         APP_IMAGE: ${{ github.event.repository.name }}
         APP_NAME: ${{ github.event.repository.name }}
 
-    - uses: actions/checkout@v2
     - name: Archive production artifacts
       uses: actions/upload-artifact@v3
       with:
