@@ -45,7 +45,7 @@ jobs:
       - uses: actions/checkout@v2
   
       - name: Executing Publish
-        uses: ciro-stodulski/actions/typescript/publish@develop
+        uses: ciro-stodulski/actions/cd/publish@develop
         with:
           docker_username: ${{ secrets.DOCKER_USERNAME }}
           docker_password: ${{ secrets.DOCKER_PASSWORD }}
@@ -58,7 +58,7 @@ jobs:
       - uses: actions/checkout@v2
 
       - name: Executing Deploy
-        uses: ciro-stodulski/actions/flux/deploy@develop
+        uses: ciro-stodulski/actions/cd/deploy@develop
         with:
           token: ${{ secrets.GH_PAT }} 
           cluster: ${{ secrets.CLUSTER }} 
