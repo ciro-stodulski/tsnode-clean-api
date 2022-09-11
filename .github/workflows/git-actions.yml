@@ -27,7 +27,7 @@ jobs:
 
   build:
     needs: prepare-branch
-    if: github.ref_name == 'develop' #|| ${{ steps.prepare_branch.outputs.branch }} == 'main'
+    if: github.ref_name != 'develop' #|| ${{ steps.prepare_branch.outputs.branch }} == 'main'
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v2
@@ -51,8 +51,8 @@ jobs:
           docker_password: ${{ secrets.DOCKER_PASSWORD }}
 
   deploy:
-      needs: [prepare-branch, publish, build]
-      if: github.ref_name == 'develop' #|| ${{ steps.prepare_branch.outputs.branch }} == 'main'
+      needs: [prepare-branch, build]
+      if: github.ref_name != 'develop' #|| ${{ steps.prepare_branch.outputs.branch }} == 'main'
       runs-on: ubuntu-latest
       steps:
       - uses: actions/checkout@v2
