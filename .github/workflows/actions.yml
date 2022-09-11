@@ -1,0 +1,66 @@
+name: pull-request 
+
+on:
+  push:
+    branches: [ "develop" ]
+  pull_request:
+    branches: [ "develop" ]
+
+jobs:    
+  prepare-branch:
+    runs-on: ubuntu-latest
+    steps:
+    - name: Extract branch name
+      shell: bash
+      run: echo "##[set-output name=branch;]$(echo ${GITHUB_REF#refs/heads/})"
+      id: prepare_branch
+
+  pull-request:
+    needs: prepare-branch
+    if: github.ref_name != 'develop'
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v2
+  
+    - name: Validating Pull Request
+      uses: ciro-stodulski/actions/typescript/pull-request@develop
+
+  build:
+    needs: prepare-branch
+    if: github.ref_name == 'develop' #|| ${{ steps.prepare_branch.outputs.branch }} == 'main'
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v2
+  
+    - name: Executing Build
+      uses: ciro-stodulski/actions/typescript/build@develop
+      with:
+        service_port: ${{ secrets.SERVICEPORT }}
+        
+  publish:
+      needs: [prepare-branch, build]
+      if: github.ref_name == 'develop' #|| ${{ steps.prepare_branch.outputs.branch }} == 'main'
+      runs-on: ubuntu-latest
+      steps:
+      - uses: actions/checkout@v2
+  
+      - name: Executing Publish
+        uses: ciro-stodulski/actions/typescript/publish@develop
+        with:
+          docker_username: ${{ secrets.DOCKER_USERNAME }}
+          docker_password: ${{ secrets.DOCKER_PASSWORD }}
+
+  deploy:
+      needs: [prepare-branch, build, publish]
+      if: github.ref_name == 'develop' #|| ${{ steps.prepare_branch.outputs.branch }} == 'main'
+      runs-on: ubuntu-latest
+      steps:
+      - uses: actions/checkout@v2
+
+      - name: Executing Deploy
+        uses: ciro-stodulski/actions/flux/deploy@develop
+        with:
+          token: ${{ secrets.GH_PAT }} 
+          cluster: ${{ secrets.CLUSTER }} 
+          namespace: ${{ secrets.NAMESPACE }}
+          branch: ${{ steps.prepare_branch.outputs.branch }}

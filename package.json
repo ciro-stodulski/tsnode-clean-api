@@ -1,6 +1,7 @@
 {
   "name": "tsnode-clean-api",
   "version": "1.0.0",
+  "namespace": "lab",
   "description": "",
   "homepage": "https://github.com/ciro-stodulski/tsnocde-clean-api#readme",
   "repository": {
@@ -9,6 +10,7 @@
   },
   "main": "index.js",
   "scripts": {
+    "ts": "ts-node",
     "build": "npm i && rimraf dist && tsc -p .",
     "cli": "node ./dist/main/modules/cli/index.js",
     "cli-dev": "tsnd ./src/main/modules/cli/index.ts",
