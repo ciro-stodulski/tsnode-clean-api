@@ -17,7 +17,7 @@ jobs:
 
   pull-request:
     needs: prepare-branch
-    if: github.ref_name == 'develop'
+    if: github.ref_name != 'develop'
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v2
@@ -26,7 +26,8 @@ jobs:
       uses: ciro-stodulski/actions/typescript/pull-request@develop
 
   build:
-    if: github.ref_name != 'develop' #|| ${{ steps.prepare_branch.outputs.branch }} == 'main'
+    needs: prepare-branch
+    if: github.ref_name == 'develop' #|| ${{ steps.prepare_branch.outputs.branch }} == 'main'
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v2
@@ -37,8 +38,8 @@ jobs:
         service_port: ${{ secrets.SERVICEPORT }}
         
   publish:
-      needs: build
-      if: github.ref_name != 'develop' #|| ${{ steps.prepare_branch.outputs.branch }} == 'main'
+      needs: [prepare-branch, build]
+      if: github.ref_name == 'develop' #|| ${{ steps.prepare_branch.outputs.branch }} == 'main'
       runs-on: ubuntu-latest
       steps:
       - uses: actions/checkout@v2
