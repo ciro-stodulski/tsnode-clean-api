@@ -23,7 +23,7 @@ jobs:
     - uses: actions/checkout@v2
   
     - name: Validating Pull Request
-      uses: ciro-stodulski/tsnode-clean-api/.github/templates/pull-request@feat/pipeline
+      uses: ciro-stodulski/actions/typescript/pull-request@develop
 
   build:
     needs: prepare-branch
@@ -33,7 +33,7 @@ jobs:
     - uses: actions/checkout@v2
   
     - name: Executing Build
-      uses: ciro-stodulski/tsnode-clean-api/.github/templates/build@feat/pipeline
+      uses: ciro-stodulski/actions/typescript/build@develop
       with:
         service_port: ${{ secrets.SERVICEPORT }}
         
@@ -45,7 +45,7 @@ jobs:
       - uses: actions/checkout@v2
   
       - name: Executing Publish
-        uses: ciro-stodulski/tsnode-clean-api/.github/templates/publish@feat/pipeline
+        uses: ciro-stodulski/actions/typescript/publish@develop
         with:
           docker_username: ${{ secrets.DOCKER_USERNAME }}
           docker_password: ${{ secrets.DOCKER_PASSWORD }}
@@ -58,7 +58,7 @@ jobs:
       - uses: actions/checkout@v2
 
       - name: Executing Deploy
-        uses: ciro-stodulski/tsnode-clean-api/.github/templates/deploy@feat/pipeline
+        uses: ciro-stodulski/actions/flux/deploy@develop
         with:
           token: ${{ secrets.GH_PAT }} 
           cluster: ${{ secrets.CLUSTER }} 
