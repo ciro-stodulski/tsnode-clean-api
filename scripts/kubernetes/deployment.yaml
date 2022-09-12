@@ -34,7 +34,7 @@ spec:
           image: '$DOCKER_IMAGE'
           imagePullPolicy: Always
           command: ['/bin/sh']
-          args: ['-c', 'npm run migration:up']
+          args: ['-c', 'npm run migration:latest']
       containers:
         - envFrom:
             - secretRef:
