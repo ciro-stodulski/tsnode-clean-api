@@ -23,8 +23,6 @@ spec:
         app: '$PROJECT_NAME'
         version: '$APP_VERSION'
     spec:
-      imagePullSecrets:
-        - name: azure-acr
       initContainers:
         - name: migrations
           envFrom:
