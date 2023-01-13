@@ -4,8 +4,6 @@ export * from './middlewares/auth/auth';
 export * from './middlewares/errors/errors';
 export * from './controllers/controller';
 export * from './controllers/list-todo/list-todo';
-export * from './controllers/create-todo/create-todo';
-export * from './controllers/create-todo/create-todo.schema';
 export * from './exceptions/http-error';
 export * from './exceptions/bad-request';
 export * from './exceptions/not-found';

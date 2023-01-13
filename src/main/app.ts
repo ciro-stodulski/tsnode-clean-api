@@ -4,10 +4,6 @@ import { Container } from './container';
 import {
   Module,
   HttpModule,
-  AmqpModule,
-  GraphQLModule,
-  MongodbModule,
-  GrpcModule,
 } from './modules';
 import { logger } from '../shared/logger';
 
@@ -37,19 +33,7 @@ export class App {
     container: Container
   ): void {
     this.modules = [
-      mongodb || new MongodbModule(),
       http || new HttpModule(container, env.http_port),
-      graphql || new GraphQLModule(container, env.graphql_port),
-      amqp ||
-        new AmqpModule(container, {
-          host: env.rabbit_mq_host,
-          password: env.rabbit_mq_password,
-          port: env.rabbit_mq_port,
-          protocol: env.rabbit_mq_protocol,
-          username: env.rabbit_mq_username,
-          vhost: env.rabbit_mq_vhost,
-        }),
-      grpc || new GrpcModule(container),
     ];
   }
 

@@ -1,19 +1,17 @@
 import { Command, ConfigCommand } from '..';
 import { logger } from '../../../shared/logger';
 import { Container } from '../../../main/container';
-import { MongodbModule } from '../../../main/modules';
 
 export class ListTodoCommand implements Command {
   config_command: ConfigCommand = {
     name: 'list-todo',
     description: 'command to list a todo',
-    modules: [new MongodbModule()],
   };
 
   constructor(private container: Container) {}
 
   async run(): Promise<void> {
-    const result = await this.container.list_todo_use_case.list();
+    const result = await this.container.get_user_use_case.get('1');
 
     logger.info(result);
   }

@@ -1,22 +1,23 @@
 import { Todo } from '../../../../core/entities';
-import { IListTodoUseCase } from '../../../../core/use-cases';
+import { IGetUserUseCase } from '../../../../core/use-cases';
 
-import { HttpResponse, Controller, RouteConfig } from '../..';
+import { HttpResponse, Controller, RouteConfig, HttpRequest } from '../..';
+import { JsonPlaceHolderUser } from '../../../../core/types';
 
 export class ListTodoController implements Controller {
   route_configs: RouteConfig = {
     method: 'get',
-    path: '/todos',
+    path: '/user',
     status_code: 200,
   };
 
-  constructor(private list_todo_use_case: IListTodoUseCase) {}
+  constructor(private get_user_use_case: IGetUserUseCase) {}
 
-  async handle(): Promise<HttpResponse<Todo[]>> {
-    const todos = await this.list_todo_use_case.list();
+  async handle({query}: HttpRequest): Promise<HttpResponse<JsonPlaceHolderUser>> {
+    const user = await this.get_user_use_case.get(query.id);
 
     return {
-      data: todos,
+      data: user,
     };
   }
 

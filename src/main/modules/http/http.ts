@@ -19,7 +19,6 @@ import {
   ErrorHandlerMiddleware,
   HttpRequest,
   BadRequest,
-  CreateTodoController,
   ListTodoController,
   NotFoundError,
 } from '../../../interface/http';
@@ -38,8 +37,7 @@ export class HttpModule implements Module {
 
   constructor(container: Container, private port: number) {
     this.controllers = [
-      new ListTodoController(container.list_todo_use_case),
-      new CreateTodoController(container.create_todo_use_case),
+      new ListTodoController(container.get_user_use_case),
     ];
   }
 
