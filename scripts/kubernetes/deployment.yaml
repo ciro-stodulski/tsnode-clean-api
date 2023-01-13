@@ -23,16 +23,16 @@ spec:
         app: '$PROJECT_NAME'
         version: '$APP_VERSION'
     spec:
-      initContainers:
-        - name: migrations
-          envFrom:
-            - secretRef:
-                name: '$PROJECT_NAME'
-                optional: false
-          image: '$DOCKER_IMAGE'
-          imagePullPolicy: Always
-          command: ['/bin/sh']
-          args: ['-c', 'npm run migration:latest']
+      # initContainers:
+      #   - name: migrations
+      #     envFrom:
+      #       - secretRef:
+      #           name: '$PROJECT_NAME'
+      #           optional: false
+      #     image: '$DOCKER_IMAGE'
+      #     imagePullPolicy: Always
+      #     command: ['/bin/sh']
+      #     args: ['-c', 'npm run migration:latest']
       containers:
         - envFrom:
             - secretRef:
