@@ -7,7 +7,7 @@ import { JsonPlaceHolderUser } from '../../../../core/types';
 export class ListTodoController implements Controller {
   route_configs: RouteConfig = {
     method: 'get',
-    path: '/user/id',
+    path: '/users',
     status_code: 200,
   };
 
