@@ -81,7 +81,6 @@ export class HttpModule implements Module {
         next: express.NextFunction
       ) => {
         console.log(req)
-        console.log(JSON.stringify(req))
         next(new NotFoundError('PAGE_NOT_FOUND', 'Page not found'));
       }
     );
