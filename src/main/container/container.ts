@@ -1,6 +1,5 @@
 import {
   CreateTodoUseCase,
-
   ListTodoUseCase,
   VerifyNotificationUseCase,
 } from '../../application/use-cases';
@@ -9,7 +8,7 @@ import {
   ICreateTodoUseCase,
   IListTodoUseCase,
   IVerifyNotificationUseCase,
-} from '../../domain/use-cases'
+} from '../../domain/use-cases';
 
 import { logger } from '../../shared';
 import { ContainerConfig } from '.';

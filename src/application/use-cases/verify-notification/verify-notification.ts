@@ -1,4 +1,4 @@
-import {  EventDto } from '..';
+import { EventDto } from '..';
 import { IVerifyNotificationUseCase } from '../../../domain/use-cases';
 import { INotificationService } from '../../../domain/services';
 
