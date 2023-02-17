@@ -7,7 +7,7 @@ import {
   CreateTodoConsumer,
   VerifyConsumer,
   Message,
-} from '../../../interface/amqp';
+} from '../../../presentation/amqp';
 import { Container } from '../../container';
 import {
   RabbitqmAdapter,

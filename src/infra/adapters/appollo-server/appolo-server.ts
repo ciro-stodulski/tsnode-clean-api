@@ -17,7 +17,7 @@ export class ApolloServerAdapter {
       resolvers: this.resolvers,
       emitSchemaFile: path.resolve(
         __dirname,
-        '../../../interface/graphql/schema.gql'
+        '../../../presentation/graphql/schema.gql'
       ),
     });
 

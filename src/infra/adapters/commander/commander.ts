@@ -1,7 +1,7 @@
 import { Command, OptionValues } from 'commander';
 import { table } from 'table';
 import { Schema } from 'joi';
-import { Command as InterfaceCommand } from '../../../interface/cli';
+import { Command as InterfaceCommand } from '../../../presentation/cli';
 import {
   remove_all_white_spaces_and_convert_to_lower_case,
   logger,

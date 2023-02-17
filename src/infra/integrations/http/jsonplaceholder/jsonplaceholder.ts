@@ -1,6 +1,6 @@
-import { UserNotFoundError } from '../../../../core/exceptions';
+import { UserNotFoundError } from '../../../../domain/exceptions';
 import { IJsonPlaceHolderIntegration, Http, HttpErrorCode } from '../..';
-import { JsonPlaceHolderUser } from '../../../../core/types';
+import { JsonPlaceHolderUser } from '../../../../domain/types';
 import { env } from '../../../../shared';
 
 export class JsonPlaceHolderIntegration implements IJsonPlaceHolderIntegration {

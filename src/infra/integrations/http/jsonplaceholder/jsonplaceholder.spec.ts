@@ -2,8 +2,8 @@ import nock from 'nock';
 import { expect } from 'chai';
 import Sinon from 'sinon';
 import { JsonPlaceHolderIntegration, HttpClient } from '../..';
-import { JsonPlaceHolderUser } from '../../../../core/types';
-import { UserNotFoundError } from '../../../../core/exceptions';
+import { JsonPlaceHolderUser } from '../../../../domain/types';
+import { UserNotFoundError } from '../../../../domain/exceptions';
 import { env } from '../../../../shared';
 
 describe('JsonPlaceHolderIntegration', () => {

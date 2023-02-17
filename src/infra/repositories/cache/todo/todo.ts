@@ -1,4 +1,4 @@
-import { Todo } from '../../../../core/entities';
+import { Todo } from '../../../../domain/entities';
 import { CacheClient, ITodoCache } from '../..';
 
 export class TodoCache implements ITodoCache {

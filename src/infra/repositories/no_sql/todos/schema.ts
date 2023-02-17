@@ -1,5 +1,5 @@
 import { Schema, model } from 'mongoose';
-import { Todo } from '../../../../core/entities';
+import { Todo } from '../../../../domain/entities';
 
 export const todo_model = model(
   Todo.name,

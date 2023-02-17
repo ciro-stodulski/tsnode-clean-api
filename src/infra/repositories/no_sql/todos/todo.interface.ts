@@ -1,4 +1,4 @@
-import { Todo } from '../../../../core/entities';
+import { Todo } from '../../../../domain/entities';
 
 export interface ITodoCollection {
   save(todo: Todo): Promise<void>;

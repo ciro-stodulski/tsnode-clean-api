@@ -20,6 +20,7 @@ Refactored module cli
 Update changelog format by http://keepachangelog.com
 Refactored layer to event and logger.
 Update logs in modules.
+restructure project
 
 ### Added
 

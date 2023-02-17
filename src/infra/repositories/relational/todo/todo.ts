@@ -1,6 +1,6 @@
 import Knex from 'knex';
 import { Repository, TableConfig, ITodoRepository } from '../..';
-import { Todo } from '../../../../core/entities';
+import { Todo } from '../../../../domain/entities';
 
 export class TodoRepository
   extends Repository<Todo>

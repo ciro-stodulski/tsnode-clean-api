@@ -1,4 +1,4 @@
-import { EventDto } from '../../../../core/use-cases';
+import { EventDto } from '../../../../application/use-cases';
 
 export interface INotificationProto {
   verify(msg: string): Promise<EventDto>;

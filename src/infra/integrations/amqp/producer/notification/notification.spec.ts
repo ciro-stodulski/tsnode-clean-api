@@ -1,7 +1,7 @@
 import sinon from 'sinon';
 import { assert } from 'chai';
 import { NotificationProducer, AMQPPublishOptions } from '../../..';
-import { EventDto } from '../../../../../core/use-cases';
+import { EventDto } from '../../../../../application/use-cases';
 
 describe('TodoProducer', () => {
   const sandbox = sinon.createSandbox();

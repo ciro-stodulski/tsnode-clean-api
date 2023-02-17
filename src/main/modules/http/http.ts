@@ -22,7 +22,7 @@ import {
   CreateTodoController,
   ListTodoController,
   NotFoundError,
-} from '../../../interface/http';
+} from '../../../presentation/http';
 import { Container } from '../../container';
 import { Module } from '..';
 import { logger } from '../../../shared/logger';

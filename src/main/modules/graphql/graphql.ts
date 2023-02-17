@@ -2,7 +2,7 @@ import { Container as ContainerTypedi } from 'typedi';
 import {
   CreateTodoResolver,
   ListTodoResolver,
-} from '../../../interface/graphql';
+} from '../../../presentation/graphql';
 import { Module } from '..';
 import { ApolloServerAdapter } from '../../../infra/adapters';
 import { Container } from '../../container';

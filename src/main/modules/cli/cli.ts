@@ -1,4 +1,4 @@
-import { Command, ListTodoCommand } from '../../../interface/cli';
+import { Command, ListTodoCommand } from '../../../presentation/cli';
 import { Container } from '../../container';
 import { Module } from '..';
 import { CommanderAdapter } from '../../../infra/adapters';

@@ -1,5 +1,5 @@
-import { EventDto } from '../../../core/use-cases';
-import { INotificationService } from '../../../core/ports';
+import { EventDto } from '../../../application/use-cases';
+import { INotificationService } from '../../../domain/services';
 import { INotificationProto, INotificationProducer } from '../../integrations';
 import { logger } from '../../../shared';
 

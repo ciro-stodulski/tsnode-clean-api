@@ -4,9 +4,9 @@ import {
   ITodoRepository,
 } from '../../repositories';
 import { IJsonPlaceHolderIntegration, ITodoProducer } from '../../integrations';
-import { Todo } from '../../../core/entities';
-import { ITodoService } from '../../../core/ports';
-import { JsonPlaceHolderUser } from '../../../core/types';
+import { Todo } from '../../../domain/entities';
+import { ITodoService } from '../../../domain/services';
+import { JsonPlaceHolderUser } from '../../../domain/types';
 import { logger } from '../../../shared/logger';
 
 export class TodoService implements ITodoService {

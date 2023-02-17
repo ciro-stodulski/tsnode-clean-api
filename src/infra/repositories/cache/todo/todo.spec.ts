@@ -1,7 +1,7 @@
 import { assert, expect } from 'chai';
 import sinon from 'sinon';
 import { TodoCache } from '../..';
-import { Todo, TodoStatus } from '../../../../core/entities';
+import { Todo, TodoStatus } from '../../../../domain/entities';
 
 describe('Repositories - Cache - Todo', () => {
   describe('save', () => {

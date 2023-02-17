@@ -1,4 +1,4 @@
-import { EventDto } from '../../../../../core/use-cases';
+import { EventDto } from '../../../../../application/use-cases';
 import {
   Producer,
   AMQPPublishOptions,

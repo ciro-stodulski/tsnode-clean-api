@@ -5,7 +5,7 @@ import * as protoLoader from '@grpc/proto-loader';
 import { PackageDefinition } from '@grpc/grpc-js/build/src/make-client';
 import * as grpc from '@grpc/grpc-js';
 
-import { GrpcBase, GRPCConfig, GRPCError } from '../../../interface/grpc';
+import { GrpcBase, GRPCConfig, GRPCError } from '../../../presentation/grpc';
 import { ValidationError } from '../../../shared';
 
 export type LoadedRPC = {
@@ -19,7 +19,7 @@ export type LoadedRPC = {
 export class GrpcConfigModule {
   protected server: grpc.Server;
 
-  private proto_dir = '../../../interface/grpc/services';
+  private proto_dir = '../../../presentation/grpc/services';
 
   protected services: GrpcBase[];
 

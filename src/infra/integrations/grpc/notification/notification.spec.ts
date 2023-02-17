@@ -1,6 +1,6 @@
 import sinon from 'sinon';
 import { assert, expect } from 'chai';
-import { EventDto } from '../../../../core/use-cases';
+import { EventDto } from '../../../../application/use-cases';
 import { NotificationPB } from '../..';
 
 describe('NotificationPB', () => {

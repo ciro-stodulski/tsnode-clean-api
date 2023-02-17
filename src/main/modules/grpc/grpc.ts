@@ -2,7 +2,7 @@ import * as grpc from '@grpc/grpc-js';
 import wrapServerWithRefelection from 'grpc-node-server-reflection';
 
 import { Module, GrpcConfigModule } from '..';
-import { VerifyGrpc } from '../../../interface/grpc';
+import { VerifyGrpc } from '../../../presentation/grpc';
 import { env, logger } from '../../../shared';
 import { Container } from '../../container';
 

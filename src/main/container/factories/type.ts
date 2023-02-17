@@ -1,4 +1,4 @@
-import { INotificationService, ITodoService } from '../../../core/ports';
+import { INotificationService, ITodoService } from '../../../domain/services';
 import {
   ITodoCache,
   ITodoRepository,
