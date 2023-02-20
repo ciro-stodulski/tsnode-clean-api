@@ -1,11 +1,11 @@
 import { UserNotFoundError } from 'src/domain/exceptions';
 import {
-  IJsonPlaceHolderIntegration,
   Http,
   HttpErrorCode,
 } from 'src/infra/integrations';
 import { JsonPlaceHolderUser } from 'src/domain/types';
 import { env } from 'src/shared';
+import { IJsonPlaceHolderIntegration } from 'src/domain/integrations';
 
 export class JsonPlaceHolderIntegration implements IJsonPlaceHolderIntegration {
   constructor(private readonly http: Http) {

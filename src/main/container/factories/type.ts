@@ -1,15 +1,12 @@
+import { ITodoCache, ITodoCollection, ITodoRepository } from 'src/domain/respositories';
 import { INotificationService, ITodoService } from 'src/domain/services';
-import {
-  ITodoCache,
-  ITodoRepository,
-  ITodoCollection,
-} from 'src/infra/repositories';
+
 import {
   IJsonPlaceHolderIntegration,
   INotificationProducer,
   INotificationProto,
   ITodoProducer,
-} from 'src/infra/integrations';
+} from 'src/domain/integrations';
 
 export type InfraContext = {
   todo_repository: ITodoRepository;

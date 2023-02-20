@@ -1,6 +1,7 @@
 import { Model } from 'mongoose';
-import { ITodoCollection, todo_model } from 'src/infra/repositories';
+import {  todo_model } from 'src/infra/repositories';
 import { Todo } from 'src/domain/entities';
+import { ITodoCollection } from 'src/domain/respositories';
 
 export class TodoCollection implements ITodoCollection {
   private model: Model<Todo>;
