@@ -20,7 +20,7 @@
     "migration:create": "knex migrate:make",
     "migration:latest": "knex migrate:latest",
     "migration:rollback": "knex migrate:rollback",
-    "start": "node  ./src/main/index.js",
+    "start": "NODE_PATH=. node  ./src/main/index.js",
     "test": "NODE_PATH=. nyc mocha --exit --config=.mocha.yml './src/**/*.spec.ts'"
   },
   "nyc": {
