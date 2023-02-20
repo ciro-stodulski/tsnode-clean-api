@@ -1,5 +1,5 @@
 import { Model } from 'mongoose';
-import {  todo_model } from 'src/infra/repositories';
+import { todo_model } from 'src/infra/repositories';
 import { Todo } from 'src/domain/entities';
 import { ITodoCollection } from 'src/domain/respositories';
 

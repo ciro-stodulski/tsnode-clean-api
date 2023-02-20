@@ -1,4 +1,8 @@
-import { ITodoCache, ITodoCollection, ITodoRepository } from 'src/domain/respositories';
+import {
+  ITodoCache,
+  ITodoCollection,
+  ITodoRepository,
+} from 'src/domain/respositories';
 import { INotificationService, ITodoService } from 'src/domain/services';
 
 import {
