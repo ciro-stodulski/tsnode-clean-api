@@ -11,8 +11,8 @@
   "main": "index.js",
   "scripts": {
     "ts": "ts-node",
-    "build": "npm i && rimraf dist && tsc -p .",
-    "cli": "node ./dist/main/modules/cli/index.js",
+    "build": "npm i && rimraf dist && tsc -p . && cpx \"src/**/*.proto\" dist/src",
+    "cli": "NODE_PATH=. node ./dist/main/modules/cli/index.js",
     "cli-dev": "NODE_PATH=. tsnd ./src/main/modules/cli/index.ts",
     "dev": "NODE_PATH=. tsnd ./src/main/index.ts --transpile-only",
     "lint": "eslint  'src/**/*.ts'",
@@ -53,6 +53,7 @@
     "class-validator": "^0.13.2",
     "commander": "^9.4.0",
     "compression": "^1.7.4",
+    "cpx": "^1.5.0",
     "dotenv": "^16.0.1",
     "express": "^4.18.1",
     "graphql": "^15.8.0",
