@@ -1,13 +1,13 @@
 import { Channel, ConsumeMessage } from 'amqplib';
-import { IVerifyNotificationUseCase } from '../../../../domain/use-cases';
+import { IVerifyNotificationUseCase } from 'src/domain/use-cases';
 import {
   Consumer,
   ConsumerErrorOptions,
   ConsumerConfig,
   verify_schema,
   Message,
-} from '../..';
-import { logger } from '../../../../shared';
+} from 'src/presentation/amqp';
+import { logger } from 'src/shared';
 
 export class VerifyConsumer implements Consumer {
   consumer_config: ConsumerConfig = {

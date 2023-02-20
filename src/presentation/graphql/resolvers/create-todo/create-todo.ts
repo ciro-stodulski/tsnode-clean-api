@@ -1,7 +1,7 @@
 import { Arg, Mutation, Resolver } from 'type-graphql';
 import { Inject, Service } from 'typedi';
-import { Container } from '../../../../main/container';
-import { TodoDto } from '../..';
+import { Container } from 'src/main/container';
+import { TodoDto } from 'src/presentation/graphql';
 
 @Service()
 @Resolver()

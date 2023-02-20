@@ -1,7 +1,7 @@
 import { assert, expect } from 'chai';
 import sinon from 'sinon';
-import { Todo, TodoStatus } from '../../../domain/entities';
-import { ListTodoUseCase } from '..';
+import { Todo, TodoStatus } from 'src/domain/entities';
+import { ListTodoUseCase } from 'src/application/use-cases';
 
 describe('UseCase - ListTodoUseCase', () => {
   describe('list', () => {

@@ -1,8 +1,8 @@
 import { assert, expect } from 'chai';
 import sinon from 'sinon';
-import { Todo, TodoStatus } from '../../../domain/entities';
-import { JsonPlaceHolderUser } from '../../../domain/types';
-import { CreateTodoUseCase } from '..';
+import { Todo, TodoStatus } from 'src/domain/entities';
+import { JsonPlaceHolderUser } from 'src/domain/types';
+import { CreateTodoUseCase } from 'src/application/use-cases';
 
 describe('UseCase - CreateTodoUseCase', () => {
   describe('create', () => {

@@ -1,5 +1,5 @@
 import { status } from '@grpc/grpc-js';
-import { GRPCError } from '.';
+import { GRPCError } from 'src/presentation/grpc/exceptions';
 
 export class NotFoundError extends GRPCError {
   constructor(code: string, message: string, details?: Record<string, any>) {

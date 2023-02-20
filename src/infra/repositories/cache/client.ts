@@ -1,7 +1,7 @@
 import Redis from 'ioredis';
-import { RedisAdapter } from '../../adapters';
-import { Cache } from '..';
-import { logger } from '../../../shared/logger';
+import { RedisAdapter } from 'src/infra/adapters';
+import { Cache } from 'src/infra/repositories';
+import { logger } from 'src/shared/logger';
 
 export class CacheClient extends RedisAdapter implements Cache {
   constructor(cache?: Redis) {

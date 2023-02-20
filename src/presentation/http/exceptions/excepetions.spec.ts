@@ -1,5 +1,10 @@
 import { expect } from 'chai';
-import { BadRequest, HttpError, NotFoundError, Unauthorized } from '..';
+import {
+  BadRequest,
+  HttpError,
+  NotFoundError,
+  Unauthorized,
+} from 'src/presentation/http';
 
 describe('Interface - Http - Exceptions', async () => {
   describe('Http error', () => {

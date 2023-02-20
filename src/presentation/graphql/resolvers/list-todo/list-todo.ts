@@ -1,7 +1,7 @@
 import { Query, Resolver } from 'type-graphql';
 import { Inject, Service } from 'typedi';
-import { Container } from '../../../../main/container';
-import { TodoResponse } from '../..';
+import { Container } from 'src/main/container';
+import { TodoResponse } from 'src/presentation/graphql';
 import 'reflect-metadata';
 
 @Service()

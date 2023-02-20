@@ -1,4 +1,4 @@
-import { CliLine, ConfigCommand } from '.';
+import { CliLine, ConfigCommand } from 'src/presentation/cli';
 
 export interface Command {
   config_command: ConfigCommand;

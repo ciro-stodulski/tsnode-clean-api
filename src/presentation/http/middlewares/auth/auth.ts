@@ -1,4 +1,4 @@
-import { Middleware, HttpRequest, Unauthorized } from '../..';
+import { Middleware, HttpRequest, Unauthorized } from 'src/presentation/http';
 
 export class AuthMiddleware implements Middleware {
   async handle(req: HttpRequest) {

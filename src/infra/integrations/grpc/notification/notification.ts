@@ -1,8 +1,12 @@
 import path from 'path';
 import { plainToInstance } from 'class-transformer';
-import { env, logger } from '../../../../shared';
-import { INotificationProto, IGRPCClient, INotificationPB } from '../..';
-import { EventDto } from '../../../../application/use-cases';
+import { env, logger } from 'src/shared';
+import {
+  INotificationProto,
+  IGRPCClient,
+  INotificationPB,
+} from 'src/infra/integrations';
+import { EventDto } from 'src/application/use-cases';
 
 export class NotificationPB implements INotificationProto {
   protected readonly service: INotificationPB;

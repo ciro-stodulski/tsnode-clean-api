@@ -1,5 +1,5 @@
 import { connect, Mongoose } from 'mongoose';
-import { env } from '../../../shared/env';
+import { env } from 'src/shared/env';
 
 export class MongooseAdapter {
   connection: Mongoose;

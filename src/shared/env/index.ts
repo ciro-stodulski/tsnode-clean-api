@@ -1,5 +1,5 @@
 import * as dotenv from 'dotenv';
-import { EnvValidator } from './validator';
+import { EnvValidator } from 'src/shared/env/validator';
 
 dotenv.config();
 

@@ -1,7 +1,7 @@
-import { Todo } from '../../../../domain/entities';
-import { IListTodoUseCase } from '../../../../domain/use-cases';
+import { Todo } from 'src/domain/entities';
+import { IListTodoUseCase } from 'src/domain/use-cases';
 
-import { HttpResponse, Controller, RouteConfig } from '../..';
+import { HttpResponse, Controller, RouteConfig } from 'src/presentation/http';
 
 export class ListTodoController implements Controller {
   route_configs: RouteConfig = {

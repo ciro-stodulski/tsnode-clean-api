@@ -1,6 +1,6 @@
 import { validateOrReject, ValidationError } from 'class-validator';
-import { env } from '../shared/env';
-import { Container } from './container';
+import { env } from 'src/shared/env';
+import { Container } from 'src/main/container';
 import {
   Module,
   HttpModule,
@@ -8,8 +8,8 @@ import {
   GraphQLModule,
   MongodbModule,
   GrpcModule,
-} from './modules';
-import { logger } from '../shared/logger';
+} from 'src/main/modules';
+import { logger } from 'src/shared/logger';
 
 export class App {
   private modules: Module[];

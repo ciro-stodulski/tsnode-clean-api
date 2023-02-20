@@ -1,7 +1,7 @@
-import { CacheClient } from '../../infra/repositories';
-import { AmqpClient, GRPCClient, IGRPCClient } from '../../infra/integrations';
-import { KnexAdapter } from '../../infra/adapters';
-import { env, logger } from '../../shared';
+import { CacheClient } from 'src/infra/repositories';
+import { AmqpClient, GRPCClient, IGRPCClient } from 'src/infra/integrations';
+import { KnexAdapter } from 'src/infra/adapters';
+import { env, logger } from 'src/shared';
 
 export class ContainerConfig {
   readonly db: KnexAdapter;

@@ -1,8 +1,8 @@
 import { ConsumeMessage, Channel } from 'amqplib';
 import { ConsumerErrorOptions, ConsumerConfig } from '..';
 
-export type Message = {
-  body: any;
+export type Message<T = any> = {
+  body: T;
 };
 
 export interface Consumer {

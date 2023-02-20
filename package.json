@@ -13,15 +13,15 @@
     "ts": "ts-node",
     "build": "npm i && rimraf dist && tsc -p .",
     "cli": "node ./dist/main/modules/cli/index.js",
-    "cli-dev": "tsnd ./src/main/modules/cli/index.ts",
-    "dev": "tsnd ./src/main/index.ts --transpile-only",
+    "cli-dev": "NODE_PATH=. tsnd ./src/main/modules/cli/index.ts",
+    "dev": "NODE_PATH=. tsnd ./src/main/index.ts --transpile-only",
     "lint": "eslint  'src/**/*.ts'",
     "lint:fix": "eslint --fix 'src/**/*.ts'",
     "migration:create": "knex migrate:make",
     "migration:latest": "knex migrate:latest",
     "migration:rollback": "knex migrate:rollback",
     "start": "node  ./src/main/index.js",
-    "test": "nyc mocha --exit --config=.mocha.yml './src/**/*.spec.ts'"
+    "test": "NODE_PATH=. nyc mocha --exit --config=.mocha.yml './src/**/*.spec.ts'"
   },
   "nyc": {
     "all": true,

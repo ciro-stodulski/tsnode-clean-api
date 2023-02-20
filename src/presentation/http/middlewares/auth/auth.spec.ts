@@ -1,10 +1,15 @@
 import { expect } from 'chai';
-import { AuthMiddleware, HttpRequest, Unauthorized } from '../..';
+import {
+  AuthMiddleware,
+  HttpRequest,
+  Unauthorized,
+} from 'src/presentation/http';
 
 describe('Interface - Http - Middleware', async () => {
   describe('auth', () => {
     it('valid header with token', () => {
-      const req: HttpRequest = {
+      const req: HttpRequest<undefined> = {
+        body: undefined,
         headers: {
           authorization: 'Bearer test',
         },
@@ -17,6 +22,7 @@ describe('Interface - Http - Middleware', async () => {
 
     it('should return error unauthorize', async () => {
       const req: HttpRequest = {
+        body: undefined,
         headers: {
           authorization: 'yolo',
         },

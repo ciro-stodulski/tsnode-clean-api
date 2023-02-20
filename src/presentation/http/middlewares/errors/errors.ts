@@ -1,5 +1,10 @@
-import { logger } from '../../../../shared/logger';
-import { Middleware, HttpRequest, HttpResponse, HttpError } from '../..';
+import { logger } from 'src/shared/logger';
+import {
+  Middleware,
+  HttpRequest,
+  HttpResponse,
+  HttpError,
+} from 'src/presentation/http';
 
 export class ErrorHandlerMiddleware implements Middleware {
   handle(req: HttpRequest, error: any): HttpResponse {

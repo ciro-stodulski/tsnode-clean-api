@@ -1,7 +1,11 @@
 import { expect, assert } from 'chai';
 import Sinon from 'sinon';
-import { TodoStatus, Todo } from '../../../../domain/entities';
-import { CreateTodoController, HttpRequest, create_todo_schema } from '../..';
+import { TodoStatus, Todo } from 'src/domain/entities';
+import {
+  CreateTodoController,
+  HttpRequest,
+  create_todo_schema,
+} from 'src/presentation/http';
 
 describe('Interface - Http', () => {
   describe('create-todo - controller', () => {

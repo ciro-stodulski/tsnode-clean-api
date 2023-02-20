@@ -1,7 +1,7 @@
 import Sinon from 'sinon';
 import { assert, expect } from 'chai';
-import { VerifyGrpc } from '../../..';
-import { Todo, TodoStatus } from '../../../../../domain/entities';
+import { VerifyGrpc } from 'src/presentation/grpc';
+import { Todo, TodoStatus } from 'src/domain/entities';
 
 describe('Interface - Amqp', () => {
   describe('create-todo - consumer', () => {

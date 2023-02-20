@@ -1,4 +1,4 @@
-import { CodedError } from '../../shared';
+import { CodedError } from 'src/shared';
 
 export class UserNotFoundError extends CodedError {
   constructor() {

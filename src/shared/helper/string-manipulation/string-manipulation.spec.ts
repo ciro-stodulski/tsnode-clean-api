@@ -1,5 +1,5 @@
 import { expect } from 'chai';
-import { remove_all_white_spaces_and_convert_to_lower_case } from './string-manipulation';
+import { remove_all_white_spaces_and_convert_to_lower_case } from 'src/shared';
 
 describe('String Manipulation', () => {
   describe('#remove_all_white_spaces_and_convert_to_lower_case', () => {

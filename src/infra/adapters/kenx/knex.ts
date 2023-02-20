@@ -1,6 +1,6 @@
 import knex from 'knex';
-import { DBConnection } from '..';
-import { logger } from '../../../shared/logger';
+import { DBConnection } from 'src/infra/adapters';
+import { logger } from 'src/shared/logger';
 
 const knexconfig = require('../../../../knexfile.js');
 

@@ -1,7 +1,6 @@
-import { App } from './app';
-import { EventEmmiter } from '../shared/event';
-import { AppState } from './enum';
-import { logger } from '../shared/logger';
+import { App } from 'src/main/app';
+import { EventEmmiter, logger } from 'src/shared';
+import { AppState } from 'src/main/enum';
 
 const application = new App({});
 

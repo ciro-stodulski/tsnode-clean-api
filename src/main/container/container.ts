@@ -1,18 +1,19 @@
+import { logger } from 'src/shared';
 import {
   CreateTodoUseCase,
   ListTodoUseCase,
   VerifyNotificationUseCase,
-} from '../../application/use-cases';
-
+} from 'src/application/use-cases';
 import {
   ICreateTodoUseCase,
   IListTodoUseCase,
   IVerifyNotificationUseCase,
-} from '../../domain/use-cases';
-
-import { logger } from '../../shared';
-import { ContainerConfig } from '.';
-import { make_infra_context, make_service_context } from './factories';
+} from 'src/domain/use-cases';
+import { ContainerConfig } from 'src/main/container';
+import {
+  make_infra_context,
+  make_service_context,
+} from 'src/main/container/factories';
 
 export class Container extends ContainerConfig {
   readonly list_todo_use_case: IListTodoUseCase;

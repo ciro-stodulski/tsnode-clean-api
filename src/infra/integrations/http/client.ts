@@ -1,6 +1,6 @@
 import axios, { AxiosRequestConfig, AxiosInstance, Method } from 'axios';
-import { axiosLogger } from '../../../shared/logger';
-import { Http, HttpConfig, HttpResponse } from '..';
+import { axiosLogger } from 'src/shared/logger';
+import { Http, HttpConfig, HttpResponse } from 'src/infra/integrations';
 
 export class HttpClient implements Http {
   private instance: AxiosInstance;

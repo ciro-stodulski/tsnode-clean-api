@@ -1,4 +1,4 @@
-import { GRPCResponse, GRPCRequest, GRPCConfig } from '.';
+import { GRPCResponse, GRPCRequest, GRPCConfig } from 'src/presentation/grpc';
 
 export interface GrpcBase {
   service_configs: GRPCConfig;

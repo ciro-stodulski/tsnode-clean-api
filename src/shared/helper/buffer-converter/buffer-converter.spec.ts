@@ -1,5 +1,5 @@
 import { expect } from 'chai';
-import { converter, convert_to_json } from '../..';
+import { converter, convert_to_json } from 'src/shared';
 
 describe('Helper - Buffer converter', () => {
   it('converter', () => {

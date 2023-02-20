@@ -1,21 +1,20 @@
+import { KnexAdapter } from 'src/infra/adapters';
+import {
+  AmqpClient,
+  HttpClient,
+  IGRPCClient,
+  JsonPlaceHolderIntegration,
+  NotificationPB,
+  NotificationProducer,
+  TodoProducer,
+} from 'src/infra/integrations';
 import {
   CacheClient,
   TodoCache,
   TodoCollection,
   TodoRepository,
-} from '../../../infra/repositories';
-import {
-  HttpClient,
-  JsonPlaceHolderIntegration,
-  TodoProducer,
-  AmqpClient,
-  NotificationPB,
-  IGRPCClient,
-  NotificationProducer,
-} from '../../../infra/integrations';
-
-import { InfraContext } from '.';
-import { KnexAdapter } from '../../../infra/adapters';
+} from 'src/infra/repositories';
+import { InfraContext } from 'src/main/container/factories';
 
 export const make_infra_context = (
   cache_client: CacheClient,

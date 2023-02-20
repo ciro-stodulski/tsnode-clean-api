@@ -1,6 +1,6 @@
 import { assert } from 'chai';
 import Sinon from 'sinon';
-import { HttpModule } from '..';
+import { HttpModule } from 'src/main/modules';
 
 describe('Module - Http', () => {
   describe('start', () => {

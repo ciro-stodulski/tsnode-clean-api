@@ -1,5 +1,5 @@
 import { Channel, ConsumeMessage } from 'amqplib';
-import { convert_to_json } from '../../../shared';
+import { convert_to_json } from 'src/shared';
 import {
   validation,
   Consumer,
@@ -7,15 +7,15 @@ import {
   CreateTodoConsumer,
   VerifyConsumer,
   Message,
-} from '../../../presentation/amqp';
-import { Container } from '../../container';
+} from 'src/presentation/amqp';
+import { Container } from 'src/main/container';
 import {
   RabbitqmAdapter,
   RabbitMQConfig,
   InstanceType,
-} from '../../../infra/adapters';
-import { Module } from '..';
-import { logger } from '../../../shared/logger';
+} from 'src/infra/adapters';
+import { Module } from 'src/main/modules';
+import { logger } from 'src/shared/logger';
 
 export class AmqpModule extends RabbitqmAdapter implements Module {
   private channel_server: Channel;

@@ -1,5 +1,5 @@
-import { Todo } from '../entities';
-import { JsonPlaceHolderUser } from '../types';
+import { Todo } from 'src/domain/entities';
+import { JsonPlaceHolderUser } from 'src/domain/types';
 
 export interface ITodoService {
   create(dto: Todo): Promise<string>;

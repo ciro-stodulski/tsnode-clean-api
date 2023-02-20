@@ -1,7 +1,7 @@
 import { assert } from 'chai';
 import Sinon from 'sinon';
-import { EventDto } from '../../../application/use-cases';
-import { NotificationService } from '..';
+import { EventDto } from 'src/application/use-cases';
+import { NotificationService } from 'src/infra/services';
 
 describe('Service - NotificationService', () => {
   describe('CheckNotify', () => {

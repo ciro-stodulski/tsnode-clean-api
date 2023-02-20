@@ -1,5 +1,5 @@
 import Joi from 'joi';
-import { Module } from '../../main/modules';
+import { Module } from 'src/main/modules';
 
 export type CliLine = {
   line: any;

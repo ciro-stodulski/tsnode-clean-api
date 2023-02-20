@@ -1,7 +1,7 @@
 import { assert } from 'chai';
 import sinon from 'sinon';
-import { Todo, TodoStatus } from '../../../domain/entities';
-import { ListTodoCommand } from '..';
+import { Todo, TodoStatus } from 'src/domain/entities';
+import { ListTodoCommand } from 'src/presentation/cli';
 
 describe('Interface - CLI', () => {
   describe('list-todo', () => {

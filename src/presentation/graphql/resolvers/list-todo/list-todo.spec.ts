@@ -1,7 +1,7 @@
 import { expect, assert } from 'chai';
 import Sinon from 'sinon';
-import { TodoStatus } from '../../../../domain/entities';
-import { ListTodoResolver, TodoResponse } from '../..';
+import { TodoStatus } from 'src/domain/entities';
+import { ListTodoResolver, TodoResponse } from 'src/presentation/graphql';
 
 describe('Interface - Graphql', () => {
   describe('list-todo - resolver', () => {

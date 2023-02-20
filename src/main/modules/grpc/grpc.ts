@@ -1,10 +1,10 @@
 import * as grpc from '@grpc/grpc-js';
 import wrapServerWithRefelection from 'grpc-node-server-reflection';
 
-import { Module, GrpcConfigModule } from '..';
-import { VerifyGrpc } from '../../../presentation/grpc';
-import { env, logger } from '../../../shared';
-import { Container } from '../../container';
+import { Module, GrpcConfigModule } from 'src/main/modules';
+import { VerifyGrpc } from 'src/presentation/grpc';
+import { env, logger } from 'src/shared';
+import { Container } from 'src/main/container';
 
 export class GrpcModule extends GrpcConfigModule implements Module {
   constructor(container: Container) {

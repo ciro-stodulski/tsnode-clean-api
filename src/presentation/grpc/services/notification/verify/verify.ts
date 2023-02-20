@@ -1,5 +1,5 @@
-import { GrpcBase, GRPCResponse, GRPCConfig } from '../../..';
-import { IListTodoUseCase } from '../../../../../domain/use-cases';
+import { GrpcBase, GRPCResponse, GRPCConfig } from 'src/presentation/grpc';
+import { IListTodoUseCase } from 'src/domain/use-cases';
 
 export class VerifyGrpc implements GrpcBase {
   service_configs: GRPCConfig = {

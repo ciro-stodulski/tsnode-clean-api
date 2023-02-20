@@ -1,6 +1,6 @@
-import { Todo } from '../../../domain/entities';
-import { ICreateTodoUseCase } from '../../../domain/use-cases';
-import { INotificationService, ITodoService } from '../../../domain/services';
+import { Todo } from 'src/domain/entities';
+import { ICreateTodoUseCase } from 'src/domain/use-cases';
+import { INotificationService, ITodoService } from 'src/domain/services';
 
 export class CreateTodoUseCase implements ICreateTodoUseCase {
   constructor(

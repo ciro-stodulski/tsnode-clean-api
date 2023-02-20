@@ -1,5 +1,5 @@
 import { Field, ObjectType } from 'type-graphql';
-import { TodoStatus } from '../../../../domain/entities';
+import { TodoStatus } from 'src/domain/entities';
 
 @ObjectType()
 export class TodoResponse {

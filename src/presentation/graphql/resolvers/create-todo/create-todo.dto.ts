@@ -1,5 +1,5 @@
 import { Field, InputType } from 'type-graphql';
-import { Todo, TodoStatus } from '../../../../domain/entities';
+import { Todo, TodoStatus } from 'src/domain/entities';
 
 @InputType()
 export class TodoDto implements Partial<Todo> {

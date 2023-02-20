@@ -22,10 +22,10 @@ import {
   CreateTodoController,
   ListTodoController,
   NotFoundError,
-} from '../../../presentation/http';
-import { Container } from '../../container';
-import { Module } from '..';
-import { logger } from '../../../shared/logger';
+} from 'src/presentation/http';
+import { Container } from 'src/main/container';
+import { Module } from 'src/main/modules';
+import { logger } from 'src/shared/logger';
 
 export class HttpModule implements Module {
   readonly app: Express = express();

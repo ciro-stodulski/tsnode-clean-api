@@ -1,5 +1,5 @@
 import Joi from 'joi';
-import { ValidationError } from '../../../shared/errors/validation-error';
+import { ValidationError } from 'src/shared/errors/validation-error';
 
 export const validation =
   (schema: Joi.Schema) =>

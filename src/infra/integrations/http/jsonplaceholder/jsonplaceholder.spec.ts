@@ -1,10 +1,10 @@
 import nock from 'nock';
 import { expect } from 'chai';
 import Sinon from 'sinon';
-import { JsonPlaceHolderIntegration, HttpClient } from '../..';
-import { JsonPlaceHolderUser } from '../../../../domain/types';
-import { UserNotFoundError } from '../../../../domain/exceptions';
-import { env } from '../../../../shared';
+import { JsonPlaceHolderIntegration, HttpClient } from 'src/infra/integrations';
+import { JsonPlaceHolderUser } from 'src/domain/types';
+import { UserNotFoundError } from 'src/domain/exceptions';
+import { env } from 'src/shared';
 
 describe('JsonPlaceHolderIntegration', () => {
   const sandbox = Sinon.createSandbox();

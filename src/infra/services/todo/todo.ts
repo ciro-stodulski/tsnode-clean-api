@@ -2,12 +2,15 @@ import {
   ITodoCache,
   ITodoCollection,
   ITodoRepository,
-} from '../../repositories';
-import { IJsonPlaceHolderIntegration, ITodoProducer } from '../../integrations';
-import { Todo } from '../../../domain/entities';
-import { ITodoService } from '../../../domain/services';
-import { JsonPlaceHolderUser } from '../../../domain/types';
-import { logger } from '../../../shared/logger';
+} from 'src/infra/repositories';
+import {
+  IJsonPlaceHolderIntegration,
+  ITodoProducer,
+} from 'src/infra/integrations';
+import { Todo } from 'src/domain/entities';
+import { ITodoService } from 'src/domain/services';
+import { JsonPlaceHolderUser } from 'src/domain/types';
+import { logger } from 'src/shared/logger';
 
 export class TodoService implements ITodoService {
   constructor(

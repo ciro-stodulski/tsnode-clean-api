@@ -1,4 +1,4 @@
-import { ICreateTodoUseCase } from '../../../../domain/use-cases';
+import { ICreateTodoUseCase } from 'src/domain/use-cases';
 import {
   RouteConfig,
   HttpRequest,
@@ -6,8 +6,8 @@ import {
   Controller,
   AuthMiddleware,
   NotFoundError,
-} from '../..';
-import { UserNotFoundError } from '../../../../domain/exceptions';
+} from 'src/presentation/http';
+import { UserNotFoundError } from 'src/domain/exceptions';
 
 export class CreateTodoController implements Controller {
   route_configs: RouteConfig = {

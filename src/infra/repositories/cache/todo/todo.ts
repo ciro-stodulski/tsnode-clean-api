@@ -1,5 +1,5 @@
-import { Todo } from '../../../../domain/entities';
-import { CacheClient, ITodoCache } from '../..';
+import { Todo } from 'src/domain/entities';
+import { CacheClient, ITodoCache } from 'src/infra/repositories';
 
 export class TodoCache implements ITodoCache {
   constructor(private cache: CacheClient) {}

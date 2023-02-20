@@ -4,9 +4,8 @@ import path from 'path';
 import * as protoLoader from '@grpc/proto-loader';
 import { PackageDefinition } from '@grpc/grpc-js/build/src/make-client';
 import * as grpc from '@grpc/grpc-js';
-
-import { GrpcBase, GRPCConfig, GRPCError } from '../../../presentation/grpc';
-import { ValidationError } from '../../../shared';
+import { GrpcBase, GRPCConfig, GRPCError } from 'src/presentation/grpc';
+import { ValidationError } from 'src/shared';
 
 export type LoadedRPC = {
   proto: string;
@@ -82,7 +81,7 @@ export class GrpcConfigModule {
   }
 
   private buildProto(
-    config: GRPCConfig,
+    config: Partial<GRPCConfig>,
     instance: GrpcBase,
     proto_path: string
   ): LoadedRPC {

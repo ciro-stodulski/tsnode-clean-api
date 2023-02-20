@@ -1,7 +1,7 @@
 import { expect } from 'chai';
 import Joi from 'joi';
-import { validation } from '..';
-import { ValidationError } from '../../../shared/errors/validation-error';
+import { validation } from 'src/presentation/amqp';
+import { ValidationError } from 'src/shared/errors/validation-error';
 
 describe('Interface - amqp - middleware', () => {
   describe('Validation', () => {

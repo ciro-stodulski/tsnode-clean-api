@@ -1,4 +1,4 @@
-import { TodoStatus } from '..';
+import { TodoStatus } from 'src/domain/entities';
 
 export class Todo {
   public name: string;

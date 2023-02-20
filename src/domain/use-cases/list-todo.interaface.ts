@@ -1,4 +1,4 @@
-import { Todo } from '../entities';
+import { Todo } from 'src/domain/entities';
 
 export interface IListTodoUseCase {
   list(): Promise<Todo[]>;

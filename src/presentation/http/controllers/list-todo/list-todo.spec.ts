@@ -1,7 +1,7 @@
 import { assert, expect } from 'chai';
 import Sinon from 'sinon';
-import { TodoStatus, Todo } from '../../../../domain/entities';
-import { ListTodoController } from '../..';
+import { TodoStatus, Todo } from 'src/domain/entities';
+import { ListTodoController } from 'src/presentation/http';
 
 describe('Interface - Http', () => {
   describe('list-todo', () => {

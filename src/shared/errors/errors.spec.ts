@@ -1,5 +1,5 @@
 import { expect } from 'chai';
-import { ValidationError } from '..';
+import { ValidationError } from 'src/shared';
 
 describe('Shared- errors - ValidationError ', () => {
   it('Should create ValidationError', () => {

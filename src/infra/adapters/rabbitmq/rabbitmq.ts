@@ -1,9 +1,13 @@
 import { Connection, Channel, connect } from 'amqplib';
-import { RabbitMQConfig } from './type';
-import { AMQPChannelEvent, AMQPErrorCode, InstanceType } from './enum';
-import { EventEmmiter } from '../../../shared/event';
-import { AppState } from '../../../main/enum';
-import { logger } from '../../../shared/logger/logger';
+import {
+  AMQPChannelEvent,
+  AMQPErrorCode,
+  InstanceType,
+  RabbitMQConfig,
+} from 'src/infra/adapters';
+import { EventEmmiter } from 'src/shared/event';
+import { AppState } from 'src/main/enum';
+import { logger } from 'src/shared/logger/logger';
 
 export class RabbitqmAdapter {
   private connection: Connection;

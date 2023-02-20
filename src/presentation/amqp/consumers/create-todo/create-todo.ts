@@ -1,13 +1,14 @@
 import { Channel, ConsumeMessage } from 'amqplib';
-import { ICreateTodoUseCase } from '../../../../domain/use-cases';
+import { ICreateTodoUseCase } from 'src/domain/use-cases';
 import {
   Consumer,
   ConsumerErrorOptions,
   ConsumerConfig,
   create_todo_schema,
   Message,
-} from '../..';
-import { logger } from '../../../../shared/logger';
+} from 'src/presentation/amqp';
+import { logger } from 'src/shared/logger';
+import { Todo } from 'src/domain/entities';
 
 export class CreateTodoConsumer implements Consumer {
   consumer_config: ConsumerConfig = {
@@ -17,7 +18,7 @@ export class CreateTodoConsumer implements Consumer {
 
   constructor(private create_todo_use_case: ICreateTodoUseCase) {}
 
-  async handle(message: Message): Promise<void> {
+  async handle(message: Message<Todo>): Promise<void> {
     this.create_todo_use_case.create(message.body);
   }
 

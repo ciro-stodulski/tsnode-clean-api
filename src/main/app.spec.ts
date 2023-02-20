@@ -1,7 +1,7 @@
 import { assert } from 'chai';
 import sinon from 'sinon';
-import { App } from './app';
-import { env } from '../shared';
+import { App } from 'src/main/app';
+import { env } from 'src/shared';
 
 describe('App', () => {
   describe('start', () => {

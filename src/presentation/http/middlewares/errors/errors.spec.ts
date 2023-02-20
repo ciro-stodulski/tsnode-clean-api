@@ -1,12 +1,14 @@
 import { expect } from 'chai';
-import { ErrorHandlerMiddleware, BadRequest } from '../..';
+import { ErrorHandlerMiddleware, BadRequest } from 'src/presentation/http';
 
 describe('Interface - Http - Middleware', () => {
   describe('error', () => {
     it('should return error httpError', () => {
       const error_handler_middleware = new ErrorHandlerMiddleware();
 
-      const req_fake = {};
+      const req_fake = {
+        body: undefined,
+      };
       const error = new BadRequest('BAD_REQUEST', 'error test');
 
       const result = error_handler_middleware.handle(req_fake, error);
@@ -23,7 +25,9 @@ describe('Interface - Http - Middleware', () => {
 
     it('should return error ER_DUP_ENTRY', () => {
       const error_handler_middleware = new ErrorHandlerMiddleware();
-      const req_fake = {};
+      const req_fake = {
+        body: undefined,
+      };
       const error = { code: 'ER_DUP_ENTRY' };
 
       const result = error_handler_middleware.handle(req_fake, error);
@@ -39,7 +43,9 @@ describe('Interface - Http - Middleware', () => {
 
     it('should return error unexpected', () => {
       const error_handler_middleware = new ErrorHandlerMiddleware();
-      const req_fake = {};
+      const req_fake = {
+        body: undefined,
+      };
       const error = new Error('ERROR');
 
       const result = error_handler_middleware.handle(req_fake, error);

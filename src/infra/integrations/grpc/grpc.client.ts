@@ -4,7 +4,7 @@ import {
   ServiceClientConstructor,
   ServiceClient,
 } from '@grpc/grpc-js/build/src/make-client';
-import { IGRPCClient, GRPCClientOptions } from '..';
+import { IGRPCClient, GRPCClientOptions } from 'src/infra/integrations';
 
 export class GRPCClient implements IGRPCClient {
   createInstance<T>(options: GRPCClientOptions): T {

@@ -1,6 +1,6 @@
 import { assert } from 'chai';
 import sinon from 'sinon';
-import { VerifyNotificationUseCase, EventDto } from '..';
+import { VerifyNotificationUseCase, EventDto } from 'src/application/use-cases';
 
 describe('UseCase - VerifyNotificationUseCase', () => {
   describe('Notify', () => {

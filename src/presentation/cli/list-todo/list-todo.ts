@@ -1,7 +1,7 @@
-import { Command, ConfigCommand } from '..';
-import { logger } from '../../../shared/logger';
-import { Container } from '../../../main/container';
-import { MongodbModule } from '../../../main/modules';
+import { Command, ConfigCommand } from 'src/presentation/cli';
+import { logger } from 'src/shared/logger';
+import { Container } from 'src/main/container';
+import { MongodbModule } from 'src/main/modules';
 
 export class ListTodoCommand implements Command {
   config_command: ConfigCommand = {
