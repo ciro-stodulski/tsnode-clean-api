@@ -5,11 +5,11 @@ export class MongooseAdapter {
   connection: Mongoose;
 
   async startConnection(): Promise<void> {
-    this.connection = await connect(env.db_not_sql_host, {
-      dbName: env.db_not_sql_database,
-      authSource: env.db_not_sql_auth_source,
-      pass: env.db_not_sql_password,
-      user: env.db_not_sql_user,
+    this.connection = await connect(env.mongo_host, {
+      dbName: env.mongo_database,
+      authSource: env.mongo_auth_source,
+      pass: env.mongo_password,
+      user: env.mongo_user,
     });
   }
 }

@@ -40,19 +40,19 @@ export class EnvValidator {
   json_place_holder_url: string;
 
   @IsNotEmpty()
-  db_not_sql_database: string;
+  mongo_database: string;
 
   @IsNotEmpty()
-  db_not_sql_host: string;
+  mongo_host: string;
 
   @IsNotEmpty()
-  db_not_sql_auth_source: string;
+  mongo_auth_source: string;
 
   @IsNotEmpty()
-  db_not_sql_user: string;
+  mongo_user: string;
 
   @IsNotEmpty()
-  db_not_sql_password: string;
+  mongo_password: string;
 
   @IsNotEmpty()
   logger_level: string;
