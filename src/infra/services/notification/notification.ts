@@ -1,7 +1,11 @@
-import { EventDto } from '../../../core/use-cases';
-import { INotificationService } from '../../../core/ports';
-import { INotificationProto, INotificationProducer } from '../../integrations';
-import { logger } from '../../../shared';
+import { EventDto } from 'src/application/use-cases';
+import {
+  INotificationProducer,
+  INotificationProto,
+} from 'src/domain/integrations';
+import { INotificationService } from 'src/domain/services';
+
+import { logger } from 'src/shared';
 
 export class NotificationService implements INotificationService {
   constructor(

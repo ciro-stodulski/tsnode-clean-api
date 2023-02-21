@@ -1,7 +1,7 @@
-import { Command, ListTodoCommand } from '../../../interface/cli';
-import { Container } from '../../container';
-import { Module } from '..';
-import { CommanderAdapter } from '../../../infra/adapters';
+import { Command, ListTodoCommand } from 'src/presentation/cli';
+import { Container } from 'src/main/container';
+import { Module } from 'src/main/modules';
+import { CommanderAdapter } from 'src/infra/adapters';
 
 export class CliModule extends CommanderAdapter implements Module {
   commands: Command[];

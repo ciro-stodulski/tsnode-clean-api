@@ -1,7 +1,7 @@
 import { assert } from 'chai';
 import sinon from 'sinon';
-import { App } from './app';
-import { env } from '../shared';
+import { App } from 'src/main/app';
+import { env } from 'src/shared';
 
 describe('App', () => {
   describe('start', () => {
@@ -14,11 +14,11 @@ describe('App', () => {
     it('Should start modules', async () => {
       sandbox.replace(env, 'http_port', 3000);
       sandbox.replace(env, 'graphql_port', 4000);
-      sandbox.replace(env, 'db_not_sql_auth_source', 'yolo');
-      sandbox.replace(env, 'db_not_sql_database', 'yolo');
-      sandbox.replace(env, 'db_not_sql_host', 'yolo');
-      sandbox.replace(env, 'db_not_sql_password', 'yolo');
-      sandbox.replace(env, 'db_not_sql_user', 'yolo');
+      sandbox.replace(env, 'mongo_auth_source', 'yolo');
+      sandbox.replace(env, 'mongo_database', 'yolo');
+      sandbox.replace(env, 'mongo_host', 'yolo');
+      sandbox.replace(env, 'mongo_password', 'yolo');
+      sandbox.replace(env, 'mongo_user', 'yolo');
       sandbox.replace(env, 'redis_host', 'yolo');
       sandbox.replace(env, 'json_place_holder_url', 'yolo');
       sandbox.replace(env, 'rabbit_mq_enabled', true);

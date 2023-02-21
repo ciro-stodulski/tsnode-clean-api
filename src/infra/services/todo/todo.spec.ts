@@ -1,8 +1,8 @@
 import { assert, expect } from 'chai';
 import sinon from 'sinon';
-import { Todo, TodoStatus } from '../../../core/entities';
-import { JsonPlaceHolderUser } from '../../../core/types';
-import { TodoService } from '..';
+import { Todo, TodoStatus } from 'src/domain/entities';
+import { JsonPlaceHolderUser } from 'src/domain/types';
+import { TodoService } from 'src/infra/services';
 
 describe('Service - TodoService', () => {
   describe('create', () => {

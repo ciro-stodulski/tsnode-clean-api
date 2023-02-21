@@ -1,5 +1,5 @@
 import Redis from 'ioredis';
-import { env, logger } from '../../../shared';
+import { env, logger } from 'src/shared';
 
 export class RedisAdapter {
   public cache: Redis;

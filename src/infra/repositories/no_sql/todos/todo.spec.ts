@@ -1,7 +1,7 @@
 import { assert, expect } from 'chai';
 import Sinon from 'sinon';
-import { TodoCollection } from '../..';
-import { Todo, TodoStatus } from '../../../../core/entities';
+import { TodoCollection } from 'src/infra/repositories';
+import { Todo, TodoStatus } from 'src/domain/entities';
 
 describe('Collection - todo', () => {
   describe('save', async () => {

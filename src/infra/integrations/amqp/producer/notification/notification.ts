@@ -1,12 +1,12 @@
-import { EventDto } from '../../../../../core/use-cases';
+import { EventDto } from 'src/application/use-cases';
 import {
   Producer,
   AMQPPublishOptions,
   IAmqp,
   ProducerConfig,
-  INotificationProducer,
-} from '../../..';
-import { logger } from '../../../../../shared/logger';
+} from 'src/infra/integrations';
+import { logger } from 'src/shared/logger';
+import { INotificationProducer } from 'src/domain/integrations';
 
 export class NotificationProducer
   extends Producer

@@ -1,5 +1,5 @@
-import { NotificationService, TodoService } from '../../../infra/services';
-import { ServiceCaseContext, InfraContext } from '.';
+import { NotificationService, TodoService } from 'src/infra/services';
+import { ServiceCaseContext, InfraContext } from 'src/main/container/factories';
 
 export const make_service_context = (
   infra_context: InfraContext

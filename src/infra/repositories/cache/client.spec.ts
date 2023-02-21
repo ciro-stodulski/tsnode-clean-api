@@ -1,6 +1,6 @@
 import { assert, expect } from 'chai';
 import sinon from 'sinon';
-import { CacheClient } from '..';
+import { CacheClient } from 'src/infra/repositories';
 
 describe('Repositories - Cache - Client', () => {
   describe('get', () => {
