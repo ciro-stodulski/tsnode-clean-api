@@ -1,8 +1,13 @@
 import { Connection, Channel, connect } from 'amqplib';
-import { RabbitMQConfig } from './type';
-import { AMQPChannelEvent, AMQPErrorCode, InstanceType } from './enum';
-import { EventEmmiter } from '../../../main/event';
-import { AppState } from '../../../main/enum';
+import {
+  AMQPChannelEvent,
+  AMQPErrorCode,
+  InstanceType,
+  RabbitMQConfig,
+} from 'src/infra/adapters';
+import { EventEmmiter } from 'src/shared/event';
+import { AppState } from 'src/main/enum';
+import { logger } from 'src/shared/logger/logger';
 
 export class RabbitqmAdapter {
   private connection: Connection;
@@ -27,11 +32,12 @@ export class RabbitqmAdapter {
 
       this.channel.on(AMQPChannelEvent.ERROR, async error => {
         if (error.code === AMQPErrorCode.NOT_FOUND) {
-          console.error(error);
+          logger.error(error);
           this.type === InstanceType.CLIENT && (await this.reconnect());
         }
       });
     } catch (error) {
+      logger.error('Rabbitmq:', error);
       this.type === InstanceType.SERVER && this.reconnect();
     }
 
@@ -51,13 +57,13 @@ export class RabbitqmAdapter {
       this.type === InstanceType.SERVER && (await this.reconnect());
     });
 
-    console.info(
+    logger.info(
       `RabbitMQ ${this.type}: connection established on host - ${this.config.host}:${port}`
     );
   }
 
   async reconnect(): Promise<void> {
-    console.warn(
+    logger.warn(
       `Trying to connect to rabbitmq on virtual host ${this.config.vhost} in 5 seconds`
     );
 

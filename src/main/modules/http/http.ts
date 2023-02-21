@@ -22,9 +22,10 @@ import {
   CreateTodoController,
   ListTodoController,
   NotFoundError,
-} from '../../../interface/http';
-import { Container } from '../../container';
-import { Module } from '..';
+} from 'src/presentation/http';
+import { Container } from 'src/main/container';
+import { Module } from 'src/main/modules';
+import { logger } from 'src/shared/logger';
 
 export class HttpModule implements Module {
   readonly app: Express = express();
@@ -44,6 +45,7 @@ export class HttpModule implements Module {
 
   close(): void {
     this.server.close();
+    logger.warn('Http: disconnecting');
   }
 
   start(): void {
@@ -86,7 +88,7 @@ export class HttpModule implements Module {
     const error_handler = this.errorHandler() as any;
     this.app.use(error_handler);
     this.server = this.app.listen(this.port, () =>
-      console.info(`Http: Server running on port 3000`)
+      logger.info(`Http: Server running on port ${this.port}`)
     );
   }
 
@@ -196,9 +198,9 @@ export class HttpModule implements Module {
       });
 
       if (validation.error) {
-        console.info(req?.body);
-        console.info(req?.params);
-        console.info(req?.query);
+        logger.info(req?.body);
+        logger.info(req?.params);
+        logger.info(req?.query);
         return next(
           new BadRequest(
             'VALIDATION_FAILED',

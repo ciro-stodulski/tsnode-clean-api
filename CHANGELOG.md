@@ -5,32 +5,74 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](http://keepachangelog.com/)
 and this project adheres to [Semantic Versioning](http://semver.org/).
 
-## Ongoing Changes
+## [Ongoing Changes]
 
-- add - add producer notification
-- ref - refactoring service layer
-- ref - refactoring cache client to use adapter redis
-- ref - refactoring in amqp server to use adapter rabbit mq and resolving issue connections lots 
-- add - create client for amqp client to create producer and create adapter rabbit qm
-- ref - create service layer
-- add - Readme
-- add - Dockerfile
-- add - env validation
-- add - cache
-- add - db and migrations to database
-- fix - adjust errors for cli interface
-- fix - add port in constructor of http module
-- add - server http and consumer for rabbit mq
-- fix - interfaces cli and http
-- add - integration json place holder
-- add - client http
-- add - error handler http
-- add - validation body schema for request http
-- ref - container and cli module
-- add - module http
-- add - module cli
-- add - module and container layer
-- Add - interface layer
-- Add - infra layer
-- Add - entity todo
-- Add - test entity todo
+## [2.0.0] - 2023-02-21
+
+### Fixed
+
+Fixed name project.
+
+## Changed
+
+Update readme
+Refactored in container layer add factories in structure
+Refactored core layer
+Refactored module cli
+Update changelog format by http://keepachangelog.com
+Refactored layer to event and logger.
+Update logs in modules.
+restructure project
+add path to import
+
+### Added
+
+Create docker compose for setup
+Create client integration for grpc server
+Create new module for grpc server
+Create adapter commander 
+Added solution to loggers.
+Collection todo.
+Created mongoose adapter and mongodb module.
+Added resolver and mutation graphql.
+Added modulo graphql.
+Created apollo server adapter.
+
+## [1.0.0] - 2022-07-12
+
+### Fixed
+
+Adjust body parser message in amqp integrations
+Adjust errors for cli interface.
+Add port in constructor of http module.
+interfaces cli and http.
+
+## Changed
+
+Refactored container and cli module.
+Refactored service layer.
+Refactored cache client to use adapter redis.
+Refactored in amqp server to use adapter rabbit mq and resolving issue connections lots.
+Created service layer and refactoring use cases.
+
+### Added
+
+Added producer notification.
+Created client for amqp client to create producer and create adapter rabbit qm.
+Added Readme.
+Created Dockerfile.
+Added env validation.
+Created cache.
+Added db and migrations to database.
+Created server http and consumer for rabbit mq.
+Created integration json place holder.
+Created client http.
+Created error handler http.
+Validation body schema for request http.
+Module http.
+Module cli.
+Module and container layer.
+Interface layer.
+Infra layer.
+Entity todo.
+Test entity todo.

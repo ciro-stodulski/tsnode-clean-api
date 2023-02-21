@@ -1,61 +1,50 @@
+import { logger } from 'src/shared';
 import {
   CreateTodoUseCase,
+  ListTodoUseCase,
+  VerifyNotificationUseCase,
+} from 'src/application/use-cases';
+import {
   ICreateTodoUseCase,
   IListTodoUseCase,
-  ListTodoUseCase,
-} from '../../core/use-cases';
+  IVerifyNotificationUseCase,
+} from 'src/domain/use-cases';
+import { ContainerConfig } from 'src/main/container';
 import {
-  CacheClient,
-  TodoCache,
-  TodoRepository,
-} from '../../infra/repositories';
-import { InfraContext, UseCaseContext } from '.';
-import {
-  HttpClient,
-  JsonPlaceHolderIntegration,
-} from '../../infra/integrations/http';
-import { AmqpClient, TodoProducer } from '../../infra/integrations/amqp';
-import { Knex } from '../../infra/adapters';
-import { env } from '../env';
-import { TodoService } from '../../core/services';
+  make_infra_context,
+  make_service_context,
+} from 'src/main/container/factories';
 
-export class Container {
+export class Container extends ContainerConfig {
   readonly list_todo_use_case: IListTodoUseCase;
 
   readonly create_todo_use_case: ICreateTodoUseCase;
 
+  readonly verify_notification_use_case: IVerifyNotificationUseCase;
+
   constructor() {
-    const db = new Knex();
-    db.isConnection();
+    super();
 
-    const cache_client = new CacheClient();
+    const { todo_service, notification_service } = make_service_context(
+      make_infra_context(
+        this.client_cache,
+        this.db,
+        this.amqp_client,
+        this.grpc_client
+      )
+    );
 
-    const amqp_client = new AmqpClient({
-      host: env.rabbit_mq_host,
-      password: env.rabbit_mq_password,
-      port: env.rabbit_mq_port,
-      protocol: env.rabbit_mq_protocol,
-      username: env.rabbit_mq_username,
-      vhost: env.rabbit_mq_vhost,
-    });
-
-    const infra_context: InfraContext = {
-      todo_cache: new TodoCache(cache_client),
-      todo_repository: new TodoRepository(db.getConnection()),
-      json_place_holder_integration: new JsonPlaceHolderIntegration(
-        new HttpClient()
-      ),
-      todo_producer: new TodoProducer(amqp_client),
-    };
-
-    const service_context: UseCaseContext = {
-      todo_service: new TodoService(infra_context),
-    };
-
-    this.list_todo_use_case = new ListTodoUseCase(service_context.todo_service);
+    this.list_todo_use_case = new ListTodoUseCase(todo_service);
 
     this.create_todo_use_case = new CreateTodoUseCase(
-      service_context.todo_service
+      todo_service,
+      notification_service
     );
+
+    this.verify_notification_use_case = new VerifyNotificationUseCase(
+      notification_service
+    );
+
+    logger.info('Container: load use cases with successfully');
   }
 }

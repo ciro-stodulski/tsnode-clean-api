@@ -1,18 +1,21 @@
 import { Channel, ConsumeMessage } from 'amqplib';
-import { convert_to_json } from '../../../shared';
+import { convert_to_json } from 'src/shared';
 import {
   validation,
   Consumer,
   ConsumerErrorOptions,
   CreateTodoConsumer,
-} from '../../../interface/amqp';
-import { Container } from '../../container';
+  VerifyConsumer,
+  Message,
+} from 'src/presentation/amqp';
+import { Container } from 'src/main/container';
 import {
   RabbitqmAdapter,
   RabbitMQConfig,
   InstanceType,
-} from '../../../infra/adapters';
-import { Module } from '..';
+} from 'src/infra/adapters';
+import { Module } from 'src/main/modules';
+import { logger } from 'src/shared/logger';
 
 export class AmqpModule extends RabbitqmAdapter implements Module {
   private channel_server: Channel;
@@ -21,7 +24,10 @@ export class AmqpModule extends RabbitqmAdapter implements Module {
 
   constructor(container: Container, config: RabbitMQConfig) {
     super(config, InstanceType.SERVER);
-    this.consumers = [new CreateTodoConsumer(container.create_todo_use_case)];
+    this.consumers = [
+      new CreateTodoConsumer(container.create_todo_use_case),
+      new VerifyConsumer(container.verify_notification_use_case),
+    ];
   }
 
   async close(): Promise<void> {}
@@ -33,7 +39,7 @@ export class AmqpModule extends RabbitqmAdapter implements Module {
     if (message) {
       const message_content = validation(consumer.consumer_config.schema)(
         convert_to_json(message.content)
-      );
+      ) as Message;
 
       await consumer.handle(message_content);
 
@@ -83,12 +89,12 @@ export class AmqpModule extends RabbitqmAdapter implements Module {
 
       for (const consumer of this.consumers) {
         this.registerConsumer(consumer);
-        console.info(
-          `RabbitMQ: Started queue '${consumer.consumer_config.queue}' to consume`
+        logger.info(
+          `Amqp: Started queue '${consumer.consumer_config.queue}' to consume`
         );
       }
     } catch (error) {
-      console.error('RabbitMQ: Error to started queues');
+      logger.error('Amqp: Error to started queues', error);
     }
   }
 }

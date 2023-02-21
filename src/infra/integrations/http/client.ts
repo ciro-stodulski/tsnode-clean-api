@@ -1,5 +1,6 @@
 import axios, { AxiosRequestConfig, AxiosInstance, Method } from 'axios';
-import { Http, HttpConfig, HttpResponse } from '.';
+import { axiosLogger } from 'src/shared/logger';
+import { Http, HttpConfig, HttpResponse } from 'src/infra/integrations';
 
 export class HttpClient implements Http {
   private instance: AxiosInstance;
@@ -46,6 +47,7 @@ export class HttpClient implements Http {
     this.instance = axios.create({
       ...this.loadConfigs(config),
     });
+    axiosLogger.attachInterceptor.bind(axiosLogger)(this.instance);
   }
 
   protected loadConfigs(config?: HttpConfig): AxiosRequestConfig {

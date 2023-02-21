@@ -1,7 +1,15 @@
 import { Channel, Options } from 'amqplib';
-import { InstanceType, RabbitMQConfig, RabbitqmAdapter } from '../../adapters';
-import { AMQPPublishData, IAmqp, AMQPPublishOptions } from '.';
-import { converter } from '../../../shared';
+import {
+  InstanceType,
+  RabbitMQConfig,
+  RabbitqmAdapter,
+} from 'src/infra/adapters';
+import {
+  AMQPPublishData,
+  IAmqp,
+  AMQPPublishOptions,
+} from 'src/infra/integrations';
+import { converter } from 'src/shared';
 
 export class AmqpClient extends RabbitqmAdapter implements IAmqp {
   private channel_client: Promise<Channel>;
@@ -15,6 +23,7 @@ export class AmqpClient extends RabbitqmAdapter implements IAmqp {
     const { exchange, message, routing_key, options } = data;
 
     const publish_options = this.getPublishOptions(options);
+
     try {
       return (await this.channel_client).publish(
         exchange || '',

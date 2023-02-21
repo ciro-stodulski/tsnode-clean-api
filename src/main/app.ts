@@ -1,13 +1,27 @@
 import { validateOrReject, ValidationError } from 'class-validator';
-import { env } from './env';
-import { Container } from './container';
-import { CliModule, Module, HttpModule, AmqpModule } from './modules';
+import { env } from 'src/shared/env';
+import { Container } from 'src/main/container';
+import {
+  Module,
+  HttpModule,
+  AmqpModule,
+  GraphQLModule,
+  MongodbModule,
+  GrpcModule,
+} from 'src/main/modules';
+import { logger } from 'src/shared/logger';
 
 export class App {
   private modules: Module[];
 
-  constructor({ cli = null, http = null, amqp = null }, container = undefined) {
-    this.loadModules({ cli, http, amqp }, container || new Container());
+  constructor(
+    { http = null, amqp = null, graphql = null, mongodb = null, grpc = null },
+    container = undefined
+  ) {
+    this.loadModules(
+      { http, amqp, graphql, mongodb, grpc },
+      container || new Container()
+    );
   }
 
   async restart(): Promise<void> {
@@ -19,12 +33,13 @@ export class App {
   }
 
   loadModules(
-    { cli = null, http = null, amqp = null },
+    { http = null, amqp = null, graphql = null, mongodb = null, grpc = null },
     container: Container
   ): void {
     this.modules = [
-      cli || new CliModule(container),
+      mongodb || new MongodbModule(),
       http || new HttpModule(container, env.http_port),
+      graphql || new GraphQLModule(container, env.graphql_port),
       amqp ||
         new AmqpModule(container, {
           host: env.rabbit_mq_host,
@@ -34,6 +49,7 @@ export class App {
           username: env.rabbit_mq_username,
           vhost: env.rabbit_mq_vhost,
         }),
+      grpc || new GrpcModule(container),
     ];
   }
 
@@ -52,7 +68,7 @@ export class App {
         for (const key in item.constraints) {
           if (key) {
             const message = item.constraints[key];
-            console.error(message);
+            logger.error('env fail:', message);
           }
         }
       }

@@ -1,5 +1,5 @@
 import Joi from 'joi';
-import { CodedError } from '..';
+import { CodedError } from 'src/shared';
 
 export class ValidationError extends CodedError {
   constructor(details: Joi.ValidationErrorItem[], msg?: string) {
