@@ -7,6 +7,8 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 
 ## [Ongoing Changes]
 
+## [2.0.0] - 2023-02-21
+
 ### Fixed
 
 Fixed name project.
