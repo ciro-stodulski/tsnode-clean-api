@@ -2,7 +2,7 @@ import nock from 'nock';
 import { expect } from 'chai';
 import Sinon from 'sinon';
 import { JsonPlaceHolderIntegration, HttpClient } from 'src/infra/integrations';
-import { JsonPlaceHolderUser } from 'src/domain/types';
+import { JsonPlaceHolderUserDto } from 'src/domain/dto';
 import { UserNotFoundError } from 'src/domain/exceptions';
 import { env } from 'src/shared';
 
@@ -20,7 +20,7 @@ describe('JsonPlaceHolderIntegration', () => {
 
   describe('#getUser', () => {
     it('should return user', async () => {
-      const mock_user: JsonPlaceHolderUser = {
+      const mock_user: JsonPlaceHolderUserDto = {
         company: {
           bs: 'yolo',
           catchPhrase: 'yolo',

@@ -1,6 +1,6 @@
 import { Todo } from 'src/domain/entities';
 import { ITodoService } from 'src/domain/services';
-import { JsonPlaceHolderUser } from 'src/domain/types';
+import { JsonPlaceHolderUserDto } from 'src/domain/dto';
 import { logger } from 'src/shared/logger';
 import {
   ITodoCache,
@@ -21,7 +21,7 @@ export class TodoService implements ITodoService {
     private todo_producer: ITodoProducer
   ) {}
 
-  getUser(id: string): Promise<JsonPlaceHolderUser> {
+  getUser(id: string): Promise<JsonPlaceHolderUserDto> {
     return this.json_place_holder_integration.getUser(id);
   }
 

@@ -1,7 +1,10 @@
 import sinon from 'sinon';
 import { assert } from 'chai';
-import { NotificationProducer, AMQPPublishOptions } from '../../..';
-import { EventDto } from '../../../../../application/use-cases';
+import {
+  NotificationProducer,
+  AMQPPublishOptions,
+} from 'src/infra/integrations';
+import { EventDto } from 'src/domain/dto';
 
 describe('TodoProducer', () => {
   const sandbox = sinon.createSandbox();

@@ -1,4 +1,4 @@
-export type JsonPlaceHolderUser = {
+export type JsonPlaceHolderUserDto = {
   id: number;
   name: string;
   username: string;

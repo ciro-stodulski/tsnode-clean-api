@@ -1,7 +1,7 @@
 import { assert, expect } from 'chai';
 import sinon from 'sinon';
 import { Todo, TodoStatus } from 'src/domain/entities';
-import { JsonPlaceHolderUser } from 'src/domain/types';
+import { JsonPlaceHolderUserDto } from 'src/domain/dto';
 import { TodoService } from 'src/infra/services';
 
 describe('Service - TodoService', () => {
@@ -48,7 +48,7 @@ describe('Service - TodoService', () => {
 
   describe('getUser', () => {
     it('Should create todo with succeffully', async () => {
-      const mock_user: JsonPlaceHolderUser = {
+      const mock_user: JsonPlaceHolderUserDto = {
         company: {
           bs: 'yolo',
           catchPhrase: 'yolo',

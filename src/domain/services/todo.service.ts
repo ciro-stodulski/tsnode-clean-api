@@ -1,8 +1,8 @@
 import { Todo } from 'src/domain/entities';
-import { JsonPlaceHolderUser } from 'src/domain/types';
+import { JsonPlaceHolderUserDto } from 'src/domain/dto';
 
 export interface ITodoService {
   create(dto: Todo): Promise<string>;
-  getUser(id: string): Promise<JsonPlaceHolderUser>;
+  getUser(id: string): Promise<JsonPlaceHolderUserDto>;
   list(): Promise<Todo[]>;
 }

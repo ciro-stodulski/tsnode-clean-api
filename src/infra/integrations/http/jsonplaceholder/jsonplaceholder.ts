@@ -1,6 +1,6 @@
 import { UserNotFoundError } from 'src/domain/exceptions';
 import { Http, HttpErrorCode } from 'src/infra/integrations';
-import { JsonPlaceHolderUser } from 'src/domain/types';
+import { JsonPlaceHolderUserDto } from 'src/domain/dto';
 import { env } from 'src/shared';
 import { IJsonPlaceHolderIntegration } from 'src/domain/integrations';
 
@@ -11,9 +11,11 @@ export class JsonPlaceHolderIntegration implements IJsonPlaceHolderIntegration {
     });
   }
 
-  async getUser(id: string): Promise<JsonPlaceHolderUser> {
+  async getUser(id: string): Promise<JsonPlaceHolderUserDto> {
     try {
-      const result = await this.http.get<JsonPlaceHolderUser>(`/users/${id}`);
+      const result = await this.http.get<JsonPlaceHolderUserDto>(
+        `/users/${id}`
+      );
 
       return result.data;
     } catch (error) {
