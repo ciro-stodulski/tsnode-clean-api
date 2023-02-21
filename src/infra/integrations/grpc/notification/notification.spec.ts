@@ -1,7 +1,7 @@
 import sinon from 'sinon';
 import { assert, expect } from 'chai';
-import { EventDto } from 'src/application/use-cases';
 import { NotificationPB } from 'src/infra/integrations';
+import { EventDto } from 'src/domain/dto';
 
 describe('NotificationPB', () => {
   const sandbox = sinon.createSandbox();

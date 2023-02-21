@@ -1,7 +1,7 @@
 import Sinon from 'sinon';
 import { assert, expect } from 'chai';
 import { VerifyConsumer } from 'src/presentation/amqp';
-import { EventDto } from 'src/application/use-cases';
+import { EventDto } from 'src/domain/dto';
 
 describe('Interface - Amqp', () => {
   describe('verify - consumer', () => {

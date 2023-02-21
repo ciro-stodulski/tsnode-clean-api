@@ -1,4 +1,4 @@
-import { EventDto } from 'src/application/use-cases';
+import { EventDto } from 'src/domain/dto';
 import {
   INotificationProducer,
   INotificationProto,

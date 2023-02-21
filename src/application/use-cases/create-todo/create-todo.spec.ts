@@ -1,14 +1,14 @@
 import { assert, expect } from 'chai';
 import sinon from 'sinon';
 import { Todo, TodoStatus } from 'src/domain/entities';
-import { JsonPlaceHolderUser } from 'src/domain/types';
+import { JsonPlaceHolderUserDto } from 'src/domain/dto';
 import { CreateTodoUseCase } from 'src/application/use-cases';
 
 describe('UseCase - CreateTodoUseCase', () => {
   describe('create', () => {
     it('Should create todo with succeffully', async () => {
       const result_db = 'yolo';
-      const mock_user: JsonPlaceHolderUser = {
+      const mock_user: JsonPlaceHolderUserDto = {
         company: {
           bs: 'yolo',
           catchPhrase: 'yolo',
